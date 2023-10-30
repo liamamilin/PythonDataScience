@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Python 基本知识 | Python 数据科学</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Python 基本知识 | Python 数据科学" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Python 基本知识 | Python 数据科学" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="cross.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#数据科学简介"><i class="fa fa-check"></i><b>1.1</b> 数据科学简介</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#作者其他书籍"><i class="fa fa-check"></i><b>1.2</b> 作者其他书籍</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="python-基本知识.html"><a href="python-基本知识.html"><i class="fa fa-check"></i><b>2</b> Python 基本知识</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="python-基本知识.html"><a href="python-基本知识.html#python-基本数据类型"><i class="fa fa-check"></i><b>2.1</b> Python 基本数据类型</a></li>
+<li class="chapter" data-level="2.2" data-path="python-基本知识.html"><a href="python-基本知识.html#python-变量赋值"><i class="fa fa-check"></i><b>2.2</b> Python 变量赋值</a></li>
+<li class="chapter" data-level="2.3" data-path="python-基本知识.html"><a href="python-基本知识.html#容器类型"><i class="fa fa-check"></i><b>2.3</b> 容器类型</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="python-基本知识.html"><a href="python-基本知识.html#顺序序列"><i class="fa fa-check"></i><b>2.3.1</b> 顺序序列</a></li>
+<li class="chapter" data-level="2.3.2" data-path="python-基本知识.html"><a href="python-基本知识.html#字典与集合"><i class="fa fa-check"></i><b>2.3.2</b> 字典与集合</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="python-基本知识.html"><a href="python-基本知识.html#变量转换"><i class="fa fa-check"></i><b>2.4</b> 变量转换</a></li>
+<li class="chapter" data-level="2.5" data-path="python-基本知识.html"><a href="python-基本知识.html#容器索引"><i class="fa fa-check"></i><b>2.5</b> 容器索引</a></li>
+<li class="chapter" data-level="2.6" data-path="python-基本知识.html"><a href="python-基本知识.html#逻辑符"><i class="fa fa-check"></i><b>2.6</b> 逻辑符</a></li>
+<li class="chapter" data-level="2.7" data-path="python-基本知识.html"><a href="python-基本知识.html#python模块"><i class="fa fa-check"></i><b>2.7</b> Python模块</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="python-基本知识.html"><a href="python-基本知识.html#创建属于自己的模块"><i class="fa fa-check"></i><b>2.7.1</b> 创建属于自己的模块</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="python-基本知识.html"><a href="python-基本知识.html#条件判断"><i class="fa fa-check"></i><b>2.8</b> 条件判断</a></li>
+<li class="chapter" data-level="2.9" data-path="python-基本知识.html"><a href="python-基本知识.html#基础数学函数"><i class="fa fa-check"></i><b>2.9</b> 基础数学函数</a></li>
+<li class="chapter" data-level="2.10" data-path="python-基本知识.html"><a href="python-基本知识.html#错误处理"><i class="fa fa-check"></i><b>2.10</b> 错误处理</a></li>
+<li class="chapter" data-level="2.11" data-path="python-基本知识.html"><a href="python-基本知识.html#循环"><i class="fa fa-check"></i><b>2.11</b> 循环</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="python-基本知识.html"><a href="python-基本知识.html#条件循环"><i class="fa fa-check"></i><b>2.11.1</b> 条件循环</a></li>
+<li class="chapter" data-level="2.11.2" data-path="python-基本知识.html"><a href="python-基本知识.html#迭代循环"><i class="fa fa-check"></i><b>2.11.2</b> 迭代循环</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="python-基本知识.html"><a href="python-基本知识.html#打印"><i class="fa fa-check"></i><b>2.12</b> 打印</a></li>
+<li class="chapter" data-level="2.13" data-path="python-基本知识.html"><a href="python-基本知识.html#输入"><i class="fa fa-check"></i><b>2.13</b> 输入</a></li>
+<li class="chapter" data-level="2.14" data-path="python-基本知识.html"><a href="python-基本知识.html#关于容器的常用操作-generic-operations-on-containers"><i class="fa fa-check"></i><b>2.14</b> 关于容器的常用操作 Generic Operations on Containers</a></li>
+<li class="chapter" data-level="2.15" data-path="python-基本知识.html"><a href="python-基本知识.html#关于列表的操作-list"><i class="fa fa-check"></i><b>2.15</b> 关于列表的操作 list</a></li>
+<li class="chapter" data-level="2.16" data-path="python-基本知识.html"><a href="python-基本知识.html#关于字典的操作"><i class="fa fa-check"></i><b>2.16</b> 关于字典的操作</a></li>
+<li class="chapter" data-level="2.17" data-path="python-基本知识.html"><a href="python-基本知识.html#关于集合的操作"><i class="fa fa-check"></i><b>2.17</b> 关于集合的操作</a></li>
+<li class="chapter" data-level="2.18" data-path="python-基本知识.html"><a href="python-基本知识.html#文件"><i class="fa fa-check"></i><b>2.18</b> 文件</a>
+<ul>
+<li class="chapter" data-level="2.18.1" data-path="python-基本知识.html"><a href="python-基本知识.html#写文件"><i class="fa fa-check"></i><b>2.18.1</b> 写文件</a></li>
+<li class="chapter" data-level="2.18.2" data-path="python-基本知识.html"><a href="python-基本知识.html#读文件"><i class="fa fa-check"></i><b>2.18.2</b> 读文件</a></li>
+<li class="chapter" data-level="2.18.3" data-path="python-基本知识.html"><a href="python-基本知识.html#其他相关方法"><i class="fa fa-check"></i><b>2.18.3</b> 其他相关方法</a></li>
+<li class="chapter" data-level="2.18.4" data-path="python-基本知识.html"><a href="python-基本知识.html#一个常用的方法"><i class="fa fa-check"></i><b>2.18.4</b> 一个常用的方法</a></li>
+</ul></li>
+<li class="chapter" data-level="2.19" data-path="python-基本知识.html"><a href="python-基本知识.html#函数定义"><i class="fa fa-check"></i><b>2.19</b> 函数定义</a></li>
+<li class="chapter" data-level="2.20" data-path="python-基本知识.html"><a href="python-基本知识.html#字符串操作"><i class="fa fa-check"></i><b>2.20</b> 字符串操作</a>
+<ul>
+<li class="chapter" data-level="2.20.1" data-path="python-基本知识.html"><a href="python-基本知识.html#字符串格式化"><i class="fa fa-check"></i><b>2.20.1</b> 字符串格式化</a></li>
+</ul></li>
+<li class="chapter" data-level="2.21" data-path="python-基本知识.html"><a href="python-基本知识.html#python-语法糖"><i class="fa fa-check"></i><b>2.21</b> Python 语法糖</a></li>
+<li class="chapter" data-level="2.22" data-path="python-基本知识.html"><a href="python-基本知识.html#python-编程注意事项"><i class="fa fa-check"></i><b>2.22</b> Python 编程注意事项</a>
+<ul>
+<li class="chapter" data-level="2.22.1" data-path="python-基本知识.html"><a href="python-基本知识.html#检查代码风格"><i class="fa fa-check"></i><b>2.22.1</b> 检查代码风格</a></li>
+</ul></li>
+<li class="chapter" data-level="2.23" data-path="python-基本知识.html"><a href="python-基本知识.html#python-获取帮助"><i class="fa fa-check"></i><b>2.23</b> Python 获取帮助</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>3.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="3.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>3.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>4</b> Parts</a></li>
+<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
+<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
+<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Python 数据科学</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="python-基本知识" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Python 基本知识<a href="python-基本知识.html#python-基本知识" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="python-基本数据类型" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Python 基本数据类型<a href="python-基本知识.html#python-基本数据类型" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>int</li>
+<li>float</li>
+<li>bool</li>
+<li>str</li>
+<li>bytes</li>
+</ol>
+</div>
+<div id="python-变量赋值" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Python 变量赋值<a href="python-基本知识.html#python-变量赋值" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="python-基本知识.html#cb1-1" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1.23</span> <span class="op">+</span> <span class="fl">2.34</span></span>
+<span id="cb1-2"><a href="python-基本知识.html#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="python-基本知识.html#cb1-3" tabindex="-1"></a>a <span class="op">=</span> b <span class="op">=</span> c <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-4"><a href="python-基本知识.html#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="python-基本知识.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="python-基本知识.html#cb1-6" tabindex="-1"></a>a,b,c <span class="op">=</span> <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span></span>
+<span id="cb1-7"><a href="python-基本知识.html#cb1-7" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="python-基本知识.html#cb1-8" tabindex="-1"></a>a,b <span class="op">=</span> b,a <span class="co"># 变量换值</span></span></code></pre></div>
+<pre><code>x+ = 3 
+# 等价于x = x + 3
+
+x-=1 
+# 等价于 x = x-1
+
+del x 
+# 表示删除x</code></pre>
+</div>
+<div id="容器类型" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> 容器类型<a href="python-基本知识.html#容器类型" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="顺序序列" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> 顺序序列<a href="python-基本知识.html#顺序序列" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>list 列表</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="python-基本知识.html#cb3-1" tabindex="-1"></a>[<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">9</span>]</span></code></pre></div>
+<pre><code>## [1, 5, 9]</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="python-基本知识.html#cb5-1" tabindex="-1"></a>[<span class="st">&quot;x&quot;</span>,<span class="dv">11</span>,<span class="fl">8.9</span>]</span></code></pre></div>
+<pre><code>## [&#39;x&#39;, 11, 8.9]</code></pre>
+<p>tuple 元组</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="python-基本知识.html#cb7-1" tabindex="-1"></a>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">9</span>)</span></code></pre></div>
+<pre><code>## (1, 5, 9)</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="python-基本知识.html#cb9-1" tabindex="-1"></a><span class="dv">11</span>,<span class="st">&quot;y&quot;</span>,<span class="fl">7.4</span></span></code></pre></div>
+<pre><code>## (11, &#39;y&#39;, 7.4)</code></pre>
+</div>
+<div id="字典与集合" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> 字典与集合<a href="python-基本知识.html#字典与集合" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>字典 dict</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="python-基本知识.html#cb11-1" tabindex="-1"></a>{<span class="st">&quot;key&quot;</span>:<span class="st">&quot;value&quot;</span>}</span></code></pre></div>
+<pre><code>## {&#39;key&#39;: &#39;value&#39;}</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="python-基本知识.html#cb13-1" tabindex="-1"></a><span class="bu">dict</span>(a<span class="op">=</span><span class="dv">3</span>,b<span class="op">=</span><span class="dv">4</span>,k<span class="op">=</span><span class="st">&quot;v&quot;</span>)</span></code></pre></div>
+<pre><code>## {&#39;a&#39;: 3, &#39;b&#39;: 4, &#39;k&#39;: &#39;v&#39;}</code></pre>
+<p>set 集合</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="python-基本知识.html#cb15-1" tabindex="-1"></a>{<span class="st">&quot;key1&quot;</span>,<span class="st">&quot;key2&quot;</span>}</span></code></pre></div>
+<pre><code>## {&#39;key1&#39;, &#39;key2&#39;}</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="python-基本知识.html#cb17-1" tabindex="-1"></a>{<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">0</span>}</span></code></pre></div>
+<pre><code>## {0, 1, 3, 9}</code></pre>
+</div>
+</div>
+<div id="变量转换" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> 变量转换<a href="python-基本知识.html#变量转换" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>基本格式是type(expression)</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="python-基本知识.html#cb19-1" tabindex="-1"></a><span class="bu">int</span>(<span class="st">&quot;20&quot;</span>)</span></code></pre></div>
+<pre><code>## 20</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="python-基本知识.html#cb21-1" tabindex="-1"></a><span class="bu">float</span>(<span class="st">&quot;-11.24e8&quot;</span>)</span></code></pre></div>
+<pre><code>## -1124000000.0</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="python-基本知识.html#cb23-1" tabindex="-1"></a><span class="bu">round</span>(<span class="fl">15.56</span>,<span class="dv">1</span>) <span class="co"># 保留1位小数</span></span></code></pre></div>
+<pre><code>## 15.6</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="python-基本知识.html#cb25-1" tabindex="-1"></a><span class="bu">bool</span>(<span class="op">-</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## True</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="python-基本知识.html#cb27-1" tabindex="-1"></a><span class="bu">str</span>(<span class="dv">1111</span>)</span></code></pre></div>
+<pre><code>## &#39;1111&#39;</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="python-基本知识.html#cb29-1" tabindex="-1"></a><span class="bu">chr</span>(<span class="dv">64</span>)</span></code></pre></div>
+<pre><code>## &#39;@&#39;</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="python-基本知识.html#cb31-1" tabindex="-1"></a><span class="bu">bytes</span>([<span class="dv">72</span>,<span class="dv">9</span>,<span class="dv">64</span>])</span></code></pre></div>
+<pre><code>## b&#39;H\t@&#39;</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="python-基本知识.html#cb33-1" tabindex="-1"></a><span class="bu">list</span>(<span class="st">&quot;abc&quot;</span>)</span></code></pre></div>
+<pre><code>## [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="python-基本知识.html#cb35-1" tabindex="-1"></a><span class="bu">dict</span>([(<span class="dv">3</span>,<span class="st">&quot;three&quot;</span>),(<span class="dv">1</span>,<span class="st">&quot;one&quot;</span>)])</span></code></pre></div>
+<pre><code>## {3: &#39;three&#39;, 1: &#39;one&#39;}</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="python-基本知识.html#cb37-1" tabindex="-1"></a><span class="bu">set</span>([<span class="st">&quot;one&quot;</span>,<span class="st">&quot;two&quot;</span>])</span></code></pre></div>
+<pre><code>## {&#39;one&#39;, &#39;two&#39;}</code></pre>
+</div>
+<div id="容器索引" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> 容器索引<a href="python-基本知识.html#容器索引" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>计算长度</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="python-基本知识.html#cb39-1" tabindex="-1"></a>lst<span class="op">=</span>[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>]</span></code></pre></div>
+<p>索引从0开始</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="python-基本知识.html#cb40-1" tabindex="-1"></a>lst[<span class="dv">0</span>] </span></code></pre></div>
+<pre><code>## 10</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="python-基本知识.html#cb42-1" tabindex="-1"></a>lst[<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## 50</code></pre>
+<p>如果要选取一段, 格式是 lst[start slice:end slice:step]</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="python-基本知识.html#cb44-1" tabindex="-1"></a>lst[:<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [10, 20, 30, 40]</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="python-基本知识.html#cb46-1" tabindex="-1"></a>lst[<span class="dv">1</span>:<span class="op">-</span><span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [20, 30, 40]</code></pre>
+</div>
+<div id="逻辑符" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> 逻辑符<a href="python-基本知识.html#逻辑符" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>&lt; &gt; &lt;= &gt;= == != , and or not</p>
+</div>
+<div id="python模块" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Python模块<a href="python-基本知识.html#python模块" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>from monmod import nom1,nom2 as fct # 导入部分模块
+# or   
+
+import monmod #  导入全部模块</code></pre>
+<div id="创建属于自己的模块" class="section level3 hasAnchor" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> 创建属于自己的模块<a href="python-基本知识.html#创建属于自己的模块" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在Python中，你可以创建自己的模块，以便在不同的项目中重复使用自定义功能或代码。以下是创建Python模块的步骤：</p>
+<ol style="list-style-type: decimal">
+<li><p>创建一个.py文件：首先，打开文本编辑器（如Notepad++、VS Code、PyCharm等），然后创建一个以.py为扩展名的新文件，例如 mymodule.py。这个文件将包含你的自定义代码。</p></li>
+<li><p>编写模块代码：在新的.py文件中编写你的Python代码。这可以是函数、类、全局变量等。例如：</p></li>
+</ol>
+<pre><code># mymodule.py
+
+def greeting(name):
+    return f&quot;Hello, {name}!&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>将模块放在正确的位置：如果你打算在不同的项目中使用这个模块，确保将mymodule.py保存在Python的模块搜索路径之一下，或者将它放在你的项目文件夹中。</p></li>
+<li><p>导入你的模块：在其他Python脚本中，你可以使用import语句导入你的模块。例如</p></li>
+</ol>
+<pre><code>import mymodule
+
+message = mymodule.greeting(&quot;Alice&quot;)
+print(message)</code></pre>
+<p>这将输出 “Hello, Alice!”，这是 mymodule.py 中 greeting 函数的返回结果。</p>
+</div>
+</div>
+<div id="条件判断" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> 条件判断<a href="python-基本知识.html#条件判断" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="python-基本知识.html#cb51-1" tabindex="-1"></a></span>
+<span id="cb51-2"><a href="python-基本知识.html#cb51-2" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb51-3"><a href="python-基本知识.html#cb51-3" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="python-基本知识.html#cb51-4" tabindex="-1"></a><span class="cf">if</span> age <span class="op">&lt;</span> <span class="dv">18</span>:</span>
+<span id="cb51-5"><a href="python-基本知识.html#cb51-5" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;未成年&quot;</span>)</span>
+<span id="cb51-6"><a href="python-基本知识.html#cb51-6" tabindex="-1"></a><span class="cf">elif</span> age <span class="op">&gt;</span><span class="dv">65</span>:</span>
+<span id="cb51-7"><a href="python-基本知识.html#cb51-7" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;已经退休&quot;</span>)</span>
+<span id="cb51-8"><a href="python-基本知识.html#cb51-8" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb51-9"><a href="python-基本知识.html#cb51-9" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;其他&quot;</span>)</span></code></pre></div>
+<pre><code>## 其他</code></pre>
+</div>
+<div id="基础数学函数" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> 基础数学函数<a href="python-基本知识.html#基础数学函数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Operators: + - * / // % **</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="python-基本知识.html#cb53-1" tabindex="-1"></a></span>
+<span id="cb53-2"><a href="python-基本知识.html#cb53-2" tabindex="-1"></a><span class="bu">abs</span>(<span class="op">-</span><span class="fl">3.2</span>)  <span class="co"># 绝对值</span></span></code></pre></div>
+<pre><code>## 3.2</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="python-基本知识.html#cb55-1" tabindex="-1"></a><span class="bu">round</span>(<span class="fl">3.57</span>,<span class="dv">1</span>) <span class="co"># 保留小数位</span></span></code></pre></div>
+<pre><code>## 3.6</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="python-基本知识.html#cb57-1" tabindex="-1"></a><span class="bu">pow</span>(<span class="dv">4</span>,<span class="dv">3</span>) <span class="co"># 指数</span></span></code></pre></div>
+<pre><code>## 64</code></pre>
+<p>python 中 math 模块包含了常用的数学函数</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="python-基本知识.html#cb59-1" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb59-2"><a href="python-基本知识.html#cb59-2" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="python-基本知识.html#cb59-3" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="python-基本知识.html#cb59-4" tabindex="-1"></a>math.sin(math.pi<span class="op">/</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## 0.7071067811865475</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="python-基本知识.html#cb61-1" tabindex="-1"></a>math.sqrt(<span class="dv">81</span>)</span></code></pre></div>
+<pre><code>## 9.0</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="python-基本知识.html#cb63-1" tabindex="-1"></a>math.ceil(<span class="fl">12.5</span>) <span class="co"># 向上取整</span></span></code></pre></div>
+<pre><code>## 13</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="python-基本知识.html#cb65-1" tabindex="-1"></a>math.floor(<span class="fl">12.5</span> ) <span class="co"># 向下取整</span></span></code></pre></div>
+<pre><code>## 12</code></pre>
+<p>其他常用的数学相关的模块还包括: math, statistics, random, decimal, fractions, numpy</p>
+</div>
+<div id="错误处理" class="section level2 hasAnchor" number="2.10">
+<h2><span class="header-section-number">2.10</span> 错误处理<a href="python-基本知识.html#错误处理" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>基本格式是</p>
+<pre><code>try:
+  normal procesising block
+except Exception as e:
+  error processing block</code></pre>
+</div>
+<div id="循环" class="section level2 hasAnchor" number="2.11">
+<h2><span class="header-section-number">2.11</span> 循环<a href="python-基本知识.html#循环" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="条件循环" class="section level3 hasAnchor" number="2.11.1">
+<h3><span class="header-section-number">2.11.1</span> 条件循环<a href="python-基本知识.html#条件循环" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>基本格式是:</p>
+<pre><code>while logical condition:
+  statements block</code></pre>
+<p>循环控制的关键词 continue , break</p>
+<p>一个简单的例子</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="python-基本知识.html#cb69-1" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb69-2"><a href="python-基本知识.html#cb69-2" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb69-3"><a href="python-基本知识.html#cb69-3" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="python-基本知识.html#cb69-4" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;=</span><span class="dv">100</span>:</span>
+<span id="cb69-5"><a href="python-基本知识.html#cb69-5" tabindex="-1"></a>  s <span class="op">=</span> s <span class="op">+</span> i<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb69-6"><a href="python-基本知识.html#cb69-6" tabindex="-1"></a>  i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb69-7"><a href="python-基本知识.html#cb69-7" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;sim:&quot;</span>, i)</span></code></pre></div>
+<pre><code>## sim: 101</code></pre>
+</div>
+<div id="迭代循环" class="section level3 hasAnchor" number="2.11.2">
+<h3><span class="header-section-number">2.11.2</span> 迭代循环<a href="python-基本知识.html#迭代循环" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>基本格式是:</p>
+<pre><code>for var in sequence:
+  statements block</code></pre>
+<div id="直接根据字符串遍历" class="section level4 hasAnchor" number="2.11.2.1">
+<h4><span class="header-section-number">2.11.2.1</span> 直接根据字符串遍历<a href="python-基本知识.html#直接根据字符串遍历" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>这个sequence 序列 , 可以是一个字符串, 也可以是一个数字列表等等</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="python-基本知识.html#cb72-1" tabindex="-1"></a>s <span class="op">=</span> <span class="st">&quot;Today , The Earth become square shape&quot;</span></span>
+<span id="cb72-2"><a href="python-基本知识.html#cb72-2" tabindex="-1"></a></span>
+<span id="cb72-3"><a href="python-基本知识.html#cb72-3" tabindex="-1"></a>cnt <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb72-4"><a href="python-基本知识.html#cb72-4" tabindex="-1"></a></span>
+<span id="cb72-5"><a href="python-基本知识.html#cb72-5" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> s:</span>
+<span id="cb72-6"><a href="python-基本知识.html#cb72-6" tabindex="-1"></a>  <span class="cf">if</span> c<span class="op">==</span><span class="st">&quot;a&quot;</span>:</span>
+<span id="cb72-7"><a href="python-基本知识.html#cb72-7" tabindex="-1"></a>    cnt <span class="op">=</span> cnt <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb72-8"><a href="python-基本知识.html#cb72-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;found&quot;</span>,cnt,<span class="st">&quot;a&quot;</span>)</span></code></pre></div>
+<pre><code>## found 4 a</code></pre>
+</div>
+<div id="还可以通过索引遍历" class="section level4 hasAnchor" number="2.11.2.2">
+<h4><span class="header-section-number">2.11.2.2</span> 还可以通过索引遍历<a href="python-基本知识.html#还可以通过索引遍历" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="python-基本知识.html#cb74-1" tabindex="-1"></a></span>
+<span id="cb74-2"><a href="python-基本知识.html#cb74-2" tabindex="-1"></a>lst <span class="op">=</span> [<span class="dv">11</span>,<span class="dv">18</span>,<span class="dv">9</span>,<span class="dv">12</span>,<span class="dv">23</span>,<span class="dv">4</span>,<span class="dv">17</span>]</span>
+<span id="cb74-3"><a href="python-基本知识.html#cb74-3" tabindex="-1"></a></span>
+<span id="cb74-4"><a href="python-基本知识.html#cb74-4" tabindex="-1"></a>lost <span class="op">=</span> []</span>
+<span id="cb74-5"><a href="python-基本知识.html#cb74-5" tabindex="-1"></a></span>
+<span id="cb74-6"><a href="python-基本知识.html#cb74-6" tabindex="-1"></a><span class="cf">for</span> idx <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(lst)): <span class="co"># range 会创建一个长度为n的从0开头的列表</span></span>
+<span id="cb74-7"><a href="python-基本知识.html#cb74-7" tabindex="-1"></a>  val <span class="op">=</span> lst[idx]</span>
+<span id="cb74-8"><a href="python-基本知识.html#cb74-8" tabindex="-1"></a>  <span class="cf">if</span> val <span class="op">&gt;</span> <span class="dv">15</span>:</span>
+<span id="cb74-9"><a href="python-基本知识.html#cb74-9" tabindex="-1"></a>    lost.append(val)</span>
+<span id="cb74-10"><a href="python-基本知识.html#cb74-10" tabindex="-1"></a>    lst[idx] <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb74-11"><a href="python-基本知识.html#cb74-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;modif:&quot;</span>,lst,<span class="st">&quot;-lost:&quot;</span>,lost)</span></code></pre></div>
+<pre><code>## modif: [11, 15, 9, 12, 15, 4, 15] -lost: [18, 23, 17]</code></pre>
+</div>
+<div id="同时遍历序列的索引和值" class="section level4 hasAnchor" number="2.11.2.3">
+<h4><span class="header-section-number">2.11.2.3</span> 同时遍历序列的索引和值<a href="python-基本知识.html#同时遍历序列的索引和值" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>基本格式如下所示:</p>
+<pre><code>for idx,val in enumerate(lst):</code></pre>
+</div>
+<div id="实用range-函数创建序列" class="section level4 hasAnchor" number="2.11.2.4">
+<h4><span class="header-section-number">2.11.2.4</span> 实用range 函数创建序列<a href="python-基本知识.html#实用range-函数创建序列" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>基本格式</p>
+<pre><code>range([start,] end [,step])</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb78-1"><a href="python-基本知识.html#cb78-1" tabindex="-1"></a><span class="bu">range</span>(<span class="dv">5</span>) <span class="co"># 创建长度为5的序列</span></span></code></pre></div>
+<pre><code>## range(0, 5)</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb80-1"><a href="python-基本知识.html#cb80-1" tabindex="-1"></a><span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">12</span>,<span class="dv">3</span>) <span class="co"># 创建从2到12 , 间隔为3的序列</span></span></code></pre></div>
+<pre><code>## range(2, 12, 3)</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb82-1"><a href="python-基本知识.html#cb82-1" tabindex="-1"></a><span class="bu">range</span>(<span class="dv">3</span>,<span class="dv">8</span>) <span class="co"># 创建从哪个3到7 的序列</span></span>
+<span id="cb82-2"><a href="python-基本知识.html#cb82-2" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="python-基本知识.html#cb82-3" tabindex="-1"></a></span>
+<span id="cb82-4"><a href="python-基本知识.html#cb82-4" tabindex="-1"></a><span class="co"># 根据序列的长度创建序列 : range(len(seq))</span></span></code></pre></div>
+<pre><code>## range(3, 8)</code></pre>
+</div>
+</div>
+</div>
+<div id="打印" class="section level2 hasAnchor" number="2.12">
+<h2><span class="header-section-number">2.12</span> 打印<a href="python-基本知识.html#打印" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="python-基本知识.html#cb84-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;v=&quot;</span>,<span class="dv">3</span>,<span class="st">&quot;cm :&quot;</span>,<span class="dv">1</span>,<span class="st">&quot;,&quot;</span>,<span class="dv">4</span>)</span>
+<span id="cb84-2"><a href="python-基本知识.html#cb84-2" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="python-基本知识.html#cb84-3" tabindex="-1"></a> </span></code></pre></div>
+<pre><code>## v= 3 cm : 1 , 4</code></pre>
+<p>关于print 函数的一些参数</p>
+<ol style="list-style-type: decimal">
+<li>sep 间隔符</li>
+<li>end = “” , 表示换行</li>
+<li>file = sys.stdout 输出文件</li>
+</ol>
+</div>
+<div id="输入" class="section level2 hasAnchor" number="2.13">
+<h2><span class="header-section-number">2.13</span> 输入<a href="python-基本知识.html#输入" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>s = input(&quot;Instructions:&quot;)</code></pre>
+<p>用于接受用户的键盘输入, 输入总是一个字符串</p>
+</div>
+<div id="关于容器的常用操作-generic-operations-on-containers" class="section level2 hasAnchor" number="2.14">
+<h2><span class="header-section-number">2.14</span> 关于容器的常用操作 Generic Operations on Containers<a href="python-基本知识.html#关于容器的常用操作-generic-operations-on-containers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>len(c)→ items count
+
+min(c) max(c) sum(c)
+
+
+sorted(c)→ list sorted copy  
+
+val in c  boolean, membership operator in (absence not in)
+
+
+enumerate(c)→ iterator on (index, value)
+
+zip(c1,c2…)→ iterator on tuples containing ci,items at same index
+
+
+all(c)→ True if all c items evaluated to true, else False
+
+any(c)→ True if at least one item of c evaluated true, else False</code></pre>
+<p>其他一些常用方法</p>
+<pre><code>reversed(c)→ inversed iterator
+
+c*5→ duplicate
+
+c+c2→ concatenate(连接)
+
+c.index(val)→ position
+
+c.count(val)→ events count</code></pre>
+<p>复制</p>
+<pre><code>import copy
+copy.copy(c)→ shallow copy of container
+copy.deepcopy(c)→ deep copy of container</code></pre>
+</div>
+<div id="关于列表的操作-list" class="section level2 hasAnchor" number="2.15">
+<h2><span class="header-section-number">2.15</span> 关于列表的操作 list<a href="python-基本知识.html#关于列表的操作-list" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>lst.append(val) add item at end
+lst.extend(seq) add sequence of items at end
+lst.insert(idx,val) insert item at index
+lst.remove(val) remove first item with value val
+lst.pop([idx])→value remove &amp; return item at index idx (default last)
+lst.sort() lst.reverse() sort / reverse liste in place</code></pre>
+</div>
+<div id="关于字典的操作" class="section level2 hasAnchor" number="2.16">
+<h2><span class="header-section-number">2.16</span> 关于字典的操作<a href="python-基本知识.html#关于字典的操作" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>
+d[key]=value # d[key]→ value
+
+d.clear() # del d[key]
+
+d.update(d2) # update/add  associations
+
+
+d.keys()
+d.values()
+d.items() # iterable views on keys/values/associations
+
+
+d.pop(key[,default])→ value
+
+d.popitem()→ (key,value)
+
+d.get(key[,default])→ value
+
+d.setdefault(key[,default])→value</code></pre>
+</div>
+<div id="关于集合的操作" class="section level2 hasAnchor" number="2.17">
+<h2><span class="header-section-number">2.17</span> 关于集合的操作<a href="python-基本知识.html#关于集合的操作" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>一些操作符</p>
+<ol style="list-style-type: decimal">
+<li><div class="line-block">→ union (vertical bar char)</div></li>
+<li><p>&amp; → intersection</p></li>
+<li><ul>
+<li>^ → difference/symmetric diff.</li>
+</ul></li>
+<li><p>&lt; &lt;= &gt; &gt;= → inclusion relations</p></li>
+</ol>
+<p>其他的一些方法</p>
+<pre><code>s.update(s2)
+
+s.copy()
+
+s.add(key)
+
+s.remove(key)
+
+s.discard(key)
+
+ s.clear()
+ 
+ s.pop()</code></pre>
+</div>
+<div id="文件" class="section level2 hasAnchor" number="2.18">
+<h2><span class="header-section-number">2.18</span> 文件<a href="python-基本知识.html#文件" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>基本格式</p>
+<pre><code>f = open(&quot;file.txt&quot;,&quot;w&quot;,encoding=&quot;utf8&quot;)</code></pre>
+<ol style="list-style-type: decimal">
+<li>第一个参数是路径</li>
+<li>w 表示写文件, 其他可选包括 ‘r’ read ,‘a’ append</li>
+<li>编码 : utf8 ascii</li>
+</ol>
+<div id="写文件" class="section level3 hasAnchor" number="2.18.1">
+<h3><span class="header-section-number">2.18.1</span> 写文件<a href="python-基本知识.html#写文件" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>f.write(&quot;coucou&quot;)
+
+f.writelines(list of lines)
+
+f.close() # 关闭文件</code></pre>
+</div>
+<div id="读文件" class="section level3 hasAnchor" number="2.18.2">
+<h3><span class="header-section-number">2.18.2</span> 读文件<a href="python-基本知识.html#读文件" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>f.read([n]) → next chars , if n not specified, read up to end !
+
+f.readlines([n]) → list of next lines
+
+f.readline() → next line</code></pre>
+</div>
+<div id="其他相关方法" class="section level3 hasAnchor" number="2.18.3">
+<h3><span class="header-section-number">2.18.3</span> 其他相关方法<a href="python-基本知识.html#其他相关方法" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>f.flush() write cache
+
+f.truncate([size]) resize
+
+f.tell()→position
+
+f.seek(position[,origin])</code></pre>
+</div>
+<div id="一个常用的方法" class="section level3 hasAnchor" number="2.18.4">
+<h3><span class="header-section-number">2.18.4</span> 一个常用的方法<a href="python-基本知识.html#一个常用的方法" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>with open(…) as f:
+ for line in f :
+ # processing ofline</code></pre>
+</div>
+</div>
+<div id="函数定义" class="section level2 hasAnchor" number="2.19">
+<h2><span class="header-section-number">2.19</span> 函数定义<a href="python-基本知识.html#函数定义" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>基本格式是:</p>
+<pre><code>def fct(x,y,z):
+  &quot;&quot;&quot;documentation&quot;&quot;&quot;
+  代码
+  return something/none</code></pre>
+<p>参数还可以是字典和元组</p>
+<pre><code> def fct(x,y,z,*args,a=3,b=5,**kwargs):</code></pre>
+<p>*args 表示tuple 元组</p>
+<p>**kwargs 表示字典</p>
+<p>函数调用</p>
+<pre><code>r = fct(3,i+2,2*i)</code></pre>
+</div>
+<div id="字符串操作" class="section level2 hasAnchor" number="2.20">
+<h2><span class="header-section-number">2.20</span> 字符串操作<a href="python-基本知识.html#字符串操作" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>s.startswith(prefix[,start[,end]])
+
+s.endswith(suffix[,start[,end]])
+
+s.strip([chars])
+
+s.count(sub[,start[,end]])
+
+s.partition(sep)→ (before,sep,after)
+
+s.index(sub[,start[,end]])
+
+s.find(sub[,start[,end]])
+
+s.is…() tests on chars categories (ex. s.isalpha())
+
+
+s.upper() s.lower() s.title() s.swapcase()
+
+s.casefold() s.capitalize() s.center([width,fill])
+
+s.ljust([width,fill]) s.rjust([width,fill]) s.zfill([width])
+
+s.encode(encoding) s.split([sep]) s.join(seq)</code></pre>
+<div id="字符串格式化" class="section level3 hasAnchor" number="2.20.1">
+<h3><span class="header-section-number">2.20.1</span> 字符串格式化<a href="python-基本知识.html#字符串格式化" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>基本格式:</p>
+<pre><code>&quot;modele{} {} {}&quot;.format(x,y,r)</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="python-基本知识.html#cb103-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="sc">{:.2f}</span><span class="st">&quot;</span>.<span class="bu">format</span>(<span class="fl">3.1415926</span>))</span></code></pre></div>
+<pre><code>## 3.14</code></pre>
+<p>常用格式:</p>
+<ol style="list-style-type: decimal">
+<li><p>{:.2f} : 保留小数点后两位</p></li>
+<li><p>{:+.2f} : 带符号保留小数点后两位</p></li>
+<li><p>{:-.2f} : 带符号保留小数点后两位</p></li>
+<li><p>{:.0f} : 不带小数</p></li>
+<li><p>{:0&gt;2d} : 数字补零 (填充左边, 宽度为2)</p></li>
+<li><p>{:x&lt;4d} : 数字补x (填充右边, 宽度为4)</p></li>
+<li><p>{:x&lt;4d} : 数字补x (填充右边, 宽度为4)</p></li>
+<li><p>{:,} : 以逗号分隔的数字格式</p></li>
+<li><p>{:.2%} : 百分比格式</p></li>
+<li><p>{:.2e} : 科学计数法</p></li>
+<li><p>{:&gt;10d} : 右对齐 (默认, 宽度为10)</p></li>
+<li><p>{:&lt;10d} : 左对齐 (宽度为10)</p></li>
+<li><pre><code>{:^10d} : 中间对齐 (宽度为10)</code></pre></li>
+</ol>
+</div>
+</div>
+<div id="python-语法糖" class="section level2 hasAnchor" number="2.21">
+<h2><span class="header-section-number">2.21</span> Python 语法糖<a href="python-基本知识.html#python-语法糖" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ython语法糖是一种让代码更加简洁易读的语法构造。下面是一些常见的Python语法糖：</p>
+<ol style="list-style-type: decimal">
+<li>列表推导式（List Comprehensions）：允许你以一行代码创建新的列表，例如：</li>
+</ol>
+<pre><code>squares = [x**2 for x in range(10)]</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>生成器表达式（Generator Expressions）：与列表推导式类似，但以生成器的形式返回结果，适用于大型数据集。</li>
+</ol>
+<pre><code>squares = (x**2 for x in range(10))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>条件表达式（Ternary Conditional Expression）：一行代码中的条件判断，类似于三元运算符。</li>
+</ol>
+<pre><code>result = &quot;yes&quot; if condition else &quot;no&quot;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>多重赋值：在一行代码中同时给多个变量赋值。</li>
+</ol>
+<pre><code>a, b = 5, 10</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>扩展的切片（Extended Slices）：通过[start:stop:step]语法支持更多的切片操作。</li>
+</ol>
+<pre><code>items = [1, 2, 3, 4, 5]
+reversed_items = items[::-1]</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>with语句（上下文管理器）：通过with关键字简化资源管理，如文件操作。</li>
+</ol>
+<pre><code>with open(&#39;file.txt&#39;, &#39;r&#39;) as f:
+    content = f.read()</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>装饰器（Decorators）：允许你修改或包装函数，用于日志、缓存等功能。</li>
+</ol>
+<pre><code>def my_decorator(func):
+    def wrapper(*args, **kwargs):
+        print(&quot;Something is happening before the function is called.&quot;)
+        result = func(*args, **kwargs)
+        print(&quot;Something is happening after the function is called.&quot;)
+        return result
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print(&quot;Hello!&quot;)
+
+say_hello()</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>枚举（Enumerate）：在循环中同时获得索引和值。</li>
+</ol>
+<pre><code>for index, value in enumerate(my_list):
+    print(f&quot;Index: {index}, Value: {value}&quot;)</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>字典推导式（Dictionary Comprehensions）：创建新字典的快速方法。</li>
+</ol>
+<pre><code>data = {key: value for key, value in my_list}</code></pre>
+<ol start="10" style="list-style-type: decimal">
+<li>f-strings：用于字符串格式化，支持内插表达式。</li>
+</ol>
+<pre><code>name = &quot;Alice&quot;
+print(f&quot;Hello, {name}!&quot;)</code></pre>
+<p>这些语法糖让Python代码更加简洁和易读，使开发者更容易编写高效的代码。</p>
+</div>
+<div id="python-编程注意事项" class="section level2 hasAnchor" number="2.22">
+<h2><span class="header-section-number">2.22</span> Python 编程注意事项<a href="python-基本知识.html#python-编程注意事项" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>当你在编写Python代码时，有一些注意事项可以帮助你避免常见的错误和提高代码的质量：</p>
+<ol style="list-style-type: decimal">
+<li><p>代码风格：遵循PEP 8，Python的官方风格指南，以保持代码的一致性。使用工具如Pylint或Flake8可以帮助你自动检查代码风格。</p></li>
+<li><p>命名规范：给变量、函数和类起有意义的名字。变量名使用小写字母，多个单词之间用下划线分隔（snake_case）。类名使用首字母大写的驼峰命名法（CamelCase）。</p></li>
+<li><p>注释：写清晰、有意义的注释，解释代码的用途和实现细节。避免无谓的注释，注释应该随着代码的更新而更新。</p></li>
+<li><p>文档字符串：对于函数、类和模块，编写文档字符串（docstring）以解释它们的功能和用法。</p></li>
+<li><p>异常处理：合理地使用异常处理机制。不要捕获所有异常，而是只捕获你能够处理的异常。并避免使用空的except语句块。</p></li>
+<li><p>模块化：将代码分解成模块、函数和类，以提高可读性和维护性。不要写一个庞大的、难以理解的代码文件。</p></li>
+<li><p>虚拟环境：使用虚拟环境来隔离不同项目的依赖关系，以避免版本冲突。</p></li>
+<li><p>版本控制：使用版本控制系统（如Git）来跟踪代码的变化，以便追溯问题、合并代码和与团队协作。</p></li>
+<li><p>性能优化：如果你的代码面临性能问题，使用工具（如cProfile）来找出瓶颈，并采用合适的优化策略。</p></li>
+<li><p>测试：编写单元测试和集成测试，确保代码的正确性。采用测试驱动开发（TDD）的方法有助于提高代码质量。</p></li>
+</ol>
+<p>11 依赖管理：使用依赖管理工具（如pip和requirements.txt）来管理项目的依赖库。</p>
+<p>12 安全性：注意防范安全漏洞，如输入验证、跨站脚本攻击（XSS）等。</p>
+<ol start="13" style="list-style-type: decimal">
+<li><p>不要重复造轮子：使用已有的库和模块，避免重复实现已有的功能。</p></li>
+<li><p>代码复审：请同事或同行进行代码复审，以帮助发现潜在的问题和改进代码。</p></li>
+<li><p>学习和持续改进：Python是一个不断发展的语言，不断学习新的特性和最佳实践，以提高你的编程技能。</p></li>
+</ol>
+<p>遵循这些注意事项有助于编写高质量、可维护的Python代码，提高工作效率并降低出错的风险。</p>
+<div id="检查代码风格" class="section level3 hasAnchor" number="2.22.1">
+<h3><span class="header-section-number">2.22.1</span> 检查代码风格<a href="python-基本知识.html#检查代码风格" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Flake8和Pylint是两种用于检查Python代码风格的工具。它们可以自动检查代码是否遵循PEP 8，Python的官方风格指南，以及其他最佳实践。以下是如何使用它们的步骤：</p>
+<div id="使用flake8" class="section level4 hasAnchor" number="2.22.1.1">
+<h4><span class="header-section-number">2.22.1.1</span> 使用Flake8：<a href="python-基本知识.html#使用flake8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>安装Flake8：你可以使用pip安装Flake8。</li>
+</ol>
+<pre><code>pip install flake8</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>进入你的Python项目目录。</p></li>
+<li><p>在命令行中运行Flake8，并指定要检查的Python文件或目录。例如：</p></li>
+</ol>
+<pre><code>flake8 your_code.py</code></pre>
+<p>或者检查整个项目目录：</p>
+<pre><code>flake8 your_project_directory</code></pre>
+<p>Flake8将列出代码中的风格问题和错误，如果没有问题，将不会输出任何内容。</p>
+</div>
+<div id="使用pylint" class="section level4 hasAnchor" number="2.22.1.2">
+<h4><span class="header-section-number">2.22.1.2</span> 使用Pylint：<a href="python-基本知识.html#使用pylint" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>安装Pylint：你可以使用pip安装Pylint。</li>
+</ol>
+<pre><code>pip install pylint</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>进入你的Python项目目录。</p></li>
+<li><p>在命令行中运行Pylint，并指定要检查的Python文件或目录。例如：</p></li>
+</ol>
+<pre><code>pylint your_code.py</code></pre>
+<p>或者检查整个项目目录：</p>
+<pre><code>pylint your_project_directory</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Pylint将为你的代码生成一个分数（得分越高越好），并提供详细的检查报告。它还会列出建议的改进措施，以便你提高代码质量。</li>
+</ol>
+<p>通常，Pylint提供了更广泛的代码质量检查和建议，但也可能更严格。Flake8主要用于快速检查代码风格是否符合PEP 8。</p>
+<p>在实际工作中，你可以选择使用其中一个工具或两者结合使用，以确保代码的高质量和一致性。逐渐解决工具报告的问题，提高你的代码风格和质量。</p>
+</div>
+</div>
+</div>
+<div id="python-获取帮助" class="section level2 hasAnchor" number="2.23">
+<h2><span class="header-section-number">2.23</span> Python 获取帮助<a href="python-基本知识.html#python-获取帮助" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在Python中，你可以获取帮助和文档信息以解决问题和了解特定模块、函数或方法的使用。以下是获取帮助的主要方法：</p>
+<ol style="list-style-type: decimal">
+<li>help() 函数：</li>
+</ol>
+<p>你可以在Python交互式解释器中使用help()函数来获取文档和帮助信息。例如，要获取关于list的帮助信息，你可以输入：</p>
+<pre><code>help(list)</code></pre>
+<p>这将显示关于list的文档字符串和可用方法的列表。你可以按下q键来退出帮助文档。</p>
+<ol start="2" style="list-style-type: decimal">
+<li>docstrings：</li>
+</ol>
+<p>很多Python函数、模块和类都包含有关其用法的文档字符串（docstring）。你可以使用help()函数查看这些文档字符串，或者在代码中使用__doc__属性来访问。</p>
+<pre><code>print(list.__doc__)</code></pre>
+<p>其他资源包括官方文档, 模块的相关文档</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cross.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

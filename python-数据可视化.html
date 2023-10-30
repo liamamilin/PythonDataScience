@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Python 数据可视化 | Python 数据科学</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Python 数据可视化 | Python 数据科学" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Python 数据可视化 | Python 数据科学" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="pandas-数据分析.html"/>
+<link rel="next" href="有监督机器学习.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#数据科学简介"><i class="fa fa-check"></i><b>1.1</b> 数据科学简介</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#作者其他书籍"><i class="fa fa-check"></i><b>1.2</b> 作者其他书籍</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="python-基本知识.html"><a href="python-基本知识.html"><i class="fa fa-check"></i><b>2</b> Python 基本知识</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="python-基本知识.html"><a href="python-基本知识.html#python-基本数据类型"><i class="fa fa-check"></i><b>2.1</b> Python 基本数据类型</a></li>
+<li class="chapter" data-level="2.2" data-path="python-基本知识.html"><a href="python-基本知识.html#python-变量赋值"><i class="fa fa-check"></i><b>2.2</b> Python 变量赋值</a></li>
+<li class="chapter" data-level="2.3" data-path="python-基本知识.html"><a href="python-基本知识.html#容器类型"><i class="fa fa-check"></i><b>2.3</b> 容器类型</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="python-基本知识.html"><a href="python-基本知识.html#顺序序列"><i class="fa fa-check"></i><b>2.3.1</b> 顺序序列</a></li>
+<li class="chapter" data-level="2.3.2" data-path="python-基本知识.html"><a href="python-基本知识.html#字典与集合"><i class="fa fa-check"></i><b>2.3.2</b> 字典与集合</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="python-基本知识.html"><a href="python-基本知识.html#变量转换"><i class="fa fa-check"></i><b>2.4</b> 变量转换</a></li>
+<li class="chapter" data-level="2.5" data-path="python-基本知识.html"><a href="python-基本知识.html#容器索引"><i class="fa fa-check"></i><b>2.5</b> 容器索引</a></li>
+<li class="chapter" data-level="2.6" data-path="python-基本知识.html"><a href="python-基本知识.html#逻辑符"><i class="fa fa-check"></i><b>2.6</b> 逻辑符</a></li>
+<li class="chapter" data-level="2.7" data-path="python-基本知识.html"><a href="python-基本知识.html#python模块"><i class="fa fa-check"></i><b>2.7</b> Python模块</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="python-基本知识.html"><a href="python-基本知识.html#创建属于自己的模块"><i class="fa fa-check"></i><b>2.7.1</b> 创建属于自己的模块</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="python-基本知识.html"><a href="python-基本知识.html#条件判断"><i class="fa fa-check"></i><b>2.8</b> 条件判断</a></li>
+<li class="chapter" data-level="2.9" data-path="python-基本知识.html"><a href="python-基本知识.html#基础数学函数"><i class="fa fa-check"></i><b>2.9</b> 基础数学函数</a></li>
+<li class="chapter" data-level="2.10" data-path="python-基本知识.html"><a href="python-基本知识.html#错误处理"><i class="fa fa-check"></i><b>2.10</b> 错误处理</a></li>
+<li class="chapter" data-level="2.11" data-path="python-基本知识.html"><a href="python-基本知识.html#循环"><i class="fa fa-check"></i><b>2.11</b> 循环</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="python-基本知识.html"><a href="python-基本知识.html#条件循环"><i class="fa fa-check"></i><b>2.11.1</b> 条件循环</a></li>
+<li class="chapter" data-level="2.11.2" data-path="python-基本知识.html"><a href="python-基本知识.html#迭代循环"><i class="fa fa-check"></i><b>2.11.2</b> 迭代循环</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="python-基本知识.html"><a href="python-基本知识.html#打印"><i class="fa fa-check"></i><b>2.12</b> 打印</a></li>
+<li class="chapter" data-level="2.13" data-path="python-基本知识.html"><a href="python-基本知识.html#用户输入"><i class="fa fa-check"></i><b>2.13</b> 用户输入</a></li>
+<li class="chapter" data-level="2.14" data-path="python-基本知识.html"><a href="python-基本知识.html#关于容器的常用操作-generic-operations-on-containers"><i class="fa fa-check"></i><b>2.14</b> 关于容器的常用操作 Generic Operations on Containers</a></li>
+<li class="chapter" data-level="2.15" data-path="python-基本知识.html"><a href="python-基本知识.html#关于列表的操作-list"><i class="fa fa-check"></i><b>2.15</b> 关于列表的操作 list</a></li>
+<li class="chapter" data-level="2.16" data-path="python-基本知识.html"><a href="python-基本知识.html#关于字典的操作"><i class="fa fa-check"></i><b>2.16</b> 关于字典的操作</a></li>
+<li class="chapter" data-level="2.17" data-path="python-基本知识.html"><a href="python-基本知识.html#关于集合的操作"><i class="fa fa-check"></i><b>2.17</b> 关于集合的操作</a></li>
+<li class="chapter" data-level="2.18" data-path="python-基本知识.html"><a href="python-基本知识.html#文件"><i class="fa fa-check"></i><b>2.18</b> 文件</a>
+<ul>
+<li class="chapter" data-level="2.18.1" data-path="python-基本知识.html"><a href="python-基本知识.html#写文件"><i class="fa fa-check"></i><b>2.18.1</b> 写文件</a></li>
+<li class="chapter" data-level="2.18.2" data-path="python-基本知识.html"><a href="python-基本知识.html#读文件"><i class="fa fa-check"></i><b>2.18.2</b> 读文件</a></li>
+<li class="chapter" data-level="2.18.3" data-path="python-基本知识.html"><a href="python-基本知识.html#其他相关方法"><i class="fa fa-check"></i><b>2.18.3</b> 其他相关方法</a></li>
+<li class="chapter" data-level="2.18.4" data-path="python-基本知识.html"><a href="python-基本知识.html#一个常用的方法"><i class="fa fa-check"></i><b>2.18.4</b> 一个常用的方法</a></li>
+</ul></li>
+<li class="chapter" data-level="2.19" data-path="python-基本知识.html"><a href="python-基本知识.html#函数定义"><i class="fa fa-check"></i><b>2.19</b> 函数定义</a></li>
+<li class="chapter" data-level="2.20" data-path="python-基本知识.html"><a href="python-基本知识.html#字符串操作"><i class="fa fa-check"></i><b>2.20</b> 字符串操作</a>
+<ul>
+<li class="chapter" data-level="2.20.1" data-path="python-基本知识.html"><a href="python-基本知识.html#字符串格式化"><i class="fa fa-check"></i><b>2.20.1</b> 字符串格式化</a></li>
+</ul></li>
+<li class="chapter" data-level="2.21" data-path="python-基本知识.html"><a href="python-基本知识.html#python-语法糖"><i class="fa fa-check"></i><b>2.21</b> Python 语法糖</a></li>
+<li class="chapter" data-level="2.22" data-path="python-基本知识.html"><a href="python-基本知识.html#python-编程注意事项"><i class="fa fa-check"></i><b>2.22</b> Python 编程注意事项</a>
+<ul>
+<li class="chapter" data-level="2.22.1" data-path="python-基本知识.html"><a href="python-基本知识.html#检查代码风格"><i class="fa fa-check"></i><b>2.22.1</b> 检查代码风格</a></li>
+</ul></li>
+<li class="chapter" data-level="2.23" data-path="python-基本知识.html"><a href="python-基本知识.html#python-获取帮助"><i class="fa fa-check"></i><b>2.23</b> Python 获取帮助</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="numpy.html"><a href="numpy.html"><i class="fa fa-check"></i><b>3</b> Numpy</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="numpy.html"><a href="numpy.html#创建array-数组"><i class="fa fa-check"></i><b>3.1</b> 创建array 数组</a></li>
+<li class="chapter" data-level="3.2" data-path="numpy.html"><a href="numpy.html#创建特殊数组"><i class="fa fa-check"></i><b>3.2</b> 创建特殊数组</a></li>
+<li class="chapter" data-level="3.3" data-path="numpy.html"><a href="numpy.html#nupmy-io"><i class="fa fa-check"></i><b>3.3</b> Nupmy I/O</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="numpy.html"><a href="numpy.html#保存和加载数组"><i class="fa fa-check"></i><b>3.3.1</b> 保存和加载数组</a></li>
+<li class="chapter" data-level="3.3.2" data-path="numpy.html"><a href="numpy.html#保存和加载文本文件"><i class="fa fa-check"></i><b>3.3.2</b> 保存和加载文本文件</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="numpy.html"><a href="numpy.html#data-types"><i class="fa fa-check"></i><b>3.4</b> Data types</a></li>
+<li class="chapter" data-level="3.5" data-path="numpy.html"><a href="numpy.html#查看数组"><i class="fa fa-check"></i><b>3.5</b> 查看数组</a></li>
+<li class="chapter" data-level="3.6" data-path="numpy.html"><a href="numpy.html#查询帮助"><i class="fa fa-check"></i><b>3.6</b> 查询帮助</a></li>
+<li class="chapter" data-level="3.7" data-path="numpy.html"><a href="numpy.html#数组函数"><i class="fa fa-check"></i><b>3.7</b> 数组函数</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="numpy.html"><a href="numpy.html#数组算数运算"><i class="fa fa-check"></i><b>3.7.1</b> 数组算数运算</a></li>
+<li class="chapter" data-level="3.7.2" data-path="numpy.html"><a href="numpy.html#比较数组"><i class="fa fa-check"></i><b>3.7.2</b> 比较数组</a></li>
+<li class="chapter" data-level="3.7.3" data-path="numpy.html"><a href="numpy.html#聚合函数"><i class="fa fa-check"></i><b>3.7.3</b> 聚合函数</a></li>
+<li class="chapter" data-level="3.7.4" data-path="numpy.html"><a href="numpy.html#复制数组"><i class="fa fa-check"></i><b>3.7.4</b> 复制数组</a></li>
+<li class="chapter" data-level="3.7.5" data-path="numpy.html"><a href="numpy.html#数组排序"><i class="fa fa-check"></i><b>3.7.5</b> 数组排序</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="numpy.html"><a href="numpy.html#取子集切片索引"><i class="fa fa-check"></i><b>3.8</b> 取子集,切片,索引</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="numpy.html"><a href="numpy.html#取子集"><i class="fa fa-check"></i><b>3.8.1</b> 取子集</a></li>
+<li class="chapter" data-level="3.8.2" data-path="numpy.html"><a href="numpy.html#切片"><i class="fa fa-check"></i><b>3.8.2</b> 切片</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="numpy.html"><a href="numpy.html#操纵数组"><i class="fa fa-check"></i><b>3.9</b> 操纵数组</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="numpy.html"><a href="numpy.html#数组置换"><i class="fa fa-check"></i><b>3.9.1</b> 数组置换</a></li>
+<li class="chapter" data-level="3.9.2" data-path="numpy.html"><a href="numpy.html#改变数组的形状"><i class="fa fa-check"></i><b>3.9.2</b> 改变数组的形状</a></li>
+<li class="chapter" data-level="3.9.3" data-path="numpy.html"><a href="numpy.html#添加删除-元素"><i class="fa fa-check"></i><b>3.9.3</b> 添加/删除 元素</a></li>
+<li class="chapter" data-level="3.9.4" data-path="numpy.html"><a href="numpy.html#合并数组"><i class="fa fa-check"></i><b>3.9.4</b> 合并数组</a></li>
+<li class="chapter" data-level="3.9.5" data-path="numpy.html"><a href="numpy.html#分开数组"><i class="fa fa-check"></i><b>3.9.5</b> 分开数组</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html"><i class="fa fa-check"></i><b>4</b> Pandas 数据分析</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#python-读写数据"><i class="fa fa-check"></i><b>4.1</b> Python 读写数据</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#读取数据"><i class="fa fa-check"></i><b>4.1.1</b> 读取数据</a></li>
+<li class="chapter" data-level="4.1.2" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#写入数据"><i class="fa fa-check"></i><b>4.1.2</b> 写入数据</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#pandas-数据结构"><i class="fa fa-check"></i><b>4.2</b> pandas 数据结构</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#series-数据操作"><i class="fa fa-check"></i><b>4.2.1</b> Series 数据操作</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#创建dataframe"><i class="fa fa-check"></i><b>4.3</b> 创建DataFrame</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#基本数据探索"><i class="fa fa-check"></i><b>4.3.1</b> 基本数据探索</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#重塑数据"><i class="fa fa-check"></i><b>4.4</b> 重塑数据</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#将列聚集成行"><i class="fa fa-check"></i><b>4.4.1</b> 将列聚集成行</a></li>
+<li class="chapter" data-level="4.4.2" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#将行拆分成为列"><i class="fa fa-check"></i><b>4.4.2</b> 将行拆分成为列</a></li>
+<li class="chapter" data-level="4.4.3" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#添加行"><i class="fa fa-check"></i><b>4.4.3</b> 添加行</a></li>
+<li class="chapter" data-level="4.4.4" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#添加列"><i class="fa fa-check"></i><b>4.4.4</b> 添加列</a></li>
+<li class="chapter" data-level="4.4.5" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#其他有用的函数"><i class="fa fa-check"></i><b>4.4.5</b> 其他有用的函数</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#取子集筛选行"><i class="fa fa-check"></i><b>4.5</b> 取子集/筛选行</a></li>
+<li class="chapter" data-level="4.6" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#筛选变量筛选列"><i class="fa fa-check"></i><b>4.6</b> 筛选变量/筛选列</a></li>
+<li class="chapter" data-level="4.7" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#数据汇总"><i class="fa fa-check"></i><b>4.7</b> 数据汇总</a></li>
+<li class="chapter" data-level="4.8" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#处理缺失值"><i class="fa fa-check"></i><b>4.8</b> 处理缺失值</a></li>
+<li class="chapter" data-level="4.9" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#创建新的列"><i class="fa fa-check"></i><b>4.9</b> 创建新的列</a></li>
+<li class="chapter" data-level="4.10" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#聚合数据"><i class="fa fa-check"></i><b>4.10</b> 聚合数据</a></li>
+<li class="chapter" data-level="4.11" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#合并数据集"><i class="fa fa-check"></i><b>4.11</b> 合并数据集</a></li>
+<li class="chapter" data-level="4.12" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#绘图"><i class="fa fa-check"></i><b>4.12</b> 绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="python-数据可视化.html"><a href="python-数据可视化.html"><i class="fa fa-check"></i><b>5</b> Python 数据可视化</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="python-数据可视化.html"><a href="python-数据可视化.html#matplotlib"><i class="fa fa-check"></i><b>5.1</b> Matplotlib</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="python-数据可视化.html"><a href="python-数据可视化.html#绘图工作流"><i class="fa fa-check"></i><b>5.1.1</b> 绘图工作流</a></li>
+<li class="chapter" data-level="5.1.2" data-path="python-数据可视化.html"><a href="python-数据可视化.html#使用matplotlib绘制各类图形"><i class="fa fa-check"></i><b>5.1.2</b> 使用Matplotlib绘制各类图形</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="python-数据可视化.html"><a href="python-数据可视化.html#plotly-绘制交互式图形"><i class="fa fa-check"></i><b>5.2</b> Plotly 绘制交互式图形</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="有监督机器学习.html"><a href="有监督机器学习.html"><i class="fa fa-check"></i><b>6</b> 有监督机器学习</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#数据处理"><i class="fa fa-check"></i><b>6.1</b> 数据处理</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#标准化-与-归一化"><i class="fa fa-check"></i><b>6.1.1</b> 标准化 与 归一化</a></li>
+<li class="chapter" data-level="6.1.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#非线性转换"><i class="fa fa-check"></i><b>6.1.2</b> 非线性转换</a></li>
+<li class="chapter" data-level="6.1.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#对分类变量进行编码"><i class="fa fa-check"></i><b>6.1.3</b> 对分类变量进行编码</a></li>
+<li class="chapter" data-level="6.1.4" data-path="有监督机器学习.html"><a href="有监督机器学习.html#离散化-discretization"><i class="fa fa-check"></i><b>6.1.4</b> 离散化 (Discretization)</a></li>
+<li class="chapter" data-level="6.1.5" data-path="有监督机器学习.html"><a href="有监督机器学习.html#生成多项式特征"><i class="fa fa-check"></i><b>6.1.5</b> 生成多项式特征</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#线性模型"><i class="fa fa-check"></i><b>6.2</b> 线性模型</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#线性回归linear-regression"><i class="fa fa-check"></i><b>6.2.1</b> 线性回归（Linear Regression）：</a></li>
+<li class="chapter" data-level="6.2.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#岭回归ridge-regression"><i class="fa fa-check"></i><b>6.2.2</b> 岭回归（Ridge Regression）：</a></li>
+<li class="chapter" data-level="6.2.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#lasso-回归"><i class="fa fa-check"></i><b>6.2.3</b> Lasso 回归：</a></li>
+<li class="chapter" data-level="6.2.4" data-path="有监督机器学习.html"><a href="有监督机器学习.html#逻辑回归logistic-regression"><i class="fa fa-check"></i><b>6.2.4</b> 逻辑回归（Logistic Regression）：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#支持向量机"><i class="fa fa-check"></i><b>6.3</b> 支持向量机</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#svm-原理总结"><i class="fa fa-check"></i><b>6.3.1</b> SVM 原理总结：</a></li>
+<li class="chapter" data-level="6.3.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数"><i class="fa fa-check"></i><b>6.3.2</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="有监督机器学习.html"><a href="有监督机器学习.html#knn"><i class="fa fa-check"></i><b>6.4</b> KNN</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#knn-原理总结"><i class="fa fa-check"></i><b>6.4.1</b> KNN 原理总结：</a></li>
+<li class="chapter" data-level="6.4.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-1"><i class="fa fa-check"></i><b>6.4.2</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="有监督机器学习.html"><a href="有监督机器学习.html#决策树"><i class="fa fa-check"></i><b>6.5</b> 决策树</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#决策树原理"><i class="fa fa-check"></i><b>6.5.1</b> 决策树原理:</a></li>
+<li class="chapter" data-level="6.5.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-决策树示例"><i class="fa fa-check"></i><b>6.5.2</b> Sklearn 决策树示例：</a></li>
+<li class="chapter" data-level="6.5.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-2"><i class="fa fa-check"></i><b>6.5.3</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="有监督机器学习.html"><a href="有监督机器学习.html#随机森林"><i class="fa fa-check"></i><b>6.6</b> 随机森林</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#基本原理"><i class="fa fa-check"></i><b>6.6.1</b> 基本原理</a></li>
+<li class="chapter" data-level="6.6.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-随机森林示例"><i class="fa fa-check"></i><b>6.6.2</b> Sklearn 随机森林示例：</a></li>
+<li class="chapter" data-level="6.6.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-3"><i class="fa fa-check"></i><b>6.6.3</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="有监督机器学习.html"><a href="有监督机器学习.html#xgboost"><i class="fa fa-check"></i><b>6.7</b> Xgboost</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#xgboost-原理总结"><i class="fa fa-check"></i><b>6.7.1</b> XGBoost 原理总结：</a></li>
+<li class="chapter" data-level="6.7.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-xgboost-示例"><i class="fa fa-check"></i><b>6.7.2</b> Sklearn XGBoost 示例：</a></li>
+<li class="chapter" data-level="6.7.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-4"><i class="fa fa-check"></i><b>6.7.3</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="有监督机器学习.html"><a href="有监督机器学习.html#特征选择"><i class="fa fa-check"></i><b>6.8</b> 特征选择</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#特征选择原理总结"><i class="fa fa-check"></i><b>6.8.1</b> 特征选择原理总结：</a></li>
+<li class="chapter" data-level="6.8.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-特征选择示例"><i class="fa fa-check"></i><b>6.8.2</b> Sklearn 特征选择示例：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="有监督机器学习.html"><a href="有监督机器学习.html#模型评估与交叉验证"><i class="fa fa-check"></i><b>6.9</b> 模型评估与交叉验证</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#模型评估与交叉验证总结"><i class="fa fa-check"></i><b>6.9.1</b> 模型评估与交叉验证总结：</a></li>
+<li class="chapter" data-level="6.9.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-模型评估与交叉验证示例"><i class="fa fa-check"></i><b>6.9.2</b> Sklearn 模型评估与交叉验证示例：</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="无监督方法.html"><a href="无监督方法.html"><i class="fa fa-check"></i><b>7</b> 无监督方法</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="无监督方法.html"><a href="无监督方法.html#聚类"><i class="fa fa-check"></i><b>7.1</b> 聚类</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="无监督方法.html"><a href="无监督方法.html#k均值聚类"><i class="fa fa-check"></i><b>7.1.1</b> K均值聚类：</a></li>
+<li class="chapter" data-level="7.1.2" data-path="无监督方法.html"><a href="无监督方法.html#层次聚类"><i class="fa fa-check"></i><b>7.1.2</b> 层次聚类：</a></li>
+<li class="chapter" data-level="7.1.3" data-path="无监督方法.html"><a href="无监督方法.html#dbscan基于密度的聚类"><i class="fa fa-check"></i><b>7.1.3</b> DBSCAN（基于密度的聚类）：</a></li>
+<li class="chapter" data-level="7.1.4" data-path="无监督方法.html"><a href="无监督方法.html#谱聚类"><i class="fa fa-check"></i><b>7.1.4</b> 谱聚类：</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="无监督方法.html"><a href="无监督方法.html#降维"><i class="fa fa-check"></i><b>7.2</b> 降维</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="无监督方法.html"><a href="无监督方法.html#主成分分析pca"><i class="fa fa-check"></i><b>7.2.1</b> 主成分分析（PCA）：</a></li>
+<li class="chapter" data-level="7.2.2" data-path="无监督方法.html"><a href="无监督方法.html#线性判别分析lda"><i class="fa fa-check"></i><b>7.2.2</b> 线性判别分析（LDA）：</a></li>
+<li class="chapter" data-level="7.2.3" data-path="无监督方法.html"><a href="无监督方法.html#多维尺度分析mds"><i class="fa fa-check"></i><b>7.2.3</b> 多维尺度分析（MDS）：</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="无监督方法.html"><a href="无监督方法.html#离群点检测"><i class="fa fa-check"></i><b>7.3</b> 离群点检测</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="无监督方法.html"><a href="无监督方法.html#isolation-forest"><i class="fa fa-check"></i><b>7.3.1</b> 1. Isolation Forest:</a></li>
+<li class="chapter" data-level="7.3.2" data-path="无监督方法.html"><a href="无监督方法.html#one-class-svm"><i class="fa fa-check"></i><b>7.3.2</b> One-Class SVM:</a></li>
+<li class="chapter" data-level="7.3.3" data-path="无监督方法.html"><a href="无监督方法.html#local-outlier-factor-lof"><i class="fa fa-check"></i><b>7.3.3</b> Local Outlier Factor (LOF):</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="自然语言处理.html"><a href="自然语言处理.html"><i class="fa fa-check"></i><b>8</b> 自然语言处理</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="自然语言处理.html"><a href="自然语言处理.html#分词-tokenization"><i class="fa fa-check"></i><b>8.1</b> 分词 (Tokenization):</a></li>
+<li class="chapter" data-level="8.2" data-path="自然语言处理.html"><a href="自然语言处理.html#词袋表示-bag-of-words-bow"><i class="fa fa-check"></i><b>8.2</b> 词袋表示 (Bag of Words, BoW):</a></li>
+<li class="chapter" data-level="8.3" data-path="自然语言处理.html"><a href="自然语言处理.html#tf-idf-term-frequency-inverse-document-frequency"><i class="fa fa-check"></i><b>8.3</b> TF-IDF (Term Frequency-Inverse Document Frequency):</a></li>
+<li class="chapter" data-level="8.4" data-path="自然语言处理.html"><a href="自然语言处理.html#词嵌入-word-embeddings"><i class="fa fa-check"></i><b>8.4</b> 词嵌入 (Word Embeddings):</a></li>
+<li class="chapter" data-level="8.5" data-path="自然语言处理.html"><a href="自然语言处理.html#文本分类-text-classification"><i class="fa fa-check"></i><b>8.5</b> 文本分类 (Text Classification):</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="模型部署.html"><a href="模型部署.html"><i class="fa fa-check"></i><b>9</b> 模型部署</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="模型部署.html"><a href="模型部署.html#flask-web-api"><i class="fa fa-check"></i><b>9.1</b> Flask Web API：</a></li>
+<li class="chapter" data-level="9.2" data-path="模型部署.html"><a href="模型部署.html#fastapi-web-api"><i class="fa fa-check"></i><b>9.2</b> FastAPI Web API：</a></li>
+<li class="chapter" data-level="9.3" data-path="模型部署.html"><a href="模型部署.html#docker容器部署"><i class="fa fa-check"></i><b>9.3</b> Docker容器部署：</a></li>
+<li class="chapter" data-level="9.4" data-path="模型部署.html"><a href="模型部署.html#serverless部署如aws-lambda"><i class="fa fa-check"></i><b>9.4</b> Serverless部署（如AWS Lambda）：</a></li>
+<li class="chapter" data-level="9.5" data-path="模型部署.html"><a href="模型部署.html#ensorflow-serving"><i class="fa fa-check"></i><b>9.5</b> ensorFlow Serving：</a></li>
+<li class="chapter" data-level="9.6" data-path="模型部署.html"><a href="模型部署.html#onnx-runtime"><i class="fa fa-check"></i><b>9.6</b> ONNX Runtime：</a></li>
+<li class="chapter" data-level="9.7" data-path="模型部署.html"><a href="模型部署.html#使用第三方部署服务"><i class="fa fa-check"></i><b>9.7</b> 使用第三方部署服务：</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="因果推断.html"><a href="因果推断.html"><i class="fa fa-check"></i><b>10</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="因果推断.html"><a href="因果推断.html#倾向性评分"><i class="fa fa-check"></i><b>10.1</b> 倾向性评分</a></li>
+<li class="chapter" data-level="10.2" data-path="因果推断.html"><a href="因果推断.html#python-中的因果分析库"><i class="fa fa-check"></i><b>10.2</b> Python 中的因果分析库</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="可解释机器学习.html"><a href="可解释机器学习.html"><i class="fa fa-check"></i><b>11</b> 可解释机器学习</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="可解释机器学习.html"><a href="可解释机器学习.html#特征重要性分析"><i class="fa fa-check"></i><b>11.1</b> 特征重要性分析:</a></li>
+<li class="chapter" data-level="11.2" data-path="可解释机器学习.html"><a href="可解释机器学习.html#局部可解释性模型"><i class="fa fa-check"></i><b>11.2</b> 局部可解释性模型:</a></li>
+<li class="chapter" data-level="11.3" data-path="可解释机器学习.html"><a href="可解释机器学习.html#shap值"><i class="fa fa-check"></i><b>11.3</b> SHAP值:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Python 数据科学</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="python-数据可视化" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Python 数据可视化<a href="python-数据可视化.html#python-数据可视化" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="matplotlib" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Matplotlib<a href="python-数据可视化.html#matplotlib" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Matplotlib 是一个用于创建各种类型图表和图形的强大Python库。本教程将介绍如何使用Matplotlib来创建不同类型的图表，自定义图表样式，以及一些常见的绘图技巧。</p>
+<div id="绘图工作流" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> 绘图工作流<a href="python-数据可视化.html#绘图工作流" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>导入 Matplotlib：</li>
+</ol>
+<p>在 Python 脚本或 Jupyter Notebook 中导入 Matplotlib 库。通常使用以下导入语句：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="python-数据可视化.html#cb1-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>准备数据：</li>
+</ol>
+<p>创建要绘制的数据。这可以是单个数据集或多个数据集，具体取决于要绘制的图表类型。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="python-数据可视化.html#cb2-1" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>]</span>
+<span id="cb2-2"><a href="python-数据可视化.html#cb2-2" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>]</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>创建图形：</li>
+</ol>
+<p>使用 plt.figure() 创建一个图形对象。图形对象是图表的容器，可以包含一个或多个子图（Axes）。可以通过 figsize 参数设置图形的大小。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="python-数据可视化.html#cb3-1" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>创建子图（Axes）：</li>
+</ol>
+<p>使用 plt.subplot() 或 plt.subplots() 函数创建子图。子图是实际的绘图区域，可以在其中绘制图表。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="python-数据可视化.html#cb4-1" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)  <span class="co"># 创建一个子图</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-3.png" width="768" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>绘制图表：</li>
+</ol>
+<p>使用不同的 plt 函数（如 plot()、scatter()、bar() 等）来绘制数据。根据需要自定义线条、颜色、标记和样式。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="python-数据可视化.html#cb5-1" tabindex="-1"></a>plt.plot(x, y, label<span class="op">=</span><span class="st">&#39;Line chart&#39;</span>, color<span class="op">=</span><span class="st">&#39;b&#39;</span>, marker<span class="op">=</span><span class="st">&#39;o&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-5.png" width="768" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li>添加标签和标题：</li>
+</ol>
+<p>使用 xlabel()、ylabel() 和 title() 函数来添加 X 轴和 Y 轴的标签，以及图表的标题。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="python-数据可视化.html#cb6-1" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;X axle&#39;</span>)</span>
+<span id="cb6-2"><a href="python-数据可视化.html#cb6-2" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Y axle&#39;</span>)</span>
+<span id="cb6-3"><a href="python-数据可视化.html#cb6-3" tabindex="-1"></a>plt.title(<span class="st">&#39;Title&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-7.png" width="768" /></p>
+<ol start="7" style="list-style-type: decimal">
+<li>自定义图表：</li>
+</ol>
+<p>进行其他自定义操作，如添加图例、网格线、坐标轴范围、刻度、刻度标签等。这可以根据具体需要进行。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="python-数据可视化.html#cb7-1" tabindex="-1"></a>plt.legend()</span>
+<span id="cb7-2"><a href="python-数据可视化.html#cb7-2" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb7-3"><a href="python-数据可视化.html#cb7-3" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## (0.0, 6.0)</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="python-数据可视化.html#cb9-1" tabindex="-1"></a>plt.xticks([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>], [<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>, <span class="st">&#39;D&#39;</span>, <span class="st">&#39;E&#39;</span>])</span></code></pre></div>
+<pre><code>## ([&lt;matplotlib.axis.XTick object at 0x120611dd0&gt;, &lt;matplotlib.axis.XTick object at 0x120611050&gt;, &lt;matplotlib.axis.XTick object at 0x12062acd0&gt;, &lt;matplotlib.axis.XTick object at 0x120661d50&gt;, &lt;matplotlib.axis.XTick object at 0x12067d490&gt;], [Text(1, 0, &#39;A&#39;), Text(2, 0, &#39;B&#39;), Text(3, 0, &#39;C&#39;), Text(4, 0, &#39;D&#39;), Text(5, 0, &#39;E&#39;)])</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>显示图表：</li>
+</ol>
+<p>使用 plt.show() 函数来显示绘制的图表。这将呈现图形并显示在屏幕上。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="python-数据可视化.html#cb11-1" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-9.png" width="768" /></p>
+<ol start="9" style="list-style-type: decimal">
+<li>保存图表（可选）：</li>
+</ol>
+<p>如果需要将图表保存为图像文件，可以使用 savefig() 函数。</p>
+<pre><code>plt.savefig(&#39;my_plot.png&#39;)</code></pre>
+<p>这些步骤构成了Matplotlib的基本绘图流程。</p>
+</div>
+<div id="使用matplotlib绘制各类图形" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> 使用Matplotlib绘制各类图形<a href="python-数据可视化.html#使用matplotlib绘制各类图形" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>绘制折线图</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="python-数据可视化.html#cb13-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb13-2"><a href="python-数据可视化.html#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="python-数据可视化.html#cb13-3" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb13-4"><a href="python-数据可视化.html#cb13-4" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">8</span>, <span class="dv">22</span>, <span class="dv">6</span>]</span>
+<span id="cb13-5"><a href="python-数据可视化.html#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="python-数据可视化.html#cb13-6" tabindex="-1"></a>plt.plot(x, y, marker<span class="op">=</span><span class="st">&#39;o&#39;</span>)</span>
+<span id="cb13-7"><a href="python-数据可视化.html#cb13-7" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Time&#39;</span>)</span>
+<span id="cb13-8"><a href="python-数据可视化.html#cb13-8" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Sales Volume&#39;</span>)</span>
+<span id="cb13-9"><a href="python-数据可视化.html#cb13-9" tabindex="-1"></a>plt.title(<span class="st">&#39;Monthly sales trend&#39;</span>)</span>
+<span id="cb13-10"><a href="python-数据可视化.html#cb13-10" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-11.png" width="768" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>绘制散点图</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="python-数据可视化.html#cb14-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb14-2"><a href="python-数据可视化.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="python-数据可视化.html#cb14-3" tabindex="-1"></a>height <span class="op">=</span> [<span class="dv">165</span>, <span class="dv">170</span>, <span class="dv">175</span>, <span class="dv">180</span>, <span class="dv">185</span>]</span>
+<span id="cb14-4"><a href="python-数据可视化.html#cb14-4" tabindex="-1"></a>weight <span class="op">=</span> [<span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>]</span>
+<span id="cb14-5"><a href="python-数据可视化.html#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="python-数据可视化.html#cb14-6" tabindex="-1"></a>plt.scatter(height, weight, marker<span class="op">=</span><span class="st">&#39;o&#39;</span>)</span>
+<span id="cb14-7"><a href="python-数据可视化.html#cb14-7" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Height&#39;</span>)</span>
+<span id="cb14-8"><a href="python-数据可视化.html#cb14-8" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Weight&#39;</span>)</span>
+<span id="cb14-9"><a href="python-数据可视化.html#cb14-9" tabindex="-1"></a>plt.title(<span class="st">&#39;Height VS Weight&#39;</span>)</span>
+<span id="cb14-10"><a href="python-数据可视化.html#cb14-10" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-13.png" width="768" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>绘制柱状图</li>
+</ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="python-数据可视化.html#cb15-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb15-2"><a href="python-数据可视化.html#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="python-数据可视化.html#cb15-3" tabindex="-1"></a>cities <span class="op">=</span> [<span class="st">&#39;CityA&#39;</span>, <span class="st">&#39;CityB&#39;</span>, <span class="st">&#39;CityC&#39;</span>, <span class="st">&#39;CityD&#39;</span>]</span>
+<span id="cb15-4"><a href="python-数据可视化.html#cb15-4" tabindex="-1"></a>population <span class="op">=</span> [<span class="dv">1000000</span>, <span class="dv">1500000</span>, <span class="dv">800000</span>, <span class="dv">1200000</span>]</span>
+<span id="cb15-5"><a href="python-数据可视化.html#cb15-5" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="python-数据可视化.html#cb15-6" tabindex="-1"></a>plt.bar(cities, population)</span></code></pre></div>
+<pre><code>## &lt;BarContainer object of 4 artists&gt;</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="python-数据可视化.html#cb17-1" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;City&#39;</span>)</span>
+<span id="cb17-2"><a href="python-数据可视化.html#cb17-2" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Population&#39;</span>)</span>
+<span id="cb17-3"><a href="python-数据可视化.html#cb17-3" tabindex="-1"></a>plt.title(<span class="st">&#39;comparison of population in different city&#39;</span>)</span>
+<span id="cb17-4"><a href="python-数据可视化.html#cb17-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-15.png" width="768" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>绘制直方图</li>
+</ol>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="python-数据可视化.html#cb18-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-2"><a href="python-数据可视化.html#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="python-数据可视化.html#cb18-3" tabindex="-1"></a>data <span class="op">=</span> [<span class="dv">70</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">65</span>, <span class="dv">78</span>, <span class="dv">92</span>, <span class="dv">88</span>, <span class="dv">72</span>, <span class="dv">80</span>, <span class="dv">95</span>, <span class="dv">75</span>, <span class="dv">68</span>, <span class="dv">82</span>]</span>
+<span id="cb18-4"><a href="python-数据可视化.html#cb18-4" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="python-数据可视化.html#cb18-5" tabindex="-1"></a>plt.hist(data, bins<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## (array([3., 2., 3., 2., 3.]), array([65., 71., 77., 83., 89., 95.]), &lt;BarContainer object of 5 artists&gt;)</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="python-数据可视化.html#cb20-1" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Grade&#39;</span>)</span>
+<span id="cb20-2"><a href="python-数据可视化.html#cb20-2" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;frequency&#39;</span>)</span>
+<span id="cb20-3"><a href="python-数据可视化.html#cb20-3" tabindex="-1"></a>plt.title(<span class="st">&#39; Distribution of grade&#39;</span>)</span>
+<span id="cb20-4"><a href="python-数据可视化.html#cb20-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-17.png" width="768" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>箱线图</li>
+</ol>
+<p>箱线图用于显示数据的分布和异常值。下面是一个箱线图的示例：</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="python-数据可视化.html#cb21-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb21-2"><a href="python-数据可视化.html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="python-数据可视化.html#cb21-3" tabindex="-1"></a>data <span class="op">=</span> [<span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">100</span>, <span class="dv">105</span>, <span class="dv">110</span>]</span>
+<span id="cb21-4"><a href="python-数据可视化.html#cb21-4" tabindex="-1"></a>plt.boxplot(data)</span></code></pre></div>
+<pre><code>## {&#39;whiskers&#39;: [&lt;matplotlib.lines.Line2D object at 0x1207fa050&gt;, &lt;matplotlib.lines.Line2D object at 0x1207fa390&gt;], &#39;caps&#39;: [&lt;matplotlib.lines.Line2D object at 0x1207fa650&gt;, &lt;matplotlib.lines.Line2D object at 0x1207fa990&gt;], &#39;boxes&#39;: [&lt;matplotlib.lines.Line2D object at 0x1207e9d50&gt;], &#39;medians&#39;: [&lt;matplotlib.lines.Line2D object at 0x1207fad10&gt;], &#39;fliers&#39;: [&lt;matplotlib.lines.Line2D object at 0x120806090&gt;], &#39;means&#39;: []}</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="python-数据可视化.html#cb23-1" tabindex="-1"></a>plt.title(<span class="st">&#39;Box chart&#39;</span>)</span>
+<span id="cb23-2"><a href="python-数据可视化.html#cb23-2" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-19.png" width="768" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li>小提琴图（Violin Plot）:</li>
+</ol>
+<p>小提琴图显示了数据的分布，类似于箱线图，但更详细。下面是一个小提琴图的示例：</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="python-数据可视化.html#cb24-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb24-2"><a href="python-数据可视化.html#cb24-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb24-3"><a href="python-数据可视化.html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="python-数据可视化.html#cb24-4" tabindex="-1"></a>data <span class="op">=</span> [<span class="dv">75</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">100</span>, <span class="dv">105</span>, <span class="dv">110</span>]</span>
+<span id="cb24-5"><a href="python-数据可视化.html#cb24-5" tabindex="-1"></a>sns.violinplot(data)</span>
+<span id="cb24-6"><a href="python-数据可视化.html#cb24-6" tabindex="-1"></a>plt.title(<span class="st">&#39;Violin Chart&#39;</span>)</span>
+<span id="cb24-7"><a href="python-数据可视化.html#cb24-7" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-21.png" width="768" />
+注意，小提琴图通常需要安装 Seaborn 库。</p>
+<ol start="7" style="list-style-type: decimal">
+<li>气泡图（Bubble Plot）:</li>
+</ol>
+<p>气泡图用于显示三维数据，其中两个轴表示数据的两个维度，而气泡的大小表示第三个维度。下面是一个气泡图的示例：</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="python-数据可视化.html#cb25-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb25-2"><a href="python-数据可视化.html#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="python-数据可视化.html#cb25-3" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb25-4"><a href="python-数据可视化.html#cb25-4" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">13</span>, <span class="dv">18</span>]</span>
+<span id="cb25-5"><a href="python-数据可视化.html#cb25-5" tabindex="-1"></a>size <span class="op">=</span> [<span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>]</span>
+<span id="cb25-6"><a href="python-数据可视化.html#cb25-6" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="python-数据可视化.html#cb25-7" tabindex="-1"></a>plt.scatter(x, y, s<span class="op">=</span>size, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb25-8"><a href="python-数据可视化.html#cb25-8" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;X axle&#39;</span>)</span>
+<span id="cb25-9"><a href="python-数据可视化.html#cb25-9" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Y axle&#39;</span>)</span>
+<span id="cb25-10"><a href="python-数据可视化.html#cb25-10" tabindex="-1"></a>plt.title(<span class="st">&#39; Bubble Chart&#39;</span>)</span>
+<span id="cb25-11"><a href="python-数据可视化.html#cb25-11" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-23.png" width="768" /></p>
+<ol start="8" style="list-style-type: decimal">
+<li>桑基图（Sankey Diagram）:</li>
+</ol>
+<p>桑基图用于显示元素之间的流动，通常用于展示流量或转换。绘制桑基图需要使用一些专门的库，如 matplotlib-sankey。</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="python-数据可视化.html#cb26-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb26-2"><a href="python-数据可视化.html#cb26-2" tabindex="-1"></a><span class="im">from</span> matplotlib.sankey <span class="im">import</span> Sankey</span>
+<span id="cb26-3"><a href="python-数据可视化.html#cb26-3" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="python-数据可视化.html#cb26-4" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb26-5"><a href="python-数据可视化.html#cb26-5" tabindex="-1"></a>sankey <span class="op">=</span> Sankey(ax<span class="op">=</span>ax, unit<span class="op">=</span><span class="va">None</span>, scale<span class="op">=</span><span class="dv">1</span> <span class="op">/</span> <span class="dv">15</span>)</span>
+<span id="cb26-6"><a href="python-数据可视化.html#cb26-6" tabindex="-1"></a>sankey.add(flows<span class="op">=</span>[<span class="dv">25</span>, <span class="op">-</span><span class="dv">5</span>, <span class="op">-</span><span class="dv">20</span>], labels<span class="op">=</span>[<span class="st">&#39;Input&#39;</span>, <span class="st">&#39;Losses&#39;</span>, <span class="st">&#39;Output&#39;</span>])</span></code></pre></div>
+<pre><code>## &lt;matplotlib.sankey.Sankey object at 0x120806750&gt;</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="python-数据可视化.html#cb28-1" tabindex="-1"></a>sankey.finish()</span></code></pre></div>
+<pre><code>## [namespace(angles=[0, 0, 0], flows=array([ 25,  -5, -20]), patch=&lt;matplotlib.patches.PathPatch object at 0x131d55a50&gt;, text=Text(0, 0, &#39;&#39;), texts=[Text(0.29924969264773316, 0.0, &#39;Input&#39;), Text(0.565022927464865, 0.6666666666666666, &#39;Losses&#39;), Text(0.734572743053505, -0.16666666666666669, &#39;Output&#39;)], tips=array([[ 0.44924969,  0.        ],
+##        [ 0.41502293,  0.66666667],
+##        [ 0.58457274, -0.16666667]]))]</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="python-数据可视化.html#cb30-1" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-25.png" width="672" /></p>
+<p>请注意，要使用桑基图，需要安装 matplotlib-sankey 包。</p>
+</div>
+</div>
+<div id="plotly-绘制交互式图形" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Plotly 绘制交互式图形<a href="python-数据可视化.html#plotly-绘制交互式图形" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Plotly 是一个交互式的Python绘图库，它可以用于创建各种类型的交互式图表和可视化。以下是使用Plotly绘制图表的一般流程：</p>
+<ol style="list-style-type: decimal">
+<li>导入 Plotly 库：</li>
+</ol>
+<p>在Python脚本或Jupyter Notebook中导入Plotly库：</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="python-数据可视化.html#cb31-1" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span></code></pre></div>
+<p>Plotly Express是一个方便的子库，提供了一种简化创建常见图表类型的方法。</p>
+<ol start="2" style="list-style-type: decimal">
+<li>准备数据：</li>
+</ol>
+<p>创建要可视化的数据。这可以是Pandas DataFrame、NumPy数组或其他数据结构。</p>
+<ol start="3" style="list-style-type: decimal">
+<li>创建图表：</li>
+</ol>
+<p>使用Plotly Express或Plotly的其他绘图函数创建图表。下面是一个简单的示例：</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="python-数据可视化.html#cb32-1" tabindex="-1"></a></span>
+<span id="cb32-2"><a href="python-数据可视化.html#cb32-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb32-3"><a href="python-数据可视化.html#cb32-3" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb32-4"><a href="python-数据可视化.html#cb32-4" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="python-数据可视化.html#cb32-5" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb32-6"><a href="python-数据可视化.html#cb32-6" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>iris.data, columns<span class="op">=</span>iris.feature_names)</span>
+<span id="cb32-7"><a href="python-数据可视化.html#cb32-7" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="python-数据可视化.html#cb32-8" tabindex="-1"></a>fig <span class="op">=</span> px.scatter(df, x<span class="op">=</span><span class="st">&#39;sepal length (cm)&#39;</span>, y<span class="op">=</span><span class="st">&#39;sepal width (cm)&#39;</span>, title<span class="op">=</span><span class="st">&#39;scatter chart&#39;</span>)</span></code></pre></div>
+<p>这会创建一个散点图。可以根据需要使用不同的Plotly图表函数来创建其他类型的图表。</p>
+<ol start="4" style="list-style-type: decimal">
+<li>自定义图表：</li>
+</ol>
+<p>Plotly允许自定义图表的各个方面，包括颜色、标记、轴标签、标题、布局等。例如：</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="python-数据可视化.html#cb33-1" tabindex="-1"></a>fig.update_traces(marker<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">10</span>, color<span class="op">=</span><span class="st">&#39;blue&#39;</span>, opacity<span class="op">=</span><span class="fl">0.6</span>))</span></code></pre></div>
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>                <div id="47033e5c-f183-4d1d-9e38-fe20c6feaff8" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("47033e5c-f183-4d1d-9e38-fe20c6feaff8")) {                    Plotly.newPlot(                        "47033e5c-f183-4d1d-9e38-fe20c6feaff8",                        [{"hovertemplate":"sepal length (cm)=%{x}\u003cbr\u003esepal width (cm)=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"blue","symbol":"circle","opacity":0.6,"size":10},"mode":"markers","name":"","orientation":"v","showlegend":false,"x":[5.1,4.9,4.7,4.6,5.0,5.4,4.6,5.0,4.4,4.9,5.4,4.8,4.8,4.3,5.8,5.7,5.4,5.1,5.7,5.1,5.4,5.1,4.6,5.1,4.8,5.0,5.0,5.2,5.2,4.7,4.8,5.4,5.2,5.5,4.9,5.0,5.5,4.9,4.4,5.1,5.0,4.5,4.4,5.0,5.1,4.8,5.1,4.6,5.3,5.0,7.0,6.4,6.9,5.5,6.5,5.7,6.3,4.9,6.6,5.2,5.0,5.9,6.0,6.1,5.6,6.7,5.6,5.8,6.2,5.6,5.9,6.1,6.3,6.1,6.4,6.6,6.8,6.7,6.0,5.7,5.5,5.5,5.8,6.0,5.4,6.0,6.7,6.3,5.6,5.5,5.5,6.1,5.8,5.0,5.6,5.7,5.7,6.2,5.1,5.7,6.3,5.8,7.1,6.3,6.5,7.6,4.9,7.3,6.7,7.2,6.5,6.4,6.8,5.7,5.8,6.4,6.5,7.7,7.7,6.0,6.9,5.6,7.7,6.3,6.7,7.2,6.2,6.1,6.4,7.2,7.4,7.9,6.4,6.3,6.1,7.7,6.3,6.4,6.0,6.9,6.7,6.9,5.8,6.8,6.7,6.7,6.3,6.5,6.2,5.9],"xaxis":"x","y":[3.5,3.0,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1,3.7,3.4,3.0,3.0,4.0,4.4,3.9,3.5,3.8,3.8,3.4,3.7,3.6,3.3,3.4,3.0,3.4,3.5,3.4,3.2,3.1,3.4,4.1,4.2,3.1,3.2,3.5,3.6,3.0,3.4,3.5,2.3,3.2,3.5,3.8,3.0,3.8,3.2,3.7,3.3,3.2,3.2,3.1,2.3,2.8,2.8,3.3,2.4,2.9,2.7,2.0,3.0,2.2,2.9,2.9,3.1,3.0,2.7,2.2,2.5,3.2,2.8,2.5,2.8,2.9,3.0,2.8,3.0,2.9,2.6,2.4,2.4,2.7,2.7,3.0,3.4,3.1,2.3,3.0,2.5,2.6,3.0,2.6,2.3,2.7,3.0,2.9,2.9,2.5,2.8,3.3,2.7,3.0,2.9,3.0,3.0,2.5,2.9,2.5,3.6,3.2,2.7,3.0,2.5,2.8,3.2,3.0,3.8,2.6,2.2,3.2,2.8,2.8,2.7,3.3,3.2,2.8,3.0,2.8,3.0,2.8,3.8,2.8,2.8,2.6,3.0,3.4,3.1,3.0,3.1,3.1,3.1,2.7,3.2,3.3,3.0,2.5,3.0,3.4,3.0],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"sepal length (cm)"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"sepal width (cm)"}},"legend":{"tracegroupgap":0},"title":{"text":"scatter chart"}},                        {"responsive": true}                    )                };                            </script>        </div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="python-数据可视化.html#cb34-1" tabindex="-1"></a>fig.update_layout(xaxis_title<span class="op">=</span><span class="st">&#39;X轴标签&#39;</span>, yaxis_title<span class="op">=</span><span class="st">&#39;Y轴标签&#39;</span>, font<span class="op">=</span><span class="bu">dict</span>(family<span class="op">=</span><span class="st">&quot;Arial&quot;</span>, size<span class="op">=</span><span class="dv">12</span>))</span></code></pre></div>
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>                <div id="cf71dcf7-bc61-4ced-857e-19f83326e2bd" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("cf71dcf7-bc61-4ced-857e-19f83326e2bd")) {                    Plotly.newPlot(                        "cf71dcf7-bc61-4ced-857e-19f83326e2bd",                        [{"hovertemplate":"sepal length (cm)=%{x}\u003cbr\u003esepal width (cm)=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"blue","symbol":"circle","opacity":0.6,"size":10},"mode":"markers","name":"","orientation":"v","showlegend":false,"x":[5.1,4.9,4.7,4.6,5.0,5.4,4.6,5.0,4.4,4.9,5.4,4.8,4.8,4.3,5.8,5.7,5.4,5.1,5.7,5.1,5.4,5.1,4.6,5.1,4.8,5.0,5.0,5.2,5.2,4.7,4.8,5.4,5.2,5.5,4.9,5.0,5.5,4.9,4.4,5.1,5.0,4.5,4.4,5.0,5.1,4.8,5.1,4.6,5.3,5.0,7.0,6.4,6.9,5.5,6.5,5.7,6.3,4.9,6.6,5.2,5.0,5.9,6.0,6.1,5.6,6.7,5.6,5.8,6.2,5.6,5.9,6.1,6.3,6.1,6.4,6.6,6.8,6.7,6.0,5.7,5.5,5.5,5.8,6.0,5.4,6.0,6.7,6.3,5.6,5.5,5.5,6.1,5.8,5.0,5.6,5.7,5.7,6.2,5.1,5.7,6.3,5.8,7.1,6.3,6.5,7.6,4.9,7.3,6.7,7.2,6.5,6.4,6.8,5.7,5.8,6.4,6.5,7.7,7.7,6.0,6.9,5.6,7.7,6.3,6.7,7.2,6.2,6.1,6.4,7.2,7.4,7.9,6.4,6.3,6.1,7.7,6.3,6.4,6.0,6.9,6.7,6.9,5.8,6.8,6.7,6.7,6.3,6.5,6.2,5.9],"xaxis":"x","y":[3.5,3.0,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1,3.7,3.4,3.0,3.0,4.0,4.4,3.9,3.5,3.8,3.8,3.4,3.7,3.6,3.3,3.4,3.0,3.4,3.5,3.4,3.2,3.1,3.4,4.1,4.2,3.1,3.2,3.5,3.6,3.0,3.4,3.5,2.3,3.2,3.5,3.8,3.0,3.8,3.2,3.7,3.3,3.2,3.2,3.1,2.3,2.8,2.8,3.3,2.4,2.9,2.7,2.0,3.0,2.2,2.9,2.9,3.1,3.0,2.7,2.2,2.5,3.2,2.8,2.5,2.8,2.9,3.0,2.8,3.0,2.9,2.6,2.4,2.4,2.7,2.7,3.0,3.4,3.1,2.3,3.0,2.5,2.6,3.0,2.6,2.3,2.7,3.0,2.9,2.9,2.5,2.8,3.3,2.7,3.0,2.9,3.0,3.0,2.5,2.9,2.5,3.6,3.2,2.7,3.0,2.5,2.8,3.2,3.0,3.8,2.6,2.2,3.2,2.8,2.8,2.7,3.3,3.2,2.8,3.0,2.8,3.0,2.8,3.8,2.8,2.8,2.6,3.0,3.4,3.1,3.0,3.1,3.1,3.1,2.7,3.2,3.3,3.0,2.5,3.0,3.4,3.0],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"X\u8f74\u6807\u7b7e"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Y\u8f74\u6807\u7b7e"}},"legend":{"tracegroupgap":0},"title":{"text":"scatter chart"},"font":{"family":"Arial","size":12}},                        {"responsive": true}                    )                };                            </script>        </div>
+<ol start="5" style="list-style-type: decimal">
+<li>显示图表：</li>
+</ol>
+<p>可以使用Plotly的show()函数来显示图表。如果使用Jupyter Notebook，图表将自动嵌入在笔记本中。</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="python-数据可视化.html#cb35-1" tabindex="-1"></a>fig.show()</span></code></pre></div>
+<div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>                <div id="89c2533e-b021-4295-9fd4-be7487474dd8" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("89c2533e-b021-4295-9fd4-be7487474dd8")) {                    Plotly.newPlot(                        "89c2533e-b021-4295-9fd4-be7487474dd8",                        [{"hovertemplate":"sepal length (cm)=%{x}\u003cbr\u003esepal width (cm)=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"blue","symbol":"circle","opacity":0.6,"size":10},"mode":"markers","name":"","orientation":"v","showlegend":false,"x":[5.1,4.9,4.7,4.6,5.0,5.4,4.6,5.0,4.4,4.9,5.4,4.8,4.8,4.3,5.8,5.7,5.4,5.1,5.7,5.1,5.4,5.1,4.6,5.1,4.8,5.0,5.0,5.2,5.2,4.7,4.8,5.4,5.2,5.5,4.9,5.0,5.5,4.9,4.4,5.1,5.0,4.5,4.4,5.0,5.1,4.8,5.1,4.6,5.3,5.0,7.0,6.4,6.9,5.5,6.5,5.7,6.3,4.9,6.6,5.2,5.0,5.9,6.0,6.1,5.6,6.7,5.6,5.8,6.2,5.6,5.9,6.1,6.3,6.1,6.4,6.6,6.8,6.7,6.0,5.7,5.5,5.5,5.8,6.0,5.4,6.0,6.7,6.3,5.6,5.5,5.5,6.1,5.8,5.0,5.6,5.7,5.7,6.2,5.1,5.7,6.3,5.8,7.1,6.3,6.5,7.6,4.9,7.3,6.7,7.2,6.5,6.4,6.8,5.7,5.8,6.4,6.5,7.7,7.7,6.0,6.9,5.6,7.7,6.3,6.7,7.2,6.2,6.1,6.4,7.2,7.4,7.9,6.4,6.3,6.1,7.7,6.3,6.4,6.0,6.9,6.7,6.9,5.8,6.8,6.7,6.7,6.3,6.5,6.2,5.9],"xaxis":"x","y":[3.5,3.0,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1,3.7,3.4,3.0,3.0,4.0,4.4,3.9,3.5,3.8,3.8,3.4,3.7,3.6,3.3,3.4,3.0,3.4,3.5,3.4,3.2,3.1,3.4,4.1,4.2,3.1,3.2,3.5,3.6,3.0,3.4,3.5,2.3,3.2,3.5,3.8,3.0,3.8,3.2,3.7,3.3,3.2,3.2,3.1,2.3,2.8,2.8,3.3,2.4,2.9,2.7,2.0,3.0,2.2,2.9,2.9,3.1,3.0,2.7,2.2,2.5,3.2,2.8,2.5,2.8,2.9,3.0,2.8,3.0,2.9,2.6,2.4,2.4,2.7,2.7,3.0,3.4,3.1,2.3,3.0,2.5,2.6,3.0,2.6,2.3,2.7,3.0,2.9,2.9,2.5,2.8,3.3,2.7,3.0,2.9,3.0,3.0,2.5,2.9,2.5,3.6,3.2,2.7,3.0,2.5,2.8,3.2,3.0,3.8,2.6,2.2,3.2,2.8,2.8,2.7,3.3,3.2,2.8,3.0,2.8,3.0,2.8,3.8,2.8,2.8,2.6,3.0,3.4,3.1,3.0,3.1,3.1,3.1,2.7,3.2,3.3,3.0,2.5,3.0,3.4,3.0],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"X\u8f74\u6807\u7b7e"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Y\u8f74\u6807\u7b7e"}},"legend":{"tracegroupgap":0},"title":{"text":"scatter chart"},"font":{"family":"Arial","size":12}},                        {"responsive": true}                    )                };                            </script>        </div>
+<ol start="6" style="list-style-type: decimal">
+<li>导出图表（可选）：</li>
+</ol>
+<p>可以使用write_html()、write_image()等函数将图表导出为HTML文件或图像文件。这在需要共享或嵌入图表时很有用。</p>
+<pre><code>fig.write_html(&#39;plotly_chart.html&#39;)
+</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="pandas-数据分析.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="有监督机器学习.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-citations.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

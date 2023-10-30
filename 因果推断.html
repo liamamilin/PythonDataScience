@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 因果推断 | Python 数据科学</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 因果推断 | Python 数据科学" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 因果推断 | Python 数据科学" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="模型部署.html"/>
+<link rel="next" href="可解释机器学习.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#数据科学简介"><i class="fa fa-check"></i><b>1.1</b> 数据科学简介</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#作者其他书籍"><i class="fa fa-check"></i><b>1.2</b> 作者其他书籍</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="python-基本知识.html"><a href="python-基本知识.html"><i class="fa fa-check"></i><b>2</b> Python 基本知识</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="python-基本知识.html"><a href="python-基本知识.html#python-基本数据类型"><i class="fa fa-check"></i><b>2.1</b> Python 基本数据类型</a></li>
+<li class="chapter" data-level="2.2" data-path="python-基本知识.html"><a href="python-基本知识.html#python-变量赋值"><i class="fa fa-check"></i><b>2.2</b> Python 变量赋值</a></li>
+<li class="chapter" data-level="2.3" data-path="python-基本知识.html"><a href="python-基本知识.html#容器类型"><i class="fa fa-check"></i><b>2.3</b> 容器类型</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="python-基本知识.html"><a href="python-基本知识.html#顺序序列"><i class="fa fa-check"></i><b>2.3.1</b> 顺序序列</a></li>
+<li class="chapter" data-level="2.3.2" data-path="python-基本知识.html"><a href="python-基本知识.html#字典与集合"><i class="fa fa-check"></i><b>2.3.2</b> 字典与集合</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="python-基本知识.html"><a href="python-基本知识.html#变量转换"><i class="fa fa-check"></i><b>2.4</b> 变量转换</a></li>
+<li class="chapter" data-level="2.5" data-path="python-基本知识.html"><a href="python-基本知识.html#容器索引"><i class="fa fa-check"></i><b>2.5</b> 容器索引</a></li>
+<li class="chapter" data-level="2.6" data-path="python-基本知识.html"><a href="python-基本知识.html#逻辑符"><i class="fa fa-check"></i><b>2.6</b> 逻辑符</a></li>
+<li class="chapter" data-level="2.7" data-path="python-基本知识.html"><a href="python-基本知识.html#python模块"><i class="fa fa-check"></i><b>2.7</b> Python模块</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="python-基本知识.html"><a href="python-基本知识.html#创建属于自己的模块"><i class="fa fa-check"></i><b>2.7.1</b> 创建属于自己的模块</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="python-基本知识.html"><a href="python-基本知识.html#条件判断"><i class="fa fa-check"></i><b>2.8</b> 条件判断</a></li>
+<li class="chapter" data-level="2.9" data-path="python-基本知识.html"><a href="python-基本知识.html#基础数学函数"><i class="fa fa-check"></i><b>2.9</b> 基础数学函数</a></li>
+<li class="chapter" data-level="2.10" data-path="python-基本知识.html"><a href="python-基本知识.html#错误处理"><i class="fa fa-check"></i><b>2.10</b> 错误处理</a></li>
+<li class="chapter" data-level="2.11" data-path="python-基本知识.html"><a href="python-基本知识.html#循环"><i class="fa fa-check"></i><b>2.11</b> 循环</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="python-基本知识.html"><a href="python-基本知识.html#条件循环"><i class="fa fa-check"></i><b>2.11.1</b> 条件循环</a></li>
+<li class="chapter" data-level="2.11.2" data-path="python-基本知识.html"><a href="python-基本知识.html#迭代循环"><i class="fa fa-check"></i><b>2.11.2</b> 迭代循环</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="python-基本知识.html"><a href="python-基本知识.html#打印"><i class="fa fa-check"></i><b>2.12</b> 打印</a></li>
+<li class="chapter" data-level="2.13" data-path="python-基本知识.html"><a href="python-基本知识.html#用户输入"><i class="fa fa-check"></i><b>2.13</b> 用户输入</a></li>
+<li class="chapter" data-level="2.14" data-path="python-基本知识.html"><a href="python-基本知识.html#关于容器的常用操作-generic-operations-on-containers"><i class="fa fa-check"></i><b>2.14</b> 关于容器的常用操作 Generic Operations on Containers</a></li>
+<li class="chapter" data-level="2.15" data-path="python-基本知识.html"><a href="python-基本知识.html#关于列表的操作-list"><i class="fa fa-check"></i><b>2.15</b> 关于列表的操作 list</a></li>
+<li class="chapter" data-level="2.16" data-path="python-基本知识.html"><a href="python-基本知识.html#关于字典的操作"><i class="fa fa-check"></i><b>2.16</b> 关于字典的操作</a></li>
+<li class="chapter" data-level="2.17" data-path="python-基本知识.html"><a href="python-基本知识.html#关于集合的操作"><i class="fa fa-check"></i><b>2.17</b> 关于集合的操作</a></li>
+<li class="chapter" data-level="2.18" data-path="python-基本知识.html"><a href="python-基本知识.html#文件"><i class="fa fa-check"></i><b>2.18</b> 文件</a>
+<ul>
+<li class="chapter" data-level="2.18.1" data-path="python-基本知识.html"><a href="python-基本知识.html#写文件"><i class="fa fa-check"></i><b>2.18.1</b> 写文件</a></li>
+<li class="chapter" data-level="2.18.2" data-path="python-基本知识.html"><a href="python-基本知识.html#读文件"><i class="fa fa-check"></i><b>2.18.2</b> 读文件</a></li>
+<li class="chapter" data-level="2.18.3" data-path="python-基本知识.html"><a href="python-基本知识.html#其他相关方法"><i class="fa fa-check"></i><b>2.18.3</b> 其他相关方法</a></li>
+<li class="chapter" data-level="2.18.4" data-path="python-基本知识.html"><a href="python-基本知识.html#一个常用的方法"><i class="fa fa-check"></i><b>2.18.4</b> 一个常用的方法</a></li>
+</ul></li>
+<li class="chapter" data-level="2.19" data-path="python-基本知识.html"><a href="python-基本知识.html#函数定义"><i class="fa fa-check"></i><b>2.19</b> 函数定义</a></li>
+<li class="chapter" data-level="2.20" data-path="python-基本知识.html"><a href="python-基本知识.html#字符串操作"><i class="fa fa-check"></i><b>2.20</b> 字符串操作</a>
+<ul>
+<li class="chapter" data-level="2.20.1" data-path="python-基本知识.html"><a href="python-基本知识.html#字符串格式化"><i class="fa fa-check"></i><b>2.20.1</b> 字符串格式化</a></li>
+</ul></li>
+<li class="chapter" data-level="2.21" data-path="python-基本知识.html"><a href="python-基本知识.html#python-语法糖"><i class="fa fa-check"></i><b>2.21</b> Python 语法糖</a></li>
+<li class="chapter" data-level="2.22" data-path="python-基本知识.html"><a href="python-基本知识.html#python-编程注意事项"><i class="fa fa-check"></i><b>2.22</b> Python 编程注意事项</a>
+<ul>
+<li class="chapter" data-level="2.22.1" data-path="python-基本知识.html"><a href="python-基本知识.html#检查代码风格"><i class="fa fa-check"></i><b>2.22.1</b> 检查代码风格</a></li>
+</ul></li>
+<li class="chapter" data-level="2.23" data-path="python-基本知识.html"><a href="python-基本知识.html#python-获取帮助"><i class="fa fa-check"></i><b>2.23</b> Python 获取帮助</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="numpy.html"><a href="numpy.html"><i class="fa fa-check"></i><b>3</b> Numpy</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="numpy.html"><a href="numpy.html#创建array-数组"><i class="fa fa-check"></i><b>3.1</b> 创建array 数组</a></li>
+<li class="chapter" data-level="3.2" data-path="numpy.html"><a href="numpy.html#创建特殊数组"><i class="fa fa-check"></i><b>3.2</b> 创建特殊数组</a></li>
+<li class="chapter" data-level="3.3" data-path="numpy.html"><a href="numpy.html#nupmy-io"><i class="fa fa-check"></i><b>3.3</b> Nupmy I/O</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="numpy.html"><a href="numpy.html#保存和加载数组"><i class="fa fa-check"></i><b>3.3.1</b> 保存和加载数组</a></li>
+<li class="chapter" data-level="3.3.2" data-path="numpy.html"><a href="numpy.html#保存和加载文本文件"><i class="fa fa-check"></i><b>3.3.2</b> 保存和加载文本文件</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="numpy.html"><a href="numpy.html#data-types"><i class="fa fa-check"></i><b>3.4</b> Data types</a></li>
+<li class="chapter" data-level="3.5" data-path="numpy.html"><a href="numpy.html#查看数组"><i class="fa fa-check"></i><b>3.5</b> 查看数组</a></li>
+<li class="chapter" data-level="3.6" data-path="numpy.html"><a href="numpy.html#查询帮助"><i class="fa fa-check"></i><b>3.6</b> 查询帮助</a></li>
+<li class="chapter" data-level="3.7" data-path="numpy.html"><a href="numpy.html#数组函数"><i class="fa fa-check"></i><b>3.7</b> 数组函数</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="numpy.html"><a href="numpy.html#数组算数运算"><i class="fa fa-check"></i><b>3.7.1</b> 数组算数运算</a></li>
+<li class="chapter" data-level="3.7.2" data-path="numpy.html"><a href="numpy.html#比较数组"><i class="fa fa-check"></i><b>3.7.2</b> 比较数组</a></li>
+<li class="chapter" data-level="3.7.3" data-path="numpy.html"><a href="numpy.html#聚合函数"><i class="fa fa-check"></i><b>3.7.3</b> 聚合函数</a></li>
+<li class="chapter" data-level="3.7.4" data-path="numpy.html"><a href="numpy.html#复制数组"><i class="fa fa-check"></i><b>3.7.4</b> 复制数组</a></li>
+<li class="chapter" data-level="3.7.5" data-path="numpy.html"><a href="numpy.html#数组排序"><i class="fa fa-check"></i><b>3.7.5</b> 数组排序</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="numpy.html"><a href="numpy.html#取子集切片索引"><i class="fa fa-check"></i><b>3.8</b> 取子集,切片,索引</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="numpy.html"><a href="numpy.html#取子集"><i class="fa fa-check"></i><b>3.8.1</b> 取子集</a></li>
+<li class="chapter" data-level="3.8.2" data-path="numpy.html"><a href="numpy.html#切片"><i class="fa fa-check"></i><b>3.8.2</b> 切片</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="numpy.html"><a href="numpy.html#操纵数组"><i class="fa fa-check"></i><b>3.9</b> 操纵数组</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="numpy.html"><a href="numpy.html#数组置换"><i class="fa fa-check"></i><b>3.9.1</b> 数组置换</a></li>
+<li class="chapter" data-level="3.9.2" data-path="numpy.html"><a href="numpy.html#改变数组的形状"><i class="fa fa-check"></i><b>3.9.2</b> 改变数组的形状</a></li>
+<li class="chapter" data-level="3.9.3" data-path="numpy.html"><a href="numpy.html#添加删除-元素"><i class="fa fa-check"></i><b>3.9.3</b> 添加/删除 元素</a></li>
+<li class="chapter" data-level="3.9.4" data-path="numpy.html"><a href="numpy.html#合并数组"><i class="fa fa-check"></i><b>3.9.4</b> 合并数组</a></li>
+<li class="chapter" data-level="3.9.5" data-path="numpy.html"><a href="numpy.html#分开数组"><i class="fa fa-check"></i><b>3.9.5</b> 分开数组</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html"><i class="fa fa-check"></i><b>4</b> Pandas 数据分析</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#python-读写数据"><i class="fa fa-check"></i><b>4.1</b> Python 读写数据</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#读取数据"><i class="fa fa-check"></i><b>4.1.1</b> 读取数据</a></li>
+<li class="chapter" data-level="4.1.2" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#写入数据"><i class="fa fa-check"></i><b>4.1.2</b> 写入数据</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#pandas-数据结构"><i class="fa fa-check"></i><b>4.2</b> pandas 数据结构</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#series-数据操作"><i class="fa fa-check"></i><b>4.2.1</b> Series 数据操作</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#创建dataframe"><i class="fa fa-check"></i><b>4.3</b> 创建DataFrame</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#基本数据探索"><i class="fa fa-check"></i><b>4.3.1</b> 基本数据探索</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#重塑数据"><i class="fa fa-check"></i><b>4.4</b> 重塑数据</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#将列聚集成行"><i class="fa fa-check"></i><b>4.4.1</b> 将列聚集成行</a></li>
+<li class="chapter" data-level="4.4.2" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#将行拆分成为列"><i class="fa fa-check"></i><b>4.4.2</b> 将行拆分成为列</a></li>
+<li class="chapter" data-level="4.4.3" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#添加行"><i class="fa fa-check"></i><b>4.4.3</b> 添加行</a></li>
+<li class="chapter" data-level="4.4.4" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#添加列"><i class="fa fa-check"></i><b>4.4.4</b> 添加列</a></li>
+<li class="chapter" data-level="4.4.5" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#其他有用的函数"><i class="fa fa-check"></i><b>4.4.5</b> 其他有用的函数</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#取子集筛选行"><i class="fa fa-check"></i><b>4.5</b> 取子集/筛选行</a></li>
+<li class="chapter" data-level="4.6" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#筛选变量筛选列"><i class="fa fa-check"></i><b>4.6</b> 筛选变量/筛选列</a></li>
+<li class="chapter" data-level="4.7" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#数据汇总"><i class="fa fa-check"></i><b>4.7</b> 数据汇总</a></li>
+<li class="chapter" data-level="4.8" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#处理缺失值"><i class="fa fa-check"></i><b>4.8</b> 处理缺失值</a></li>
+<li class="chapter" data-level="4.9" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#创建新的列"><i class="fa fa-check"></i><b>4.9</b> 创建新的列</a></li>
+<li class="chapter" data-level="4.10" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#聚合数据"><i class="fa fa-check"></i><b>4.10</b> 聚合数据</a></li>
+<li class="chapter" data-level="4.11" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#合并数据集"><i class="fa fa-check"></i><b>4.11</b> 合并数据集</a></li>
+<li class="chapter" data-level="4.12" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#绘图"><i class="fa fa-check"></i><b>4.12</b> 绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="python-数据可视化.html"><a href="python-数据可视化.html"><i class="fa fa-check"></i><b>5</b> Python 数据可视化</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="python-数据可视化.html"><a href="python-数据可视化.html#matplotlib"><i class="fa fa-check"></i><b>5.1</b> Matplotlib</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="python-数据可视化.html"><a href="python-数据可视化.html#绘图工作流"><i class="fa fa-check"></i><b>5.1.1</b> 绘图工作流</a></li>
+<li class="chapter" data-level="5.1.2" data-path="python-数据可视化.html"><a href="python-数据可视化.html#使用matplotlib绘制各类图形"><i class="fa fa-check"></i><b>5.1.2</b> 使用Matplotlib绘制各类图形</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="python-数据可视化.html"><a href="python-数据可视化.html#plotly-绘制交互式图形"><i class="fa fa-check"></i><b>5.2</b> Plotly 绘制交互式图形</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="有监督机器学习.html"><a href="有监督机器学习.html"><i class="fa fa-check"></i><b>6</b> 有监督机器学习</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#数据处理"><i class="fa fa-check"></i><b>6.1</b> 数据处理</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#标准化-与-归一化"><i class="fa fa-check"></i><b>6.1.1</b> 标准化 与 归一化</a></li>
+<li class="chapter" data-level="6.1.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#非线性转换"><i class="fa fa-check"></i><b>6.1.2</b> 非线性转换</a></li>
+<li class="chapter" data-level="6.1.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#对分类变量进行编码"><i class="fa fa-check"></i><b>6.1.3</b> 对分类变量进行编码</a></li>
+<li class="chapter" data-level="6.1.4" data-path="有监督机器学习.html"><a href="有监督机器学习.html#离散化-discretization"><i class="fa fa-check"></i><b>6.1.4</b> 离散化 (Discretization)</a></li>
+<li class="chapter" data-level="6.1.5" data-path="有监督机器学习.html"><a href="有监督机器学习.html#生成多项式特征"><i class="fa fa-check"></i><b>6.1.5</b> 生成多项式特征</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#线性模型"><i class="fa fa-check"></i><b>6.2</b> 线性模型</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#线性回归linear-regression"><i class="fa fa-check"></i><b>6.2.1</b> 线性回归（Linear Regression）：</a></li>
+<li class="chapter" data-level="6.2.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#岭回归ridge-regression"><i class="fa fa-check"></i><b>6.2.2</b> 岭回归（Ridge Regression）：</a></li>
+<li class="chapter" data-level="6.2.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#lasso-回归"><i class="fa fa-check"></i><b>6.2.3</b> Lasso 回归：</a></li>
+<li class="chapter" data-level="6.2.4" data-path="有监督机器学习.html"><a href="有监督机器学习.html#逻辑回归logistic-regression"><i class="fa fa-check"></i><b>6.2.4</b> 逻辑回归（Logistic Regression）：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#支持向量机"><i class="fa fa-check"></i><b>6.3</b> 支持向量机</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#svm-原理总结"><i class="fa fa-check"></i><b>6.3.1</b> SVM 原理总结：</a></li>
+<li class="chapter" data-level="6.3.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数"><i class="fa fa-check"></i><b>6.3.2</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="有监督机器学习.html"><a href="有监督机器学习.html#knn"><i class="fa fa-check"></i><b>6.4</b> KNN</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#knn-原理总结"><i class="fa fa-check"></i><b>6.4.1</b> KNN 原理总结：</a></li>
+<li class="chapter" data-level="6.4.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-1"><i class="fa fa-check"></i><b>6.4.2</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="有监督机器学习.html"><a href="有监督机器学习.html#决策树"><i class="fa fa-check"></i><b>6.5</b> 决策树</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#决策树原理"><i class="fa fa-check"></i><b>6.5.1</b> 决策树原理:</a></li>
+<li class="chapter" data-level="6.5.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-决策树示例"><i class="fa fa-check"></i><b>6.5.2</b> Sklearn 决策树示例：</a></li>
+<li class="chapter" data-level="6.5.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-2"><i class="fa fa-check"></i><b>6.5.3</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="有监督机器学习.html"><a href="有监督机器学习.html#随机森林"><i class="fa fa-check"></i><b>6.6</b> 随机森林</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#基本原理"><i class="fa fa-check"></i><b>6.6.1</b> 基本原理</a></li>
+<li class="chapter" data-level="6.6.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-随机森林示例"><i class="fa fa-check"></i><b>6.6.2</b> Sklearn 随机森林示例：</a></li>
+<li class="chapter" data-level="6.6.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-3"><i class="fa fa-check"></i><b>6.6.3</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="有监督机器学习.html"><a href="有监督机器学习.html#xgboost"><i class="fa fa-check"></i><b>6.7</b> Xgboost</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#xgboost-原理总结"><i class="fa fa-check"></i><b>6.7.1</b> XGBoost 原理总结：</a></li>
+<li class="chapter" data-level="6.7.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-xgboost-示例"><i class="fa fa-check"></i><b>6.7.2</b> Sklearn XGBoost 示例：</a></li>
+<li class="chapter" data-level="6.7.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-4"><i class="fa fa-check"></i><b>6.7.3</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="有监督机器学习.html"><a href="有监督机器学习.html#特征选择"><i class="fa fa-check"></i><b>6.8</b> 特征选择</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#特征选择原理总结"><i class="fa fa-check"></i><b>6.8.1</b> 特征选择原理总结：</a></li>
+<li class="chapter" data-level="6.8.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-特征选择示例"><i class="fa fa-check"></i><b>6.8.2</b> Sklearn 特征选择示例：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="有监督机器学习.html"><a href="有监督机器学习.html#模型评估与交叉验证"><i class="fa fa-check"></i><b>6.9</b> 模型评估与交叉验证</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#模型评估与交叉验证总结"><i class="fa fa-check"></i><b>6.9.1</b> 模型评估与交叉验证总结：</a></li>
+<li class="chapter" data-level="6.9.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-模型评估与交叉验证示例"><i class="fa fa-check"></i><b>6.9.2</b> Sklearn 模型评估与交叉验证示例：</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="无监督方法.html"><a href="无监督方法.html"><i class="fa fa-check"></i><b>7</b> 无监督方法</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="无监督方法.html"><a href="无监督方法.html#聚类"><i class="fa fa-check"></i><b>7.1</b> 聚类</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="无监督方法.html"><a href="无监督方法.html#k均值聚类"><i class="fa fa-check"></i><b>7.1.1</b> K均值聚类：</a></li>
+<li class="chapter" data-level="7.1.2" data-path="无监督方法.html"><a href="无监督方法.html#层次聚类"><i class="fa fa-check"></i><b>7.1.2</b> 层次聚类：</a></li>
+<li class="chapter" data-level="7.1.3" data-path="无监督方法.html"><a href="无监督方法.html#dbscan基于密度的聚类"><i class="fa fa-check"></i><b>7.1.3</b> DBSCAN（基于密度的聚类）：</a></li>
+<li class="chapter" data-level="7.1.4" data-path="无监督方法.html"><a href="无监督方法.html#谱聚类"><i class="fa fa-check"></i><b>7.1.4</b> 谱聚类：</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="无监督方法.html"><a href="无监督方法.html#降维"><i class="fa fa-check"></i><b>7.2</b> 降维</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="无监督方法.html"><a href="无监督方法.html#主成分分析pca"><i class="fa fa-check"></i><b>7.2.1</b> 主成分分析（PCA）：</a></li>
+<li class="chapter" data-level="7.2.2" data-path="无监督方法.html"><a href="无监督方法.html#线性判别分析lda"><i class="fa fa-check"></i><b>7.2.2</b> 线性判别分析（LDA）：</a></li>
+<li class="chapter" data-level="7.2.3" data-path="无监督方法.html"><a href="无监督方法.html#t-分布随机邻域嵌入t-sne"><i class="fa fa-check"></i><b>7.2.3</b> t-分布随机邻域嵌入（t-SNE）：</a></li>
+<li class="chapter" data-level="7.2.4" data-path="无监督方法.html"><a href="无监督方法.html#多维尺度分析mds"><i class="fa fa-check"></i><b>7.2.4</b> 多维尺度分析（MDS）：</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="无监督方法.html"><a href="无监督方法.html#离群点检测"><i class="fa fa-check"></i><b>7.3</b> 离群点检测</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="无监督方法.html"><a href="无监督方法.html#isolation-forest"><i class="fa fa-check"></i><b>7.3.1</b> 1. Isolation Forest:</a></li>
+<li class="chapter" data-level="7.3.2" data-path="无监督方法.html"><a href="无监督方法.html#one-class-svm"><i class="fa fa-check"></i><b>7.3.2</b> One-Class SVM:</a></li>
+<li class="chapter" data-level="7.3.3" data-path="无监督方法.html"><a href="无监督方法.html#local-outlier-factor-lof"><i class="fa fa-check"></i><b>7.3.3</b> Local Outlier Factor (LOF):</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="自然语言处理.html"><a href="自然语言处理.html"><i class="fa fa-check"></i><b>8</b> 自然语言处理</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="自然语言处理.html"><a href="自然语言处理.html#分词-tokenization"><i class="fa fa-check"></i><b>8.1</b> 分词 (Tokenization):</a></li>
+<li class="chapter" data-level="8.2" data-path="自然语言处理.html"><a href="自然语言处理.html#词袋表示-bag-of-words-bow"><i class="fa fa-check"></i><b>8.2</b> 词袋表示 (Bag of Words, BoW):</a></li>
+<li class="chapter" data-level="8.3" data-path="自然语言处理.html"><a href="自然语言处理.html#tf-idf-term-frequency-inverse-document-frequency"><i class="fa fa-check"></i><b>8.3</b> TF-IDF (Term Frequency-Inverse Document Frequency):</a></li>
+<li class="chapter" data-level="8.4" data-path="自然语言处理.html"><a href="自然语言处理.html#词嵌入-word-embeddings"><i class="fa fa-check"></i><b>8.4</b> 词嵌入 (Word Embeddings):</a></li>
+<li class="chapter" data-level="8.5" data-path="自然语言处理.html"><a href="自然语言处理.html#文本分类-text-classification"><i class="fa fa-check"></i><b>8.5</b> 文本分类 (Text Classification):</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="模型部署.html"><a href="模型部署.html"><i class="fa fa-check"></i><b>9</b> 模型部署</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="模型部署.html"><a href="模型部署.html#flask-web-api"><i class="fa fa-check"></i><b>9.1</b> Flask Web API：</a></li>
+<li class="chapter" data-level="9.2" data-path="模型部署.html"><a href="模型部署.html#fastapi-web-api"><i class="fa fa-check"></i><b>9.2</b> FastAPI Web API：</a></li>
+<li class="chapter" data-level="9.3" data-path="模型部署.html"><a href="模型部署.html#docker容器部署"><i class="fa fa-check"></i><b>9.3</b> Docker容器部署：</a></li>
+<li class="chapter" data-level="9.4" data-path="模型部署.html"><a href="模型部署.html#serverless部署如aws-lambda"><i class="fa fa-check"></i><b>9.4</b> Serverless部署（如AWS Lambda）：</a></li>
+<li class="chapter" data-level="9.5" data-path="模型部署.html"><a href="模型部署.html#ensorflow-serving"><i class="fa fa-check"></i><b>9.5</b> ensorFlow Serving：</a></li>
+<li class="chapter" data-level="9.6" data-path="模型部署.html"><a href="模型部署.html#onnx-runtime"><i class="fa fa-check"></i><b>9.6</b> ONNX Runtime：</a></li>
+<li class="chapter" data-level="9.7" data-path="模型部署.html"><a href="模型部署.html#使用第三方部署服务"><i class="fa fa-check"></i><b>9.7</b> 使用第三方部署服务：</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="因果推断.html"><a href="因果推断.html"><i class="fa fa-check"></i><b>10</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="因果推断.html"><a href="因果推断.html#倾向性评分"><i class="fa fa-check"></i><b>10.1</b> 倾向性评分</a></li>
+<li class="chapter" data-level="10.2" data-path="因果推断.html"><a href="因果推断.html#python-中的因果分析库"><i class="fa fa-check"></i><b>10.2</b> Python 中的因果分析库</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="可解释机器学习.html"><a href="可解释机器学习.html"><i class="fa fa-check"></i><b>11</b> 可解释机器学习</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="可解释机器学习.html"><a href="可解释机器学习.html#特征重要性分析"><i class="fa fa-check"></i><b>11.1</b> 特征重要性分析:</a></li>
+<li class="chapter" data-level="11.2" data-path="可解释机器学习.html"><a href="可解释机器学习.html#局部可解释性模型"><i class="fa fa-check"></i><b>11.2</b> 局部可解释性模型:</a></li>
+<li class="chapter" data-level="11.3" data-path="可解释机器学习.html"><a href="可解释机器学习.html#shap值"><i class="fa fa-check"></i><b>11.3</b> SHAP值:</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Python 数据科学</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="因果推断" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> 因果推断<a href="因果推断.html#因果推断" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>因果推断是数据科学和机器学习领域的一个重要概念，用于识别和量化因果关系而不仅仅是相关性。以下是一些常见的因果推断方法的总结，以及它们的具体方法和示例：</p>
+<ol style="list-style-type: decimal">
+<li>随机对照实验：</li>
+</ol>
+<p>方法：通过在实验组和对照组中随机分配处理，比较结果来识别因果效应。
+示例：在药物研究中，将一组患者随机分为接受治疗和接受安慰剂的组，并比较两组的疗效结果。</p>
+<ol start="2" style="list-style-type: decimal">
+<li>倾向得分匹配：</li>
+</ol>
+<p>方法：通过创建一个倾向得分模型来估计处理组和对照组的特征匹配程度，然后使用这些得分进行匹配。
+示例：在教育政策研究中，通过匹配接受政策干预的学生和未接受干预的学生，以估计政策对学习成绩的影响。</p>
+<ol start="3" style="list-style-type: decimal">
+<li>差异-差异估计：</li>
+</ol>
+<p>方法：比较处理组和对照组的平均差异，然后考虑可能的混杂因素。
+示例：在分析最低工资对就业的影响时，比较最低工资上涨地区的就业率与未上涨地区的就业率。</p>
+<ol start="4" style="list-style-type: decimal">
+<li>仪器变量法：</li>
+</ol>
+<p>方法：利用仪器变量来解决因果推断问题，这些变量不直接影响结果，但会影响处理变量。
+示例：在研究教育对收入的影响时，使用家庭背景作为仪器变量，以解决内生性问题。</p>
+<ol start="5" style="list-style-type: decimal">
+<li>因果图（Causal Graphs）：</li>
+</ol>
+<p>方法：使用因果图来可视化潜在的因果关系，然后根据因果图进行因果分析。
+示例：通过构建患者病史和治疗方案之间的因果图，来分析某种治疗是否会导致更好的康复。</p>
+<ol start="5" style="list-style-type: decimal">
+<li>因果分析库：</li>
+</ol>
+<p>方法：使用因果分析库，如DoWhy、CausalImpact等，来自动化因果推断的过程，包括建模、估计因果效应等。
+示例：使用DoWhy库来估计教育干预对学生成绩的因果效应。</p>
+<ol start="6" style="list-style-type: decimal">
+<li>潜在因果模型：</li>
+</ol>
+<p>方法：使用潜在因果模型，如潜在因果路径分析（LCA）、潜在效应模型（LATE），来估计处理效应。
+示例：使用LCA来估计某项政策对不同子群体的效果。</p>
+<p>因果推断是一个复杂的领域，需要仔细考虑数据、模型选择和可能的混杂因素。正确的因果推断方法取决于具体问题和可用数据，而不是一种通用的方法。在进行因果分析时，需要特别小心，以确保获得可靠的结论。</p>
+<div id="倾向性评分" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> 倾向性评分<a href="因果推断.html#倾向性评分" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在自愿性选择或混杂性的情况。其核心思想是通过建立一个倾向得分模型来估计个体选择处理的概率，然后使用这些倾向得分进行匹配，以确保处理组和对照组之间的特征更加平衡。这有助于减少混杂因素的影响，从而更准确地估计处理的因果效应。</p>
+<p>倾向得分（Propensity Score）是指个体选择接受处理的概率，通常表示为 P(T=1|X)，其中 T 表示是否接受处理（1表示接受，0表示不接受），X 是个体的特征向量。倾向得分模型可以是逻辑回归、决策树等机器学习模型，它用于估计每个个体的倾向得分。</p>
+<p>以下是一个简单的示例，以说明倾向得分匹配的原理和应用：</p>
+<p>来看一个例子:</p>
+<p>建模倾向得分：首先，使用观测数据集，建立一个模型来估计每个个体选择接受处理的概率。通常，这是一个二分类的问题，可以使用逻辑回归来建模，例如：</p>
+<pre><code>from sklearn.linear_model import LogisticRegression
+
+model = LogisticRegression()
+model.fit(X, T)  # X 是特征，T 是是否接受处理
+propensity_scores = model.predict_proba(X)[:, 1]
+</code></pre>
+<p>匹配：接下来，对处理组中的每个个体，寻找对照组中具有相似倾向得分的个体。这可以使用不同的匹配算法，如最近邻匹配或卡尔曼匹配。例如：</p>
+<pre><code>from sklearn.neighbors import NearestNeighbors
+
+def matching(propensity_scores, caliper=0.05):
+    matches = {}
+    for treated_index, score in enumerate(propensity_scores[:treated_count]):
+        closest = None
+        for control_index, control_score in enumerate(propensity_scores[treated_count:]):
+            if abs(score - control_score) &lt; caliper and (closest is None or abs(score - control_score) &lt; abs(score - propensity_scores[closest])):
+                closest = control_index
+        matches[treated_index] = closest
+    return matches
+</code></pre>
+<p>估计因果效应：最后，使用匹配的数据集来比较处理组和对照组的结果，以估计因果效应。可以使用平均处理效应（Average Treatment Effect，ATE）等指标来评估。</p>
+</div>
+<div id="python-中的因果分析库" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Python 中的因果分析库<a href="因果推断.html#python-中的因果分析库" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Causalinference:</li>
+</ol>
+<ul>
+<li><p>功能：Causalinference库提供了用于因果分析的工具，包括倾向得分匹配、倾向得分加权和双重差异估计。</p></li>
+<li><p>示例：以下是一个使用Causalinference库的示例，估计了一项政策对就业率的影响：</p></li>
+</ul>
+<pre><code>from causalinference import CausalModel
+
+# 创建CausalModel对象
+causal = CausalModel(data, treatment, outcome)
+
+# 进行因果分析
+causal.est_via_ols()
+causal.est_via_matching()
+
+# 获取因果效应估计
+causal.estimates
+</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>DoWhy:</li>
+</ol>
+<ul>
+<li><p>功能：DoWhy是一个因果分析框架，它自动化了因果推断过程，包括建模、估计因果效应和检验因果假设。</p></li>
+<li><p>示例：以下是一个使用DoWhy库的示例，估计了教育政策对学生成绩的影响：</p></li>
+</ul>
+<pre><code>import dowhy
+from dowhy import CausalModel
+
+# 创建CausalModel对象
+model = CausalModel(data=data, treatment=treatment, outcome=outcome, common_causes=common_causes)
+
+# 估计因果效应
+identified_estimand = model.identify_effect()
+causal_estimate = model.estimate_effect(identified_estimand)
+</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>CausalImpact:</li>
+</ol>
+<ul>
+<li><p>功能：CausalImpact库用于估计和可视化因果效应，特别适用于时间序列数据。</p></li>
+<li><p>示例：以下是一个使用CausalImpact库的示例，估计了广告投放对销售额的影响：</p></li>
+</ul>
+<pre><code>from causalimpact import CausalImpact
+
+impact = CausalImpact(data, pre_period, post_period)
+impact.run()
+
+# 可视化因果效应
+impact.plot()
+</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>EconML:</li>
+</ol>
+<ul>
+<li><p>功能：EconML库提供了因果分析和处理因果估计的工具，特别关注处理因果估计和高维数据。</p></li>
+<li><p>示例：以下是一个使用EconML库的示例，估计了广告投放对销售额的因果效应：</p></li>
+</ul>
+<pre><code>from econml.dml import LinearDML
+
+model = LinearDML(model_y, model_t, featurizer=featurizer)
+model.fit(Y, T, X)
+
+# 获取因果效应估计
+treatment_effect = model.effect(X)
+</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="模型部署.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="可解释机器学习.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/09-casualInference.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Numpy | Python 数据科学</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Numpy | Python 数据科学" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Numpy | Python 数据科学" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="python-基本知识.html"/>
+<link rel="next" href="parts.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#数据科学简介"><i class="fa fa-check"></i><b>1.1</b> 数据科学简介</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#作者其他书籍"><i class="fa fa-check"></i><b>1.2</b> 作者其他书籍</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="python-基本知识.html"><a href="python-基本知识.html"><i class="fa fa-check"></i><b>2</b> Python 基本知识</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="python-基本知识.html"><a href="python-基本知识.html#python-基本数据类型"><i class="fa fa-check"></i><b>2.1</b> Python 基本数据类型</a></li>
+<li class="chapter" data-level="2.2" data-path="python-基本知识.html"><a href="python-基本知识.html#python-变量赋值"><i class="fa fa-check"></i><b>2.2</b> Python 变量赋值</a></li>
+<li class="chapter" data-level="2.3" data-path="python-基本知识.html"><a href="python-基本知识.html#容器类型"><i class="fa fa-check"></i><b>2.3</b> 容器类型</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="python-基本知识.html"><a href="python-基本知识.html#顺序序列"><i class="fa fa-check"></i><b>2.3.1</b> 顺序序列</a></li>
+<li class="chapter" data-level="2.3.2" data-path="python-基本知识.html"><a href="python-基本知识.html#字典与集合"><i class="fa fa-check"></i><b>2.3.2</b> 字典与集合</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="python-基本知识.html"><a href="python-基本知识.html#变量转换"><i class="fa fa-check"></i><b>2.4</b> 变量转换</a></li>
+<li class="chapter" data-level="2.5" data-path="python-基本知识.html"><a href="python-基本知识.html#容器索引"><i class="fa fa-check"></i><b>2.5</b> 容器索引</a></li>
+<li class="chapter" data-level="2.6" data-path="python-基本知识.html"><a href="python-基本知识.html#逻辑符"><i class="fa fa-check"></i><b>2.6</b> 逻辑符</a></li>
+<li class="chapter" data-level="2.7" data-path="python-基本知识.html"><a href="python-基本知识.html#python模块"><i class="fa fa-check"></i><b>2.7</b> Python模块</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="python-基本知识.html"><a href="python-基本知识.html#创建属于自己的模块"><i class="fa fa-check"></i><b>2.7.1</b> 创建属于自己的模块</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="python-基本知识.html"><a href="python-基本知识.html#条件判断"><i class="fa fa-check"></i><b>2.8</b> 条件判断</a></li>
+<li class="chapter" data-level="2.9" data-path="python-基本知识.html"><a href="python-基本知识.html#基础数学函数"><i class="fa fa-check"></i><b>2.9</b> 基础数学函数</a></li>
+<li class="chapter" data-level="2.10" data-path="python-基本知识.html"><a href="python-基本知识.html#错误处理"><i class="fa fa-check"></i><b>2.10</b> 错误处理</a></li>
+<li class="chapter" data-level="2.11" data-path="python-基本知识.html"><a href="python-基本知识.html#循环"><i class="fa fa-check"></i><b>2.11</b> 循环</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="python-基本知识.html"><a href="python-基本知识.html#条件循环"><i class="fa fa-check"></i><b>2.11.1</b> 条件循环</a></li>
+<li class="chapter" data-level="2.11.2" data-path="python-基本知识.html"><a href="python-基本知识.html#迭代循环"><i class="fa fa-check"></i><b>2.11.2</b> 迭代循环</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="python-基本知识.html"><a href="python-基本知识.html#打印"><i class="fa fa-check"></i><b>2.12</b> 打印</a></li>
+<li class="chapter" data-level="2.13" data-path="python-基本知识.html"><a href="python-基本知识.html#用户输入"><i class="fa fa-check"></i><b>2.13</b> 用户输入</a></li>
+<li class="chapter" data-level="2.14" data-path="python-基本知识.html"><a href="python-基本知识.html#关于容器的常用操作-generic-operations-on-containers"><i class="fa fa-check"></i><b>2.14</b> 关于容器的常用操作 Generic Operations on Containers</a></li>
+<li class="chapter" data-level="2.15" data-path="python-基本知识.html"><a href="python-基本知识.html#关于列表的操作-list"><i class="fa fa-check"></i><b>2.15</b> 关于列表的操作 list</a></li>
+<li class="chapter" data-level="2.16" data-path="python-基本知识.html"><a href="python-基本知识.html#关于字典的操作"><i class="fa fa-check"></i><b>2.16</b> 关于字典的操作</a></li>
+<li class="chapter" data-level="2.17" data-path="python-基本知识.html"><a href="python-基本知识.html#关于集合的操作"><i class="fa fa-check"></i><b>2.17</b> 关于集合的操作</a></li>
+<li class="chapter" data-level="2.18" data-path="python-基本知识.html"><a href="python-基本知识.html#文件"><i class="fa fa-check"></i><b>2.18</b> 文件</a>
+<ul>
+<li class="chapter" data-level="2.18.1" data-path="python-基本知识.html"><a href="python-基本知识.html#写文件"><i class="fa fa-check"></i><b>2.18.1</b> 写文件</a></li>
+<li class="chapter" data-level="2.18.2" data-path="python-基本知识.html"><a href="python-基本知识.html#读文件"><i class="fa fa-check"></i><b>2.18.2</b> 读文件</a></li>
+<li class="chapter" data-level="2.18.3" data-path="python-基本知识.html"><a href="python-基本知识.html#其他相关方法"><i class="fa fa-check"></i><b>2.18.3</b> 其他相关方法</a></li>
+<li class="chapter" data-level="2.18.4" data-path="python-基本知识.html"><a href="python-基本知识.html#一个常用的方法"><i class="fa fa-check"></i><b>2.18.4</b> 一个常用的方法</a></li>
+</ul></li>
+<li class="chapter" data-level="2.19" data-path="python-基本知识.html"><a href="python-基本知识.html#函数定义"><i class="fa fa-check"></i><b>2.19</b> 函数定义</a></li>
+<li class="chapter" data-level="2.20" data-path="python-基本知识.html"><a href="python-基本知识.html#字符串操作"><i class="fa fa-check"></i><b>2.20</b> 字符串操作</a>
+<ul>
+<li class="chapter" data-level="2.20.1" data-path="python-基本知识.html"><a href="python-基本知识.html#字符串格式化"><i class="fa fa-check"></i><b>2.20.1</b> 字符串格式化</a></li>
+</ul></li>
+<li class="chapter" data-level="2.21" data-path="python-基本知识.html"><a href="python-基本知识.html#python-语法糖"><i class="fa fa-check"></i><b>2.21</b> Python 语法糖</a></li>
+<li class="chapter" data-level="2.22" data-path="python-基本知识.html"><a href="python-基本知识.html#python-编程注意事项"><i class="fa fa-check"></i><b>2.22</b> Python 编程注意事项</a>
+<ul>
+<li class="chapter" data-level="2.22.1" data-path="python-基本知识.html"><a href="python-基本知识.html#检查代码风格"><i class="fa fa-check"></i><b>2.22.1</b> 检查代码风格</a></li>
+</ul></li>
+<li class="chapter" data-level="2.23" data-path="python-基本知识.html"><a href="python-基本知识.html#python-获取帮助"><i class="fa fa-check"></i><b>2.23</b> Python 获取帮助</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="numpy.html"><a href="numpy.html"><i class="fa fa-check"></i><b>3</b> Numpy</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="numpy.html"><a href="numpy.html#创建array-数组"><i class="fa fa-check"></i><b>3.1</b> 创建array 数组</a></li>
+<li class="chapter" data-level="3.2" data-path="numpy.html"><a href="numpy.html#创建特殊数组"><i class="fa fa-check"></i><b>3.2</b> 创建特殊数组</a></li>
+<li class="chapter" data-level="3.3" data-path="numpy.html"><a href="numpy.html#nupmy-io"><i class="fa fa-check"></i><b>3.3</b> Nupmy I/O</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="numpy.html"><a href="numpy.html#保存和加载数组"><i class="fa fa-check"></i><b>3.3.1</b> 保存和加载数组</a></li>
+<li class="chapter" data-level="3.3.2" data-path="numpy.html"><a href="numpy.html#保存和加载文本文件"><i class="fa fa-check"></i><b>3.3.2</b> 保存和加载文本文件</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="numpy.html"><a href="numpy.html#data-types"><i class="fa fa-check"></i><b>3.4</b> Data types</a></li>
+<li class="chapter" data-level="3.5" data-path="numpy.html"><a href="numpy.html#查看数组"><i class="fa fa-check"></i><b>3.5</b> 查看数组</a></li>
+<li class="chapter" data-level="3.6" data-path="numpy.html"><a href="numpy.html#查询帮助"><i class="fa fa-check"></i><b>3.6</b> 查询帮助</a></li>
+<li class="chapter" data-level="3.7" data-path="numpy.html"><a href="numpy.html#数组函数"><i class="fa fa-check"></i><b>3.7</b> 数组函数</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="numpy.html"><a href="numpy.html#数组算数运算"><i class="fa fa-check"></i><b>3.7.1</b> 数组算数运算</a></li>
+<li class="chapter" data-level="3.7.2" data-path="numpy.html"><a href="numpy.html#比较数组"><i class="fa fa-check"></i><b>3.7.2</b> 比较数组</a></li>
+<li class="chapter" data-level="3.7.3" data-path="numpy.html"><a href="numpy.html#聚合函数"><i class="fa fa-check"></i><b>3.7.3</b> 聚合函数</a></li>
+<li class="chapter" data-level="3.7.4" data-path="numpy.html"><a href="numpy.html#复制数组"><i class="fa fa-check"></i><b>3.7.4</b> 复制数组</a></li>
+<li class="chapter" data-level="3.7.5" data-path="numpy.html"><a href="numpy.html#数组排序"><i class="fa fa-check"></i><b>3.7.5</b> 数组排序</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="numpy.html"><a href="numpy.html#取子集切片索引"><i class="fa fa-check"></i><b>3.8</b> 取子集,切片,索引</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="numpy.html"><a href="numpy.html#取子集"><i class="fa fa-check"></i><b>3.8.1</b> 取子集</a></li>
+<li class="chapter" data-level="3.8.2" data-path="numpy.html"><a href="numpy.html#切片"><i class="fa fa-check"></i><b>3.8.2</b> 切片</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="numpy.html"><a href="numpy.html#操纵数组"><i class="fa fa-check"></i><b>3.9</b> 操纵数组</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="numpy.html"><a href="numpy.html#数组置换"><i class="fa fa-check"></i><b>3.9.1</b> 数组置换</a></li>
+<li class="chapter" data-level="3.9.2" data-path="numpy.html"><a href="numpy.html#改变数组的形状"><i class="fa fa-check"></i><b>3.9.2</b> 改变数组的形状</a></li>
+<li class="chapter" data-level="3.9.3" data-path="numpy.html"><a href="numpy.html#添加删除-元素"><i class="fa fa-check"></i><b>3.9.3</b> 添加/删除 元素</a></li>
+<li class="chapter" data-level="3.9.4" data-path="numpy.html"><a href="numpy.html#合并数组"><i class="fa fa-check"></i><b>3.9.4</b> 合并数组</a></li>
+<li class="chapter" data-level="3.9.5" data-path="numpy.html"><a href="numpy.html#分开数组"><i class="fa fa-check"></i><b>3.9.5</b> 分开数组</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>4</b> Parts</a></li>
+<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
+<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
+<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Python 数据科学</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="numpy" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Numpy<a href="numpy.html#numpy" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>numpy 提供了一组高效处理数组的工具.</p>
+<p><img src="https://picx.zhimg.com/80/v2-2a43f6a8498851839db00c39321964b1_1440w.png" /></p>
+<p>这个图有点误导性. 当数组是二维的时候, axis0 表示行, axis 表示列. 当数组是三维的时候, axis0 表示的则是不同的二维数组, axis1表示行, axis2 表示列</p>
+<div id="创建array-数组" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> 创建array 数组<a href="numpy.html#创建array-数组" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="numpy.html#cb1-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="numpy.html#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="numpy.html#cb1-3" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]) <span class="co">#  1 D array</span></span>
+<span id="cb1-4"><a href="numpy.html#cb1-4" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>## array([1, 2, 3])</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="numpy.html#cb3-1" tabindex="-1"></a>b <span class="op">=</span> np.array([(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)], dtype <span class="op">=</span> <span class="bu">float</span>)  <span class="co"># 2 D array</span></span>
+<span id="cb3-2"><a href="numpy.html#cb3-2" tabindex="-1"></a>b</span></code></pre></div>
+<pre><code>## array([[1., 2., 3., 4.],
+##        [2., 3., 4., 5.]])</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="numpy.html#cb5-1" tabindex="-1"></a>c <span class="op">=</span> np.array([[(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)],[(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>),(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)]], dtype <span class="op">=</span> <span class="bu">float</span>) <span class="co"># 3 D array</span></span>
+<span id="cb5-2"><a href="numpy.html#cb5-2" tabindex="-1"></a>c</span></code></pre></div>
+<pre><code>## array([[[1., 2., 3.],
+##         [2., 3., 4.]],
+## 
+##        [[1., 1., 1.],
+##         [2., 2., 2.]]])</code></pre>
+</div>
+<div id="创建特殊数组" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> 创建特殊数组<a href="numpy.html#创建特殊数组" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>下面这些函数可以快速的创建数组</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="numpy.html#cb7-1" tabindex="-1"></a>np.zeros((<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>))   <span class="co"># Create an array of zeros</span></span></code></pre></div>
+<pre><code>## array([[[0., 0., 0.],
+##         [0., 0., 0.]],
+## 
+##        [[0., 0., 0.],
+##         [0., 0., 0.]]])</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="numpy.html#cb9-1" tabindex="-1"></a>np.ones((<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>)) <span class="co"># Create an array of 1</span></span></code></pre></div>
+<pre><code>## array([[[1., 1., 1.],
+##         [1., 1., 1.]],
+## 
+##        [[1., 1., 1.],
+##         [1., 1., 1.]]])</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="numpy.html#cb11-1" tabindex="-1"></a>np.arange(<span class="dv">10</span>,<span class="dv">25</span>,<span class="dv">5</span>) <span class="co"># 1 D  array </span></span></code></pre></div>
+<pre><code>## array([10, 15, 20])</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="numpy.html#cb13-1" tabindex="-1"></a>np.linspace(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">9</span>) <span class="co"># start 0 , stop 2 , number is 9 </span></span></code></pre></div>
+<pre><code>## array([0.  , 0.25, 0.5 , 0.75, 1.  , 1.25, 1.5 , 1.75, 2.  ])</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="numpy.html#cb15-1" tabindex="-1"></a>np.full((<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>),<span class="dv">7</span>) <span class="co"># create an array of number 7</span></span></code></pre></div>
+<pre><code>## array([[[7, 7],
+##         [7, 7]],
+## 
+##        [[7, 7],
+##         [7, 7]]])</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="numpy.html#cb17-1" tabindex="-1"></a>np.eye(<span class="dv">3</span>) <span class="co"># 2 D </span></span></code></pre></div>
+<pre><code>## array([[1., 0., 0.],
+##        [0., 1., 0.],
+##        [0., 0., 1.]])</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="numpy.html#cb19-1" tabindex="-1"></a>np.random.random((<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># random create array</span></span></code></pre></div>
+<pre><code>## array([[[0.01275371, 0.21964652],
+##         [0.77847549, 0.20543379]],
+## 
+##        [[0.54901096, 0.43877933],
+##         [0.61943631, 0.76193646]]])</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="numpy.html#cb21-1" tabindex="-1"></a>np.random.rand(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## array([0.5397098 , 0.66997373, 0.72657924, 0.79385136, 0.20519991,
+##        0.69418452, 0.17390961, 0.25323318, 0.04559041, 0.89642563])</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="numpy.html#cb23-1" tabindex="-1"></a>np.empty((<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># create empty </span></span></code></pre></div>
+<pre><code>## array([[2.68156159e+154, 2.68156159e+154],
+##        [9.88131292e-324, 2.83587762e-309]])</code></pre>
+</div>
+<div id="nupmy-io" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Nupmy I/O<a href="numpy.html#nupmy-io" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="保存和加载数组" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> 保存和加载数组<a href="numpy.html#保存和加载数组" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>np.save(&quot;my_array&quot;,a)
+np.savez(&quot;array.npz&quot;,a,b)
+np.load(&quot;my_array.npy&quot;)
+</code></pre>
+</div>
+<div id="保存和加载文本文件" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> 保存和加载文本文件<a href="numpy.html#保存和加载文本文件" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>np.loadtxt(&quot;file.txt)
+
+np.genfromtxt(&quot;file.csv&quot;, delimiter = &quot;,&quot;)
+
+np.savetxt(&quot;file.txt&quot;,a,delimiter= &quot;&quot;)
+</code></pre>
+</div>
+</div>
+<div id="data-types" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Data types<a href="numpy.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>np.int64</li>
+<li>np.float32</li>
+<li>np.complex</li>
+<li>np.bool</li>
+<li>np.object</li>
+<li>np.string_</li>
+<li>np.unicode_</li>
+</ol>
+</div>
+<div id="查看数组" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> 查看数组<a href="numpy.html#查看数组" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="numpy.html#cb27-1" tabindex="-1"></a> </span>
+<span id="cb27-2"><a href="numpy.html#cb27-2" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>## array([1, 2, 3])</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="numpy.html#cb29-1" tabindex="-1"></a>a.shape <span class="co"># show array dimensions</span></span></code></pre></div>
+<pre><code>## (3,)</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="numpy.html#cb31-1" tabindex="-1"></a><span class="bu">len</span>(a) <span class="co"># array length</span></span></code></pre></div>
+<pre><code>## 3</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="numpy.html#cb33-1" tabindex="-1"></a>a.ndim <span class="co"># number of array dimensions</span></span></code></pre></div>
+<pre><code>## 1</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="numpy.html#cb35-1" tabindex="-1"></a>a.size <span class="co"># number of array elements</span></span></code></pre></div>
+<pre><code>## 3</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="numpy.html#cb37-1" tabindex="-1"></a>a.dtype.name</span></code></pre></div>
+<pre><code>## &#39;int64&#39;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="numpy.html#cb39-1" tabindex="-1"></a>a.astype(<span class="bu">int</span>)</span></code></pre></div>
+<pre><code>## array([1, 2, 3])</code></pre>
+</div>
+<div id="查询帮助" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> 查询帮助<a href="numpy.html#查询帮助" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>np.info(np.random)</li>
+<li>help(np.random)</li>
+<li>?np.random (in Rstudio)</li>
+</ol>
+</div>
+<div id="数组函数" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> 数组函数<a href="numpy.html#数组函数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="数组算数运算" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> 数组算数运算<a href="numpy.html#数组算数运算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="numpy.html#cb41-1" tabindex="-1"></a></span>
+<span id="cb41-2"><a href="numpy.html#cb41-2" tabindex="-1"></a>a <span class="op">=</span> np.random.random((<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb41-3"><a href="numpy.html#cb41-3" tabindex="-1"></a>b <span class="op">=</span> np.random.random((<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb41-4"><a href="numpy.html#cb41-4" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="numpy.html#cb41-5" tabindex="-1"></a>a<span class="op">-</span>b <span class="co"># subtraction 减法</span></span></code></pre></div>
+<pre><code>## array([[[-0.34690224, -0.3208587 ],
+##         [ 0.46689173,  0.31333901]],
+## 
+##        [[-0.03213382,  0.10831127],
+##         [-0.21276662, -0.10638115]]])</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="numpy.html#cb43-1" tabindex="-1"></a>np.subtract(a,b)</span></code></pre></div>
+<pre><code>## array([[[-0.34690224, -0.3208587 ],
+##         [ 0.46689173,  0.31333901]],
+## 
+##        [[-0.03213382,  0.10831127],
+##         [-0.21276662, -0.10638115]]])</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="numpy.html#cb45-1" tabindex="-1"></a>a<span class="op">+</span>b</span></code></pre></div>
+<pre><code>## array([[[0.45015366, 1.16093693],
+##         [1.0427565 , 1.31077147]],
+## 
+##        [[0.4613834 , 1.41173947],
+##         [0.45627454, 0.31618678]]])</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="numpy.html#cb47-1" tabindex="-1"></a>np.add(a,b) <span class="co"># addition</span></span></code></pre></div>
+<pre><code>## array([[[0.45015366, 1.16093693],
+##         [1.0427565 , 1.31077147]],
+## 
+##        [[0.4613834 , 1.41173947],
+##         [0.45627454, 0.31618678]]])</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="numpy.html#cb49-1" tabindex="-1"></a>a<span class="op">/</span>b <span class="co"># division</span></span></code></pre></div>
+<pre><code>## array([[[0.129541  , 0.56693259],
+##         [2.6215325 , 1.62829117]],
+## 
+##        [[0.86977631, 1.16619445],
+##         [0.36396552, 0.49650153]]])</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="numpy.html#cb51-1" tabindex="-1"></a>np.divide(a,b)</span></code></pre></div>
+<pre><code>## array([[[0.129541  , 0.56693259],
+##         [2.6215325 , 1.62829117]],
+## 
+##        [[0.86977631, 1.16619445],
+##         [0.36396552, 0.49650153]]])</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="numpy.html#cb53-1" tabindex="-1"></a>a<span class="op">*</span>b <span class="co"># multiplication 乘法</span></span></code></pre></div>
+<pre><code>## array([[[0.02057429, 0.31120606],
+##         [0.21733831, 0.40498513]],
+## 
+##        [[0.05296051, 0.49531925],
+##         [0.0407292 , 0.02216428]]])</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="numpy.html#cb55-1" tabindex="-1"></a>np.multiply(a,b)</span>
+<span id="cb55-2"><a href="numpy.html#cb55-2" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="numpy.html#cb55-3" tabindex="-1"></a><span class="co"># other useful function</span></span></code></pre></div>
+<pre><code>## array([[[0.02057429, 0.31120606],
+##         [0.21733831, 0.40498513]],
+## 
+##        [[0.05296051, 0.49531925],
+##         [0.0407292 , 0.02216428]]])</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="numpy.html#cb57-1" tabindex="-1"></a>np.exp(a)</span></code></pre></div>
+<pre><code>## array([[[1.05298155, 1.52202109],
+##         [2.12723734, 2.25253273]],
+## 
+##        [[1.23939678, 2.13833047],
+##         [1.12947617, 1.11060267]]])</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="numpy.html#cb59-1" tabindex="-1"></a>np.sqrt(a)</span></code></pre></div>
+<pre><code>## array([[[0.22721292, 0.64810425],
+##         [0.86880614, 0.90114108]],
+## 
+##        [[0.46327615, 0.87179434],
+##         [0.3489326 , 0.32388704]]])</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="numpy.html#cb61-1" tabindex="-1"></a>np.sin(a)</span></code></pre></div>
+<pre><code>## array([[[0.05160278, 0.40779617],
+##         [0.68516056, 0.72570273]],
+## 
+##        [[0.21298084, 0.68893983],
+##         [0.12145337, 0.10471052]]])</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="numpy.html#cb63-1" tabindex="-1"></a>np.log10(a)</span></code></pre></div>
+<pre><code>## array([[[-1.28713397, -0.37671026],
+##         [-0.12215423, -0.09041443]],
+## 
+##        [[-0.66832012, -0.11917191],
+##         [-0.91451691, -0.97921287]]])</code></pre>
+</div>
+<div id="比较数组" class="section level3 hasAnchor" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> 比较数组<a href="numpy.html#比较数组" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="numpy.html#cb65-1" tabindex="-1"></a>a <span class="op">==</span> b</span></code></pre></div>
+<pre><code>## array([[[False, False],
+##         [False, False]],
+## 
+##        [[False, False],
+##         [False, False]]])</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="numpy.html#cb67-1" tabindex="-1"></a>a <span class="op">&lt;</span> <span class="fl">0.5</span></span></code></pre></div>
+<pre><code>## array([[[ True,  True],
+##         [False, False]],
+## 
+##        [[ True, False],
+##         [ True,  True]]])</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="numpy.html#cb69-1" tabindex="-1"></a>np.array_equal(a,b)</span></code></pre></div>
+<pre><code>## False</code></pre>
+</div>
+<div id="聚合函数" class="section level3 hasAnchor" number="3.7.3">
+<h3><span class="header-section-number">3.7.3</span> 聚合函数<a href="numpy.html#聚合函数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="numpy.html#cb71-1" tabindex="-1"></a>a.<span class="bu">sum</span>()</span></code></pre></div>
+<pre><code>## 3.239851111719709</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="numpy.html#cb73-1" tabindex="-1"></a>a.<span class="bu">min</span>()</span></code></pre></div>
+<pre><code>## 0.05162570936912836</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="numpy.html#cb75-1" tabindex="-1"></a>a.<span class="bu">max</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="co"># notice the meaning of axis</span></span></code></pre></div>
+<pre><code>## array([[0.75482411, 0.81205524],
+##        [0.21462479, 0.76002537]])</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="numpy.html#cb77-1" tabindex="-1"></a>a.cumsum(axis <span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## array([[[0.05162571, 0.42003912],
+##         [0.75482411, 0.81205524]],
+## 
+##        [[0.2662505 , 1.18006449],
+##         [0.87657807, 0.91695805]]])</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="numpy.html#cb79-1" tabindex="-1"></a>a.mean()</span></code></pre></div>
+<pre><code>## 0.4049813889649636</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="numpy.html#cb81-1" tabindex="-1"></a>np.median(a)</span></code></pre></div>
+<pre><code>## 0.31733195338493403</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="numpy.html#cb83-1" tabindex="-1"></a>a.std()</span></code></pre></div>
+<pre><code>## 0.3053159872880776</code></pre>
+</div>
+<div id="复制数组" class="section level3 hasAnchor" number="3.7.4">
+<h3><span class="header-section-number">3.7.4</span> 复制数组<a href="numpy.html#复制数组" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="numpy.html#cb85-1" tabindex="-1"></a>h <span class="op">=</span> a.view() <span class="co"># create a view of the array with the same data</span></span>
+<span id="cb85-2"><a href="numpy.html#cb85-2" tabindex="-1"></a>np.copy(a) <span class="co"># create a copy of the array </span></span></code></pre></div>
+<pre><code>## array([[[0.05162571, 0.42003912],
+##         [0.75482411, 0.81205524]],
+## 
+##        [[0.21462479, 0.76002537],
+##         [0.12175396, 0.10490281]]])</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="numpy.html#cb87-1" tabindex="-1"></a>h <span class="op">=</span> a.copy() <span class="co"># create a deep copy of the array </span></span></code></pre></div>
+</div>
+<div id="数组排序" class="section level3 hasAnchor" number="3.7.5">
+<h3><span class="header-section-number">3.7.5</span> 数组排序<a href="numpy.html#数组排序" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="numpy.html#cb88-1" tabindex="-1"></a>a.sort()</span></code></pre></div>
+</div>
+</div>
+<div id="取子集切片索引" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> 取子集,切片,索引<a href="numpy.html#取子集切片索引" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="取子集" class="section level3 hasAnchor" number="3.8.1">
+<h3><span class="header-section-number">3.8.1</span> 取子集<a href="numpy.html#取子集" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="numpy.html#cb89-1" tabindex="-1"></a>a <span class="op">=</span> np.array((<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb89-2"><a href="numpy.html#cb89-2" tabindex="-1"></a>b <span class="op">=</span> np.array([(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)])</span>
+<span id="cb89-3"><a href="numpy.html#cb89-3" tabindex="-1"></a></span>
+<span id="cb89-4"><a href="numpy.html#cb89-4" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="numpy.html#cb89-5" tabindex="-1"></a>a[<span class="dv">0</span>]  <span class="co"># select the element at the 1st index</span></span></code></pre></div>
+<pre><code>## 1</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="numpy.html#cb91-1" tabindex="-1"></a>b[<span class="dv">0</span>,<span class="dv">0</span>] <span class="co"># select the element at row 1 and column 1</span></span></code></pre></div>
+<pre><code>## 1</code></pre>
+</div>
+<div id="切片" class="section level3 hasAnchor" number="3.8.2">
+<h3><span class="header-section-number">3.8.2</span> 切片<a href="numpy.html#切片" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="numpy.html#cb93-1" tabindex="-1"></a>a[<span class="dv">0</span>:<span class="dv">2</span>] <span class="co"># select items at index 0 to 1</span></span></code></pre></div>
+<pre><code>## array([1, 2])</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="numpy.html#cb95-1" tabindex="-1"></a>b[<span class="dv">0</span>:<span class="dv">2</span>,<span class="dv">1</span>] <span class="co"># select items at rows 1 and 0 in column 2</span></span></code></pre></div>
+<pre><code>## array([2, 5])</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="numpy.html#cb97-1" tabindex="-1"></a>b[:<span class="dv">1</span>] <span class="co">#  select rows 1 b[0:1,:]</span></span></code></pre></div>
+<pre><code>## array([[1, 2, 3]])</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="numpy.html#cb99-1" tabindex="-1"></a>a[a<span class="op">&lt;</span><span class="dv">2</span>] <span class="co"># bool indexing</span></span></code></pre></div>
+<pre><code>## array([1])</code></pre>
+</div>
+</div>
+<div id="操纵数组" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> 操纵数组<a href="numpy.html#操纵数组" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="数组置换" class="section level3 hasAnchor" number="3.9.1">
+<h3><span class="header-section-number">3.9.1</span> 数组置换<a href="numpy.html#数组置换" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="numpy.html#cb101-1" tabindex="-1"></a>i <span class="op">=</span> np.transpose(b) <span class="co"># permute(置换) array dimensions </span></span>
+<span id="cb101-2"><a href="numpy.html#cb101-2" tabindex="-1"></a>i.T</span></code></pre></div>
+<pre><code>## array([[1, 2, 3],
+##        [4, 5, 6]])</code></pre>
+</div>
+<div id="改变数组的形状" class="section level3 hasAnchor" number="3.9.2">
+<h3><span class="header-section-number">3.9.2</span> 改变数组的形状<a href="numpy.html#改变数组的形状" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="numpy.html#cb103-1" tabindex="-1"></a>b.ravel() <span class="co"># flatten the array</span></span></code></pre></div>
+<pre><code>## array([1, 2, 3, 4, 5, 6])</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="numpy.html#cb105-1" tabindex="-1"></a>b.reshape(<span class="dv">3</span>,<span class="dv">2</span>) <span class="co"># reshape without change data</span></span></code></pre></div>
+<pre><code>## array([[1, 2],
+##        [3, 4],
+##        [5, 6]])</code></pre>
+</div>
+<div id="添加删除-元素" class="section level3 hasAnchor" number="3.9.3">
+<h3><span class="header-section-number">3.9.3</span> 添加/删除 元素<a href="numpy.html#添加删除-元素" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="numpy.html#cb107-1" tabindex="-1"></a>np.append(a,<span class="dv">1</span>) </span></code></pre></div>
+<pre><code>## array([1, 2, 3, 1])</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb109-1"><a href="numpy.html#cb109-1" tabindex="-1"></a>np.insert(a,<span class="dv">1</span>,<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## array([1, 5, 2, 3])</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb111-1"><a href="numpy.html#cb111-1" tabindex="-1"></a>np.delete(a,<span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## array([2, 3])</code></pre>
+</div>
+<div id="合并数组" class="section level3 hasAnchor" number="3.9.4">
+<h3><span class="header-section-number">3.9.4</span> 合并数组<a href="numpy.html#合并数组" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>concatenate arrays 连接数组</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb113-1"><a href="numpy.html#cb113-1" tabindex="-1"></a>np.concatenate((a,a),axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## array([1, 2, 3, 1, 2, 3])</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb115-1"><a href="numpy.html#cb115-1" tabindex="-1"></a>np.concatenate((b,b),axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## array([[1, 2, 3],
+##        [4, 5, 6],
+##        [1, 2, 3],
+##        [4, 5, 6]])</code></pre>
+<p>stack arrays vertically (row wise 按行排列)</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb117-1"><a href="numpy.html#cb117-1" tabindex="-1"></a></span>
+<span id="cb117-2"><a href="numpy.html#cb117-2" tabindex="-1"></a>a <span class="op">=</span> np.array((<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb117-3"><a href="numpy.html#cb117-3" tabindex="-1"></a>b <span class="op">=</span> np.array([(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)])</span>
+<span id="cb117-4"><a href="numpy.html#cb117-4" tabindex="-1"></a></span>
+<span id="cb117-5"><a href="numpy.html#cb117-5" tabindex="-1"></a>np.vstack((b.T,b.T))</span></code></pre></div>
+<pre><code>## array([[1, 4],
+##        [2, 5],
+##        [3, 6],
+##        [1, 4],
+##        [2, 5],
+##        [3, 6]])</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb119-1"><a href="numpy.html#cb119-1" tabindex="-1"></a>np.row_stack((b.T,b.T))</span></code></pre></div>
+<pre><code>## array([[1, 4],
+##        [2, 5],
+##        [3, 6],
+##        [1, 4],
+##        [2, 5],
+##        [3, 6]])</code></pre>
+<p>stack arrays horizontally (colnum wise)</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb121-1"><a href="numpy.html#cb121-1" tabindex="-1"></a>np.hstack((b,b))</span></code></pre></div>
+<pre><code>## array([[1, 2, 3, 1, 2, 3],
+##        [4, 5, 6, 4, 5, 6]])</code></pre>
+<div class="sourceCode" id="cb123"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb123-1"><a href="numpy.html#cb123-1" tabindex="-1"></a>np.column_stack((b,b))</span></code></pre></div>
+<pre><code>## array([[1, 2, 3, 1, 2, 3],
+##        [4, 5, 6, 4, 5, 6]])</code></pre>
+</div>
+<div id="分开数组" class="section level3 hasAnchor" number="3.9.5">
+<h3><span class="header-section-number">3.9.5</span> 分开数组<a href="numpy.html#分开数组" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb125"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb125-1"><a href="numpy.html#cb125-1" tabindex="-1"></a>np.hsplit(a,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [array([1]), array([2]), array([3])]</code></pre>
+<div class="sourceCode" id="cb127"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb127-1"><a href="numpy.html#cb127-1" tabindex="-1"></a>np.hsplit(b,<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [array([[1],
+##        [4]]), array([[2],
+##        [5]]), array([[3],
+##        [6]])]</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb129-1"><a href="numpy.html#cb129-1" tabindex="-1"></a>np.vsplit(b,<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [array([[1, 2, 3]]), array([[4, 5, 6]])]</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="python-基本知识.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="parts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-cross-refs.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

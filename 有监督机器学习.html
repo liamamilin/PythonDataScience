@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 有监督机器学习 | Python 数据科学</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 有监督机器学习 | Python 数据科学" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 有监督机器学习 | Python 数据科学" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="python-数据可视化.html"/>
+<link rel="next" href="sharing-your-book.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#数据科学简介"><i class="fa fa-check"></i><b>1.1</b> 数据科学简介</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#作者其他书籍"><i class="fa fa-check"></i><b>1.2</b> 作者其他书籍</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="python-基本知识.html"><a href="python-基本知识.html"><i class="fa fa-check"></i><b>2</b> Python 基本知识</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="python-基本知识.html"><a href="python-基本知识.html#python-基本数据类型"><i class="fa fa-check"></i><b>2.1</b> Python 基本数据类型</a></li>
+<li class="chapter" data-level="2.2" data-path="python-基本知识.html"><a href="python-基本知识.html#python-变量赋值"><i class="fa fa-check"></i><b>2.2</b> Python 变量赋值</a></li>
+<li class="chapter" data-level="2.3" data-path="python-基本知识.html"><a href="python-基本知识.html#容器类型"><i class="fa fa-check"></i><b>2.3</b> 容器类型</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="python-基本知识.html"><a href="python-基本知识.html#顺序序列"><i class="fa fa-check"></i><b>2.3.1</b> 顺序序列</a></li>
+<li class="chapter" data-level="2.3.2" data-path="python-基本知识.html"><a href="python-基本知识.html#字典与集合"><i class="fa fa-check"></i><b>2.3.2</b> 字典与集合</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="python-基本知识.html"><a href="python-基本知识.html#变量转换"><i class="fa fa-check"></i><b>2.4</b> 变量转换</a></li>
+<li class="chapter" data-level="2.5" data-path="python-基本知识.html"><a href="python-基本知识.html#容器索引"><i class="fa fa-check"></i><b>2.5</b> 容器索引</a></li>
+<li class="chapter" data-level="2.6" data-path="python-基本知识.html"><a href="python-基本知识.html#逻辑符"><i class="fa fa-check"></i><b>2.6</b> 逻辑符</a></li>
+<li class="chapter" data-level="2.7" data-path="python-基本知识.html"><a href="python-基本知识.html#python模块"><i class="fa fa-check"></i><b>2.7</b> Python模块</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="python-基本知识.html"><a href="python-基本知识.html#创建属于自己的模块"><i class="fa fa-check"></i><b>2.7.1</b> 创建属于自己的模块</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="python-基本知识.html"><a href="python-基本知识.html#条件判断"><i class="fa fa-check"></i><b>2.8</b> 条件判断</a></li>
+<li class="chapter" data-level="2.9" data-path="python-基本知识.html"><a href="python-基本知识.html#基础数学函数"><i class="fa fa-check"></i><b>2.9</b> 基础数学函数</a></li>
+<li class="chapter" data-level="2.10" data-path="python-基本知识.html"><a href="python-基本知识.html#错误处理"><i class="fa fa-check"></i><b>2.10</b> 错误处理</a></li>
+<li class="chapter" data-level="2.11" data-path="python-基本知识.html"><a href="python-基本知识.html#循环"><i class="fa fa-check"></i><b>2.11</b> 循环</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="python-基本知识.html"><a href="python-基本知识.html#条件循环"><i class="fa fa-check"></i><b>2.11.1</b> 条件循环</a></li>
+<li class="chapter" data-level="2.11.2" data-path="python-基本知识.html"><a href="python-基本知识.html#迭代循环"><i class="fa fa-check"></i><b>2.11.2</b> 迭代循环</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="python-基本知识.html"><a href="python-基本知识.html#打印"><i class="fa fa-check"></i><b>2.12</b> 打印</a></li>
+<li class="chapter" data-level="2.13" data-path="python-基本知识.html"><a href="python-基本知识.html#用户输入"><i class="fa fa-check"></i><b>2.13</b> 用户输入</a></li>
+<li class="chapter" data-level="2.14" data-path="python-基本知识.html"><a href="python-基本知识.html#关于容器的常用操作-generic-operations-on-containers"><i class="fa fa-check"></i><b>2.14</b> 关于容器的常用操作 Generic Operations on Containers</a></li>
+<li class="chapter" data-level="2.15" data-path="python-基本知识.html"><a href="python-基本知识.html#关于列表的操作-list"><i class="fa fa-check"></i><b>2.15</b> 关于列表的操作 list</a></li>
+<li class="chapter" data-level="2.16" data-path="python-基本知识.html"><a href="python-基本知识.html#关于字典的操作"><i class="fa fa-check"></i><b>2.16</b> 关于字典的操作</a></li>
+<li class="chapter" data-level="2.17" data-path="python-基本知识.html"><a href="python-基本知识.html#关于集合的操作"><i class="fa fa-check"></i><b>2.17</b> 关于集合的操作</a></li>
+<li class="chapter" data-level="2.18" data-path="python-基本知识.html"><a href="python-基本知识.html#文件"><i class="fa fa-check"></i><b>2.18</b> 文件</a>
+<ul>
+<li class="chapter" data-level="2.18.1" data-path="python-基本知识.html"><a href="python-基本知识.html#写文件"><i class="fa fa-check"></i><b>2.18.1</b> 写文件</a></li>
+<li class="chapter" data-level="2.18.2" data-path="python-基本知识.html"><a href="python-基本知识.html#读文件"><i class="fa fa-check"></i><b>2.18.2</b> 读文件</a></li>
+<li class="chapter" data-level="2.18.3" data-path="python-基本知识.html"><a href="python-基本知识.html#其他相关方法"><i class="fa fa-check"></i><b>2.18.3</b> 其他相关方法</a></li>
+<li class="chapter" data-level="2.18.4" data-path="python-基本知识.html"><a href="python-基本知识.html#一个常用的方法"><i class="fa fa-check"></i><b>2.18.4</b> 一个常用的方法</a></li>
+</ul></li>
+<li class="chapter" data-level="2.19" data-path="python-基本知识.html"><a href="python-基本知识.html#函数定义"><i class="fa fa-check"></i><b>2.19</b> 函数定义</a></li>
+<li class="chapter" data-level="2.20" data-path="python-基本知识.html"><a href="python-基本知识.html#字符串操作"><i class="fa fa-check"></i><b>2.20</b> 字符串操作</a>
+<ul>
+<li class="chapter" data-level="2.20.1" data-path="python-基本知识.html"><a href="python-基本知识.html#字符串格式化"><i class="fa fa-check"></i><b>2.20.1</b> 字符串格式化</a></li>
+</ul></li>
+<li class="chapter" data-level="2.21" data-path="python-基本知识.html"><a href="python-基本知识.html#python-语法糖"><i class="fa fa-check"></i><b>2.21</b> Python 语法糖</a></li>
+<li class="chapter" data-level="2.22" data-path="python-基本知识.html"><a href="python-基本知识.html#python-编程注意事项"><i class="fa fa-check"></i><b>2.22</b> Python 编程注意事项</a>
+<ul>
+<li class="chapter" data-level="2.22.1" data-path="python-基本知识.html"><a href="python-基本知识.html#检查代码风格"><i class="fa fa-check"></i><b>2.22.1</b> 检查代码风格</a></li>
+</ul></li>
+<li class="chapter" data-level="2.23" data-path="python-基本知识.html"><a href="python-基本知识.html#python-获取帮助"><i class="fa fa-check"></i><b>2.23</b> Python 获取帮助</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="numpy.html"><a href="numpy.html"><i class="fa fa-check"></i><b>3</b> Numpy</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="numpy.html"><a href="numpy.html#创建array-数组"><i class="fa fa-check"></i><b>3.1</b> 创建array 数组</a></li>
+<li class="chapter" data-level="3.2" data-path="numpy.html"><a href="numpy.html#创建特殊数组"><i class="fa fa-check"></i><b>3.2</b> 创建特殊数组</a></li>
+<li class="chapter" data-level="3.3" data-path="numpy.html"><a href="numpy.html#nupmy-io"><i class="fa fa-check"></i><b>3.3</b> Nupmy I/O</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="numpy.html"><a href="numpy.html#保存和加载数组"><i class="fa fa-check"></i><b>3.3.1</b> 保存和加载数组</a></li>
+<li class="chapter" data-level="3.3.2" data-path="numpy.html"><a href="numpy.html#保存和加载文本文件"><i class="fa fa-check"></i><b>3.3.2</b> 保存和加载文本文件</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="numpy.html"><a href="numpy.html#data-types"><i class="fa fa-check"></i><b>3.4</b> Data types</a></li>
+<li class="chapter" data-level="3.5" data-path="numpy.html"><a href="numpy.html#查看数组"><i class="fa fa-check"></i><b>3.5</b> 查看数组</a></li>
+<li class="chapter" data-level="3.6" data-path="numpy.html"><a href="numpy.html#查询帮助"><i class="fa fa-check"></i><b>3.6</b> 查询帮助</a></li>
+<li class="chapter" data-level="3.7" data-path="numpy.html"><a href="numpy.html#数组函数"><i class="fa fa-check"></i><b>3.7</b> 数组函数</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="numpy.html"><a href="numpy.html#数组算数运算"><i class="fa fa-check"></i><b>3.7.1</b> 数组算数运算</a></li>
+<li class="chapter" data-level="3.7.2" data-path="numpy.html"><a href="numpy.html#比较数组"><i class="fa fa-check"></i><b>3.7.2</b> 比较数组</a></li>
+<li class="chapter" data-level="3.7.3" data-path="numpy.html"><a href="numpy.html#聚合函数"><i class="fa fa-check"></i><b>3.7.3</b> 聚合函数</a></li>
+<li class="chapter" data-level="3.7.4" data-path="numpy.html"><a href="numpy.html#复制数组"><i class="fa fa-check"></i><b>3.7.4</b> 复制数组</a></li>
+<li class="chapter" data-level="3.7.5" data-path="numpy.html"><a href="numpy.html#数组排序"><i class="fa fa-check"></i><b>3.7.5</b> 数组排序</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="numpy.html"><a href="numpy.html#取子集切片索引"><i class="fa fa-check"></i><b>3.8</b> 取子集,切片,索引</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="numpy.html"><a href="numpy.html#取子集"><i class="fa fa-check"></i><b>3.8.1</b> 取子集</a></li>
+<li class="chapter" data-level="3.8.2" data-path="numpy.html"><a href="numpy.html#切片"><i class="fa fa-check"></i><b>3.8.2</b> 切片</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="numpy.html"><a href="numpy.html#操纵数组"><i class="fa fa-check"></i><b>3.9</b> 操纵数组</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="numpy.html"><a href="numpy.html#数组置换"><i class="fa fa-check"></i><b>3.9.1</b> 数组置换</a></li>
+<li class="chapter" data-level="3.9.2" data-path="numpy.html"><a href="numpy.html#改变数组的形状"><i class="fa fa-check"></i><b>3.9.2</b> 改变数组的形状</a></li>
+<li class="chapter" data-level="3.9.3" data-path="numpy.html"><a href="numpy.html#添加删除-元素"><i class="fa fa-check"></i><b>3.9.3</b> 添加/删除 元素</a></li>
+<li class="chapter" data-level="3.9.4" data-path="numpy.html"><a href="numpy.html#合并数组"><i class="fa fa-check"></i><b>3.9.4</b> 合并数组</a></li>
+<li class="chapter" data-level="3.9.5" data-path="numpy.html"><a href="numpy.html#分开数组"><i class="fa fa-check"></i><b>3.9.5</b> 分开数组</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html"><i class="fa fa-check"></i><b>4</b> Pandas 数据分析</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#python-读写数据"><i class="fa fa-check"></i><b>4.1</b> Python 读写数据</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#读取数据"><i class="fa fa-check"></i><b>4.1.1</b> 读取数据</a></li>
+<li class="chapter" data-level="4.1.2" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#写入数据"><i class="fa fa-check"></i><b>4.1.2</b> 写入数据</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#pandas-数据结构"><i class="fa fa-check"></i><b>4.2</b> pandas 数据结构</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#series-数据操作"><i class="fa fa-check"></i><b>4.2.1</b> Series 数据操作</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#创建dataframe"><i class="fa fa-check"></i><b>4.3</b> 创建DataFrame</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#基本数据探索"><i class="fa fa-check"></i><b>4.3.1</b> 基本数据探索</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#重塑数据"><i class="fa fa-check"></i><b>4.4</b> 重塑数据</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#将列聚集成行"><i class="fa fa-check"></i><b>4.4.1</b> 将列聚集成行</a></li>
+<li class="chapter" data-level="4.4.2" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#将行拆分成为列"><i class="fa fa-check"></i><b>4.4.2</b> 将行拆分成为列</a></li>
+<li class="chapter" data-level="4.4.3" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#添加行"><i class="fa fa-check"></i><b>4.4.3</b> 添加行</a></li>
+<li class="chapter" data-level="4.4.4" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#添加列"><i class="fa fa-check"></i><b>4.4.4</b> 添加列</a></li>
+<li class="chapter" data-level="4.4.5" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#其他有用的函数"><i class="fa fa-check"></i><b>4.4.5</b> 其他有用的函数</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#取子集筛选行"><i class="fa fa-check"></i><b>4.5</b> 取子集/筛选行</a></li>
+<li class="chapter" data-level="4.6" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#筛选变量筛选列"><i class="fa fa-check"></i><b>4.6</b> 筛选变量/筛选列</a></li>
+<li class="chapter" data-level="4.7" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#数据汇总"><i class="fa fa-check"></i><b>4.7</b> 数据汇总</a></li>
+<li class="chapter" data-level="4.8" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#处理缺失值"><i class="fa fa-check"></i><b>4.8</b> 处理缺失值</a></li>
+<li class="chapter" data-level="4.9" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#创建新的列"><i class="fa fa-check"></i><b>4.9</b> 创建新的列</a></li>
+<li class="chapter" data-level="4.10" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#聚合数据"><i class="fa fa-check"></i><b>4.10</b> 聚合数据</a></li>
+<li class="chapter" data-level="4.11" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#合并数据集"><i class="fa fa-check"></i><b>4.11</b> 合并数据集</a></li>
+<li class="chapter" data-level="4.12" data-path="pandas-数据分析.html"><a href="pandas-数据分析.html#绘图"><i class="fa fa-check"></i><b>4.12</b> 绘图</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="python-数据可视化.html"><a href="python-数据可视化.html"><i class="fa fa-check"></i><b>5</b> Python 数据可视化</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="python-数据可视化.html"><a href="python-数据可视化.html#matplotlib"><i class="fa fa-check"></i><b>5.1</b> Matplotlib</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="python-数据可视化.html"><a href="python-数据可视化.html#绘图工作流"><i class="fa fa-check"></i><b>5.1.1</b> 绘图工作流</a></li>
+<li class="chapter" data-level="5.1.2" data-path="python-数据可视化.html"><a href="python-数据可视化.html#使用matplotlib绘制各类图形"><i class="fa fa-check"></i><b>5.1.2</b> 使用Matplotlib绘制各类图形</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="python-数据可视化.html"><a href="python-数据可视化.html#plotly-绘制交互式图形"><i class="fa fa-check"></i><b>5.2</b> Plotly 绘制交互式图形</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="有监督机器学习.html"><a href="有监督机器学习.html"><i class="fa fa-check"></i><b>6</b> 有监督机器学习</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#数据处理"><i class="fa fa-check"></i><b>6.1</b> 数据处理</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#标准化-与-归一化"><i class="fa fa-check"></i><b>6.1.1</b> 标准化 与 归一化</a></li>
+<li class="chapter" data-level="6.1.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#非线性转换"><i class="fa fa-check"></i><b>6.1.2</b> 非线性转换</a></li>
+<li class="chapter" data-level="6.1.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#对分类变量进行编码"><i class="fa fa-check"></i><b>6.1.3</b> 对分类变量进行编码</a></li>
+<li class="chapter" data-level="6.1.4" data-path="有监督机器学习.html"><a href="有监督机器学习.html#离散化-discretization"><i class="fa fa-check"></i><b>6.1.4</b> 离散化 (Discretization)</a></li>
+<li class="chapter" data-level="6.1.5" data-path="有监督机器学习.html"><a href="有监督机器学习.html#生成多项式特征"><i class="fa fa-check"></i><b>6.1.5</b> 生成多项式特征</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#线性模型"><i class="fa fa-check"></i><b>6.2</b> 线性模型</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#线性回归linear-regression"><i class="fa fa-check"></i><b>6.2.1</b> 线性回归（Linear Regression）：</a></li>
+<li class="chapter" data-level="6.2.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#岭回归ridge-regression"><i class="fa fa-check"></i><b>6.2.2</b> 岭回归（Ridge Regression）：</a></li>
+<li class="chapter" data-level="6.2.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#lasso-回归"><i class="fa fa-check"></i><b>6.2.3</b> Lasso 回归：</a></li>
+<li class="chapter" data-level="6.2.4" data-path="有监督机器学习.html"><a href="有监督机器学习.html#逻辑回归logistic-regression"><i class="fa fa-check"></i><b>6.2.4</b> 逻辑回归（Logistic Regression）：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#支持向量机"><i class="fa fa-check"></i><b>6.3</b> 支持向量机</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#svm-原理总结"><i class="fa fa-check"></i><b>6.3.1</b> SVM 原理总结：</a></li>
+<li class="chapter" data-level="6.3.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数"><i class="fa fa-check"></i><b>6.3.2</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="有监督机器学习.html"><a href="有监督机器学习.html#knn"><i class="fa fa-check"></i><b>6.4</b> KNN</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#knn-原理总结"><i class="fa fa-check"></i><b>6.4.1</b> KNN 原理总结：</a></li>
+<li class="chapter" data-level="6.4.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-1"><i class="fa fa-check"></i><b>6.4.2</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="有监督机器学习.html"><a href="有监督机器学习.html#决策树"><i class="fa fa-check"></i><b>6.5</b> 决策树</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#决策树原理"><i class="fa fa-check"></i><b>6.5.1</b> 决策树原理:</a></li>
+<li class="chapter" data-level="6.5.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-决策树示例"><i class="fa fa-check"></i><b>6.5.2</b> Sklearn 决策树示例：</a></li>
+<li class="chapter" data-level="6.5.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-2"><i class="fa fa-check"></i><b>6.5.3</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="有监督机器学习.html"><a href="有监督机器学习.html#随机森林"><i class="fa fa-check"></i><b>6.6</b> 随机森林</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#基本原理"><i class="fa fa-check"></i><b>6.6.1</b> 基本原理</a></li>
+<li class="chapter" data-level="6.6.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-随机森林示例"><i class="fa fa-check"></i><b>6.6.2</b> Sklearn 随机森林示例：</a></li>
+<li class="chapter" data-level="6.6.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-3"><i class="fa fa-check"></i><b>6.6.3</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="有监督机器学习.html"><a href="有监督机器学习.html#xgboost"><i class="fa fa-check"></i><b>6.7</b> Xgboost</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#xgboost-原理总结"><i class="fa fa-check"></i><b>6.7.1</b> XGBoost 原理总结：</a></li>
+<li class="chapter" data-level="6.7.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-xgboost-示例"><i class="fa fa-check"></i><b>6.7.2</b> Sklearn XGBoost 示例：</a></li>
+<li class="chapter" data-level="6.7.3" data-path="有监督机器学习.html"><a href="有监督机器学习.html#使用网格搜索调整参数-4"><i class="fa fa-check"></i><b>6.7.3</b> 使用网格搜索调整参数：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="有监督机器学习.html"><a href="有监督机器学习.html#特征选择"><i class="fa fa-check"></i><b>6.8</b> 特征选择</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#特征选择原理总结"><i class="fa fa-check"></i><b>6.8.1</b> 特征选择原理总结：</a></li>
+<li class="chapter" data-level="6.8.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-特征选择示例"><i class="fa fa-check"></i><b>6.8.2</b> Sklearn 特征选择示例：</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="有监督机器学习.html"><a href="有监督机器学习.html#模型评估与交叉验证"><i class="fa fa-check"></i><b>6.9</b> 模型评估与交叉验证</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="有监督机器学习.html"><a href="有监督机器学习.html#模型评估与交叉验证总结"><i class="fa fa-check"></i><b>6.9.1</b> 模型评估与交叉验证总结：</a></li>
+<li class="chapter" data-level="6.9.2" data-path="有监督机器学习.html"><a href="有监督机器学习.html#sklearn-模型评估与交叉验证示例"><i class="fa fa-check"></i><b>6.9.2</b> Sklearn 模型评估与交叉验证示例：</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Python 数据科学</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="有监督机器学习" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> 有监督机器学习<a href="有监督机器学习.html#有监督机器学习" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="数据处理" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> 数据处理<a href="有监督机器学习.html#数据处理" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="标准化-与-归一化" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> 标准化 与 归一化<a href="有监督机器学习.html#标准化-与-归一化" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>据的尺度或范围，以便更好地适用于机器学习算法或数据分析。它们有不同的方法和目标：</p>
+<ol style="list-style-type: decimal">
+<li>标准化（Standardization）：</li>
+</ol>
+<ul>
+<li>标准化的目标是将数据的分布转换为均值为0、标准差为1的标准正态分布（也称为Z分布）。</li>
+<li>它通过减去均值（平均值）并除以标准差来缩放数据。这可以用以下公式表示：<span class="math inline">\(z = (x - \mu) / \sigma\)</span>，其中 <span class="math inline">\(z\)</span> 是标准化后的值，<span class="math inline">\(x\)</span> 是原始值，<span class="math inline">\(\mu\)</span> 是均值，<span class="math inline">\(\sigma\)</span> 是标准差。</li>
+<li>标准化对数据中存在离群值（异常值）的情况更具鲁棒性，因为它主要依赖于数据的分布统计量，而不受极端值的干扰。</li>
+<li>常见的标准化方法包括Z-Score标准化。</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>归一化（Normalization）：</li>
+</ol>
+<ul>
+<li>归一化的目标是将数据缩放到特定的范围，通常在0到1之间。</li>
+<li>归一化可以通过以下公式实现：<span class="math inline">\(x_{\text{new}} = (x - x_{\text{min}}) / (x_{\text{max}} - x_{\text{min}})\)</span>，其中 <span class="math inline">\(x_{\text{new}}\)</span> 是归一化后的值，<span class="math inline">\(x\)</span> 是原始值，<span class="math inline">\(x_{\text{min}}\)</span> 是最小值，<span class="math inline">\(x_{\text{max}}\)</span> 是最大值。</li>
+<li>归一化对于需要将特征值放在相似尺度下的算法非常有用，例如神经网络和支持向量机（SVM）。</li>
+<li>常见的归一化方法包括最小-最大缩放和按范数（范数归一化）进行缩放。</li>
+</ul>
+<p>总结来说，标准化和归一化都是数据预处理的技术，但它们的目标和方法有所不同。您应根据您的数据和机器学习模型的需求来选择使用哪种方法。标准化通常更适用于数据的分布不受特定范围限制的情况，而归一化通常更适用于需要将数据缩放到特定范围内的情况。</p>
+<div id="标准化-standardization" class="section level4 hasAnchor" number="6.1.1.1">
+<h4><span class="header-section-number">6.1.1.1</span> 标准化 (Standardization)<a href="有监督机器学习.html#标准化-standardization" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>标准化的目标是将数据转换为均值为0、标准差为1的标准正态分布（Z分布）。</p>
+<p>使用 StandardScaler 类来进行标准化：</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="有监督机器学习.html#cb1-1" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-2"><a href="有监督机器学习.html#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="有监督机器学习.html#cb1-3" tabindex="-1"></a><span class="co"># 创建一个示例数据集</span></span>
+<span id="cb1-4"><a href="有监督机器学习.html#cb1-4" tabindex="-1"></a>data <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">4</span>, <span class="dv">5</span>]]</span>
+<span id="cb1-5"><a href="有监督机器学习.html#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="有监督机器学习.html#cb1-6" tabindex="-1"></a><span class="co"># 初始化标准化器</span></span>
+<span id="cb1-7"><a href="有监督机器学习.html#cb1-7" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb1-8"><a href="有监督机器学习.html#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="有监督机器学习.html#cb1-9" tabindex="-1"></a><span class="co"># 对数据进行标准化</span></span>
+<span id="cb1-10"><a href="有监督机器学习.html#cb1-10" tabindex="-1"></a>scaled_data <span class="op">=</span> scaler.fit_transform(data)</span></code></pre></div>
+</div>
+<div id="归一化normalization" class="section level4 hasAnchor" number="6.1.1.2">
+<h4><span class="header-section-number">6.1.1.2</span> 归一化（Normalization）：<a href="有监督机器学习.html#归一化normalization" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>归一化的目标是将数据缩放到特定范围，通常在0到1之间。</p>
+<p>使用 MinMaxScaler 类来进行归一化：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="有监督机器学习.html#cb2-1" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
+<span id="cb2-2"><a href="有监督机器学习.html#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="有监督机器学习.html#cb2-3" tabindex="-1"></a><span class="co"># 创建一个示例数据集</span></span>
+<span id="cb2-4"><a href="有监督机器学习.html#cb2-4" tabindex="-1"></a>data <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">4</span>, <span class="dv">5</span>]]</span>
+<span id="cb2-5"><a href="有监督机器学习.html#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="有监督机器学习.html#cb2-6" tabindex="-1"></a><span class="co"># 初始化归一化器</span></span>
+<span id="cb2-7"><a href="有监督机器学习.html#cb2-7" tabindex="-1"></a>scaler <span class="op">=</span> MinMaxScaler()</span>
+<span id="cb2-8"><a href="有监督机器学习.html#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="有监督机器学习.html#cb2-9" tabindex="-1"></a><span class="co"># 对数据进行归一化</span></span>
+<span id="cb2-10"><a href="有监督机器学习.html#cb2-10" tabindex="-1"></a>normalized_data <span class="op">=</span> scaler.fit_transform(data)</span></code></pre></div>
+</div>
+<div id="总结" class="section level4 hasAnchor" number="6.1.1.3">
+<h4><span class="header-section-number">6.1.1.3</span> 总结：<a href="有监督机器学习.html#总结" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>标准化通过 StandardScaler 完成，将数据转换为均值为0、标准差为1的标准正态分布。</li>
+<li>归一化通过 MinMaxScaler 完成，将数据缩放到指定范围内，通常在0到1之间。</li>
+<li>无论是标准化还是归一化，都可以按照以下步骤进行：
+<ul>
+<li>导入所需的模块：from sklearn.preprocessing import StandardScaler 或 from sklearn.preprocessing import MinMaxScaler。</li>
+<li>创建一个数据集，其中每行代表一个样本，每列代表一个特征。</li>
+<li>初始化标准化器或归一化器：scaler = StandardScaler() 或 scaler = MinMaxScaler()。</li>
+<li>使用 fit_transform 方法来应用标准化或归一化，得到转换后的数据。</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="非线性转换" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> 非线性转换<a href="有监督机器学习.html#非线性转换" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>非线性转换通常用于将数据映射到一个新的特征空间，以改进数据的线性可分性或以适应非线性模型。 非线性转换通常包括将数据映射到高维特征空间，以便在该空间中进行线性操作。这些转换可用于解决非线性问题或改善数据的线性可分性。以下是一些常见的非线性转换技术和示例：</p>
+<ol style="list-style-type: decimal">
+<li>多项式特征扩展：
+多项式特征扩展将原始特征的组合添加为新的特征，从而使模型能够捕捉非线性关系。</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="有监督机器学习.html#cb3-1" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb3-2"><a href="有监督机器学习.html#cb3-2" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb3-3"><a href="有监督机器学习.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="有监督机器学习.html#cb3-4" tabindex="-1"></a>data <span class="op">=</span> [[<span class="dv">1</span>], [<span class="dv">2</span>], [<span class="dv">3</span>]]</span>
+<span id="cb3-5"><a href="有监督机器学习.html#cb3-5" tabindex="-1"></a>target <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb3-6"><a href="有监督机器学习.html#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="有监督机器学习.html#cb3-7" tabindex="-1"></a>poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-8"><a href="有监督机器学习.html#cb3-8" tabindex="-1"></a>data_poly <span class="op">=</span> poly.fit_transform(data)</span>
+<span id="cb3-9"><a href="有监督机器学习.html#cb3-9" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="有监督机器学习.html#cb3-10" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb3-11"><a href="有监督机器学习.html#cb3-11" tabindex="-1"></a>model.fit(data_poly, target)</span></code></pre></div>
+<pre><code>## LinearRegression()</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>核方法：
+核方法通过将数据映射到高维空间中的非线性特征来增强模型的能力。常见的核函数包括多项式核和径向基函数（RBF）核。</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="有监督机器学习.html#cb5-1" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVR</span>
+<span id="cb5-2"><a href="有监督机器学习.html#cb5-2" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_regression</span>
+<span id="cb5-3"><a href="有监督机器学习.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="有监督机器学习.html#cb5-4" tabindex="-1"></a>data, target <span class="op">=</span> make_regression(n_samples<span class="op">=</span><span class="dv">100</span>, n_features<span class="op">=</span><span class="dv">1</span>, noise<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb5-5"><a href="有监督机器学习.html#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="有监督机器学习.html#cb5-6" tabindex="-1"></a>model <span class="op">=</span> SVR(kernel<span class="op">=</span><span class="st">&#39;poly&#39;</span>, degree<span class="op">=</span><span class="dv">3</span>)  <span class="co"># 多项式核</span></span>
+<span id="cb5-7"><a href="有监督机器学习.html#cb5-7" tabindex="-1"></a>model.fit(data, target)</span></code></pre></div>
+<pre><code>## SVR(kernel=&#39;poly&#39;)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>非线性特征变换：
+非线性特征变换可以应用于特定特征，例如对数变换、指数变换、正切变换等。</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="有监督机器学习.html#cb7-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="有监督机器学习.html#cb7-2" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="有监督机器学习.html#cb7-3" tabindex="-1"></a>data <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span>
+<span id="cb7-4"><a href="有监督机器学习.html#cb7-4" tabindex="-1"></a>transformed_data <span class="op">=</span> np.log(data)  <span class="co"># 对数变换</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>流形学习：
+流形学习方法（如t-SNE）通过学习数据的低维表示来捕捉非线性结构。</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="有监督机器学习.html#cb8-1" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb8-2"><a href="有监督机器学习.html#cb8-2" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb8-3"><a href="有监督机器学习.html#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="有监督机器学习.html#cb8-4" tabindex="-1"></a>data <span class="op">=</span> load_iris().data</span>
+<span id="cb8-5"><a href="有监督机器学习.html#cb8-5" tabindex="-1"></a>tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb8-6"><a href="有监督机器学习.html#cb8-6" tabindex="-1"></a>transformed_data <span class="op">=</span> tsne.fit_transform(data)</span></code></pre></div>
+<pre><code>## /Users/milin/.virtualenvs/sklearn2023/lib/python3.7/site-packages/sklearn/manifold/_t_sne.py:783: FutureWarning: The default initialization in TSNE will change from &#39;random&#39; to &#39;pca&#39; in 1.2.
+##   FutureWarning,
+## /Users/milin/.virtualenvs/sklearn2023/lib/python3.7/site-packages/sklearn/manifold/_t_sne.py:793: FutureWarning: The default learning rate in TSNE will change from 200.0 to &#39;auto&#39; in 1.2.
+##   FutureWarning,</code></pre>
+</div>
+<div id="对分类变量进行编码" class="section level3 hasAnchor" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> 对分类变量进行编码<a href="有监督机器学习.html#对分类变量进行编码" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>标签编码（Label Encoding）：
+标签编码用于将分类变量的标签（类别）映射到整数。这对于某些算法（如决策树和随机森林）很有用，因为它们需要数值输入。</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="有监督机器学习.html#cb10-1" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
+<span id="cb10-2"><a href="有监督机器学习.html#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="有监督机器学习.html#cb10-3" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;fish&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>]</span>
+<span id="cb10-4"><a href="有监督机器学习.html#cb10-4" tabindex="-1"></a>encoder <span class="op">=</span> LabelEncoder()</span>
+<span id="cb10-5"><a href="有监督机器学习.html#cb10-5" tabindex="-1"></a>encoded_labels <span class="op">=</span> encoder.fit_transform(labels)</span></code></pre></div>
+<p>结果是 [0, 1, 2, 1, 0]，其中每个标签都被映射为一个整数。</p>
+<ol start="2" style="list-style-type: decimal">
+<li>独热编码（One-Hot Encoding）：
+独热编码用于将分类变量的每个类别转化为二进制特征。每个类别都用一个二进制位表示，其中一个为1，其余为0。</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="有监督机器学习.html#cb11-1" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder</span>
+<span id="cb11-2"><a href="有监督机器学习.html#cb11-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-3"><a href="有监督机器学习.html#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="有监督机器学习.html#cb11-4" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({<span class="st">&quot;color&quot;</span>: [<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>]})</span>
+<span id="cb11-5"><a href="有监督机器学习.html#cb11-5" tabindex="-1"></a>encoder <span class="op">=</span> OneHotEncoder()</span>
+<span id="cb11-6"><a href="有监督机器学习.html#cb11-6" tabindex="-1"></a>encoded_data <span class="op">=</span> encoder.fit_transform(data[[<span class="st">&quot;color&quot;</span>]]).toarray()</span></code></pre></div>
+<p>结果是一个二进制矩阵，例如 [[0, 1, 0], [0, 0, 1], [1, 0, 0]]，其中每一列代表一个类别。</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Pandas 的 get_dummies 方法：
+如果您使用 Pandas，可以使用 get_dummies 方法来进行独热编码。</li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="有监督机器学习.html#cb12-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-2"><a href="有监督机器学习.html#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="有监督机器学习.html#cb12-3" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({<span class="st">&quot;color&quot;</span>: [<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>]})</span>
+<span id="cb12-4"><a href="有监督机器学习.html#cb12-4" tabindex="-1"></a>encoded_data <span class="op">=</span> pd.get_dummies(data, columns<span class="op">=</span>[<span class="st">&quot;color&quot;</span>])</span></code></pre></div>
+<p>这将创建一个包含二进制特征的新DataFrame。</p>
+<ol start="4" style="list-style-type: decimal">
+<li>自定义编码：
+有时候，您可能需要自定义编码方法，以将类别映射为数值或其他形式。这可以通过编写自定义函数来实现。</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="有监督机器学习.html#cb13-1" tabindex="-1"></a>data <span class="op">=</span> [<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>]</span>
+<span id="cb13-2"><a href="有监督机器学习.html#cb13-2" tabindex="-1"></a>encoding_dict <span class="op">=</span> {<span class="st">&quot;low&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;medium&quot;</span>: <span class="dv">2</span>, <span class="st">&quot;high&quot;</span>: <span class="dv">3</span>}</span>
+<span id="cb13-3"><a href="有监督机器学习.html#cb13-3" tabindex="-1"></a>encoded_data <span class="op">=</span> [encoding_dict[val] <span class="cf">for</span> val <span class="kw">in</span> data]</span></code></pre></div>
+</div>
+<div id="离散化-discretization" class="section level3 hasAnchor" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> 离散化 (Discretization)<a href="有监督机器学习.html#离散化-discretization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>等宽离散化（Equal Width Discretization）：
+这种方法将数据范围均匀地分成若干个箱子（区间），每个箱子的宽度相等。</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="有监督机器学习.html#cb14-1" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> KBinsDiscretizer</span>
+<span id="cb14-2"><a href="有监督机器学习.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="有监督机器学习.html#cb14-3" tabindex="-1"></a>data <span class="op">=</span> [[<span class="dv">1</span>], [<span class="dv">2</span>], [<span class="dv">3</span>], [<span class="dv">4</span>], [<span class="dv">5</span>]]</span>
+<span id="cb14-4"><a href="有监督机器学习.html#cb14-4" tabindex="-1"></a>discretizer <span class="op">=</span> KBinsDiscretizer(n_bins<span class="op">=</span><span class="dv">3</span>, encode<span class="op">=</span><span class="st">&#39;ordinal&#39;</span>, strategy<span class="op">=</span><span class="st">&#39;uniform&#39;</span>)</span>
+<span id="cb14-5"><a href="有监督机器学习.html#cb14-5" tabindex="-1"></a>discretized_data <span class="op">=</span> discretizer.fit_transform(data)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>等频离散化（Equal Frequency Discretization）：
+这种方法将数据划分成若干个区间，使每个区间内的数据点数量相等。</li>
+</ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="有监督机器学习.html#cb15-1" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> KBinsDiscretizer</span>
+<span id="cb15-2"><a href="有监督机器学习.html#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="有监督机器学习.html#cb15-3" tabindex="-1"></a>data <span class="op">=</span> [[<span class="dv">1</span>], [<span class="dv">2</span>], [<span class="dv">3</span>], [<span class="dv">4</span>], [<span class="dv">5</span>]]</span>
+<span id="cb15-4"><a href="有监督机器学习.html#cb15-4" tabindex="-1"></a>discretizer <span class="op">=</span> KBinsDiscretizer(n_bins<span class="op">=</span><span class="dv">3</span>, encode<span class="op">=</span><span class="st">&#39;ordinal&#39;</span>, strategy<span class="op">=</span><span class="st">&#39;quantile&#39;</span>)</span>
+<span id="cb15-5"><a href="有监督机器学习.html#cb15-5" tabindex="-1"></a>discretized_data <span class="op">=</span> discretizer.fit_transform(data)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>自定义边界离散化：
+您还可以自定义边界值，将数据划分成特定的区间。</li>
+</ol>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="有监督机器学习.html#cb16-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a href="有监督机器学习.html#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="有监督机器学习.html#cb16-3" tabindex="-1"></a>data <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]</span>
+<span id="cb16-4"><a href="有监督机器学习.html#cb16-4" tabindex="-1"></a>custom_bins <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>]</span>
+<span id="cb16-5"><a href="有监督机器学习.html#cb16-5" tabindex="-1"></a>discretized_data <span class="op">=</span> np.digitize(data, custom_bins)</span></code></pre></div>
+<div id="示例总结" class="section level4 hasAnchor" number="6.1.4.1">
+<h4><span class="header-section-number">6.1.4.1</span> 示例总结：<a href="有监督机器学习.html#示例总结" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li>使用 KBinsDiscretizer 类进行等宽离散化或等频离散化。</li>
+<li>设置 n_bins 参数来指定要分成的箱子数量。</li>
+<li>使用 encode 参数来指定编码方式，‘ordinal’ 表示输出为箱子的序数，‘onehot’ 表示输出为独热编码。</li>
+<li>使用 strategy 参数来选择离散化策略，‘uniform’ 表示等宽离散化，‘quantile’ 表示等频离散化。</li>
+<li>您还可以使用NumPy的 digitize 函数来进行自定义离散化，需要提供自定义边界值。</li>
+<li>离散化可用于处理连续特征，使其适用于某些机器学习算法，或用于创建分组、分箱分析等。根据您的数据和需求，选择适当的离散化方法非常重要。</li>
+</ol>
+</div>
+</div>
+<div id="生成多项式特征" class="section level3 hasAnchor" number="6.1.5">
+<h3><span class="header-section-number">6.1.5</span> 生成多项式特征<a href="有监督机器学习.html#生成多项式特征" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>生成多项式特征是一种将原始特征的多项式组合作为新特征添加到数据集中的方法，这有助于模型捕捉非线性关系。使用 PolynomialFeatures 类来生成多项式特征。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="有监督机器学习.html#cb17-1" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb17-2"><a href="有监督机器学习.html#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="有监督机器学习.html#cb17-3" tabindex="-1"></a>data <span class="op">=</span> [[<span class="dv">2</span>, <span class="dv">3</span>]]</span>
+<span id="cb17-4"><a href="有监督机器学习.html#cb17-4" tabindex="-1"></a>poly <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span><span class="dv">2</span>)  <span class="co"># 生成2次多项式特征</span></span>
+<span id="cb17-5"><a href="有监督机器学习.html#cb17-5" tabindex="-1"></a>poly_features <span class="op">=</span> poly.fit_transform(data)</span></code></pre></div>
+<p>示例总结：</p>
+<ul>
+<li>使用 PolynomialFeatures 类来生成多项式特征。</li>
+<li>设置 degree 参数来指定要生成的多项式的最高次数。</li>
+<li>fit_transform 方法将原始特征数据转化为多项式特征。</li>
+</ul>
+<p>示例中，原始数据 [[2, 3]] 被转化为 [[1, 2, 3, 4, 6, 9]]，其中包括了原始特征的各项幂和它们的组合。</p>
+<p>生成多项式特征对于捕捉特征之间的非线性关系非常有用，尤其在线性模型无法很好地拟合数据时。注意，随着多项式次数的增加，特征的数量也会迅速增加，这可能会导致维度灾难。因此，选择适当的多项式次数很重要，以充分捕捉非线性关系而不至于使数据维度过高。</p>
+</div>
+</div>
+<div id="线性模型" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> 线性模型<a href="有监督机器学习.html#线性模型" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="线性回归linear-regression" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> 线性回归（Linear Regression）：<a href="有监督机器学习.html#线性回归linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>线性回归是一种用于回归问题的线性模型，试图拟合输入特征和输出之间的线性关系。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="有监督机器学习.html#cb18-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-2"><a href="有监督机器学习.html#cb18-2" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb18-3"><a href="有监督机器学习.html#cb18-3" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb18-4"><a href="有监督机器学习.html#cb18-4" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score</span>
+<span id="cb18-5"><a href="有监督机器学习.html#cb18-5" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="有监督机器学习.html#cb18-6" tabindex="-1"></a><span class="co"># 生成示例数据</span></span>
+<span id="cb18-7"><a href="有监督机器学习.html#cb18-7" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
+<span id="cb18-8"><a href="有监督机器学习.html#cb18-8" tabindex="-1"></a>X <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.random.rand(<span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb18-9"><a href="有监督机器学习.html#cb18-9" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">4</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> X <span class="op">+</span> np.random.randn(<span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb18-10"><a href="有监督机器学习.html#cb18-10" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="有监督机器学习.html#cb18-11" tabindex="-1"></a><span class="co"># 划分数据集为训练集和测试集</span></span>
+<span id="cb18-12"><a href="有监督机器学习.html#cb18-12" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb18-13"><a href="有监督机器学习.html#cb18-13" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="有监督机器学习.html#cb18-14" tabindex="-1"></a><span class="co"># 创建线性回归模型</span></span>
+<span id="cb18-15"><a href="有监督机器学习.html#cb18-15" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb18-16"><a href="有监督机器学习.html#cb18-16" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="有监督机器学习.html#cb18-17" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb18-18"><a href="有监督机器学习.html#cb18-18" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb18-19"><a href="有监督机器学习.html#cb18-19" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="有监督机器学习.html#cb18-20" tabindex="-1"></a><span class="co"># 进行预测</span></span></code></pre></div>
+<pre><code>## LinearRegression()</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="有监督机器学习.html#cb20-1" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb20-2"><a href="有监督机器学习.html#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="有监督机器学习.html#cb20-3" tabindex="-1"></a><span class="co"># 评估模型性能</span></span>
+<span id="cb20-4"><a href="有监督机器学习.html#cb20-4" tabindex="-1"></a>mse <span class="op">=</span> mean_squared_error(y_test, y_pred)</span>
+<span id="cb20-5"><a href="有监督机器学习.html#cb20-5" tabindex="-1"></a>r2 <span class="op">=</span> r2_score(y_test, y_pred)</span>
+<span id="cb20-6"><a href="有监督机器学习.html#cb20-6" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="有监督机器学习.html#cb20-7" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;均方误差 (MSE):&quot;</span>, mse)</span></code></pre></div>
+<pre><code>## 均方误差 (MSE): 0.9177532469714291</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="有监督机器学习.html#cb22-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;R^2 分数:&quot;</span>, r2)</span></code></pre></div>
+<pre><code>## R^2 分数: 0.6521157503858556</code></pre>
+<p>这个示例包括以下步骤：</p>
+<ol style="list-style-type: decimal">
+<li>生成一个简单的线性关系的示例数据。</li>
+<li>使用train_test_split将数据集划分为训练集和测试集。</li>
+<li>创建一个LinearRegression线性回归模型。</li>
+<li>使用训练数据拟合模型。</li>
+<li>使用测试数据进行预测。</li>
+<li>使用均方误差（MSE）和R²分数评估模型性能。</li>
+</ol>
+<p>这是一个典型的Sklearn线性回归模型示例，用于拟合线性关系并评估模型的性能。您可以根据需要修改数据和模型，以适应不同的问题。</p>
+</div>
+<div id="岭回归ridge-regression" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> 岭回归（Ridge Regression）：<a href="有监督机器学习.html#岭回归ridge-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>岭回归是一种线性回归的改进方法，通过引入L2正则化来防止过拟合。</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="有监督机器学习.html#cb24-1" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Ridge</span>
+<span id="cb24-2"><a href="有监督机器学习.html#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="有监督机器学习.html#cb24-3" tabindex="-1"></a><span class="co"># 创建一个岭回归模型</span></span>
+<span id="cb24-4"><a href="有监督机器学习.html#cb24-4" tabindex="-1"></a>model <span class="op">=</span> Ridge(alpha<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb24-5"><a href="有监督机器学习.html#cb24-5" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="有监督机器学习.html#cb24-6" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb24-7"><a href="有监督机器学习.html#cb24-7" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb24-8"><a href="有监督机器学习.html#cb24-8" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="有监督机器学习.html#cb24-9" tabindex="-1"></a><span class="co"># 进行预测</span></span></code></pre></div>
+<pre><code>## Ridge()</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="有监督机器学习.html#cb26-1" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span></code></pre></div>
+</div>
+<div id="lasso-回归" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Lasso 回归：<a href="有监督机器学习.html#lasso-回归" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Lasso回归也是一种线性回归的改进方法，通过引入L1正则化来选择重要的特征并进行系数稀疏化。</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="有监督机器学习.html#cb27-1" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
+<span id="cb27-2"><a href="有监督机器学习.html#cb27-2" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="有监督机器学习.html#cb27-3" tabindex="-1"></a><span class="co"># 创建一个Lasso回归模型</span></span>
+<span id="cb27-4"><a href="有监督机器学习.html#cb27-4" tabindex="-1"></a>model <span class="op">=</span> Lasso(alpha<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb27-5"><a href="有监督机器学习.html#cb27-5" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="有监督机器学习.html#cb27-6" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb27-7"><a href="有监督机器学习.html#cb27-7" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb27-8"><a href="有监督机器学习.html#cb27-8" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="有监督机器学习.html#cb27-9" tabindex="-1"></a><span class="co"># 进行预测</span></span></code></pre></div>
+<pre><code>## Lasso()</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="有监督机器学习.html#cb29-1" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span></code></pre></div>
+</div>
+<div id="逻辑回归logistic-regression" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> 逻辑回归（Logistic Regression）：<a href="有监督机器学习.html#逻辑回归logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>逻辑回归是一种用于分类问题的线性模型，它使用Logistic函数来估计概率。</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="有监督机器学习.html#cb30-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb30-2"><a href="有监督机器学习.html#cb30-2" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb30-3"><a href="有监督机器学习.html#cb30-3" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb30-4"><a href="有监督机器学习.html#cb30-4" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb30-5"><a href="有监督机器学习.html#cb30-5" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, classification_report, confusion_matrix</span>
+<span id="cb30-6"><a href="有监督机器学习.html#cb30-6" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="有监督机器学习.html#cb30-7" tabindex="-1"></a><span class="co"># 加载鸢尾花数据集</span></span>
+<span id="cb30-8"><a href="有监督机器学习.html#cb30-8" tabindex="-1"></a>data <span class="op">=</span> load_iris()</span>
+<span id="cb30-9"><a href="有监督机器学习.html#cb30-9" tabindex="-1"></a>X <span class="op">=</span> data.data</span>
+<span id="cb30-10"><a href="有监督机器学习.html#cb30-10" tabindex="-1"></a>y <span class="op">=</span> data.target</span>
+<span id="cb30-11"><a href="有监督机器学习.html#cb30-11" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="有监督机器学习.html#cb30-12" tabindex="-1"></a><span class="co"># 划分数据集为训练集和测试集</span></span>
+<span id="cb30-13"><a href="有监督机器学习.html#cb30-13" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb30-14"><a href="有监督机器学习.html#cb30-14" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="有监督机器学习.html#cb30-15" tabindex="-1"></a><span class="co"># 创建逻辑回归模型</span></span>
+<span id="cb30-16"><a href="有监督机器学习.html#cb30-16" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb30-17"><a href="有监督机器学习.html#cb30-17" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="有监督机器学习.html#cb30-18" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb30-19"><a href="有监督机器学习.html#cb30-19" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb30-20"><a href="有监督机器学习.html#cb30-20" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="有监督机器学习.html#cb30-21" tabindex="-1"></a><span class="co"># 进行预测</span></span></code></pre></div>
+<pre><code>## LogisticRegression(max_iter=1000)</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="有监督机器学习.html#cb32-1" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb32-2"><a href="有监督机器学习.html#cb32-2" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="有监督机器学习.html#cb32-3" tabindex="-1"></a><span class="co"># 评估模型性能</span></span>
+<span id="cb32-4"><a href="有监督机器学习.html#cb32-4" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb32-5"><a href="有监督机器学习.html#cb32-5" tabindex="-1"></a>confusion <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
+<span id="cb32-6"><a href="有监督机器学习.html#cb32-6" tabindex="-1"></a>report <span class="op">=</span> classification_report(y_test, y_pred)</span>
+<span id="cb32-7"><a href="有监督机器学习.html#cb32-7" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="有监督机器学习.html#cb32-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 准确率: 1.0</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="有监督机器学习.html#cb34-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;混淆矩阵:</span><span class="ch">\n</span><span class="st">&quot;</span>, confusion)</span></code></pre></div>
+<pre><code>## 混淆矩阵:
+##  [[10  0  0]
+##  [ 0  9  0]
+##  [ 0  0 11]]</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="有监督机器学习.html#cb36-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;分类报告:</span><span class="ch">\n</span><span class="st">&quot;</span>, report)</span></code></pre></div>
+<pre><code>## 分类报告:
+##                precision    recall  f1-score   support
+## 
+##            0       1.00      1.00      1.00        10
+##            1       1.00      1.00      1.00         9
+##            2       1.00      1.00      1.00        11
+## 
+##     accuracy                           1.00        30
+##    macro avg       1.00      1.00      1.00        30
+## weighted avg       1.00      1.00      1.00        30</code></pre>
+<p>这个示例包括以下步骤：</p>
+<ol style="list-style-type: decimal">
+<li>加载鸢尾花数据集，它是一个常用的分类示例数据集。</li>
+<li>使用 train_test_split 将数据集划分为训练集和测试集。</li>
+<li>创建一个逻辑回归模型，可以通过设置 max_iter 参数来增加迭代次数以确保模型收敛。</li>
+<li>使用训练数据拟合模型。</li>
+<li>使用测试数据进行预测。</li>
+<li>使用准确率、混淆矩阵和分类报告来评估模型性能。</li>
+</ol>
+</div>
+</div>
+<div id="支持向量机" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> 支持向量机<a href="有监督机器学习.html#支持向量机" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>支持向量机（Support Vector Machine，SVM）是一种强大的监督学习算法，用于二元分类和回归问题。它的核心思想是在特征空间中找到一个最优的超平面，以最大程度地分离不同类别的数据点。以下是SVM的原理总结、一个完整的Sklearn示例以及如何使用网格搜索调整参数的示例：</p>
+<div id="svm-原理总结" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> SVM 原理总结：<a href="有监督机器学习.html#svm-原理总结" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>SVM的目标是找到一个最优的超平面，以最大化两个类别之间的间隔（支持向量之间的距离）。这个间隔被称为“间隔最大化”，它使SVM在面对未知数据时具有很好的泛化能力。SVM还可以使用不同的核函数来处理非线性分类问题，如多项式核和径向基函数（RBF）核。</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="有监督机器学习.html#cb38-1" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb38-2"><a href="有监督机器学习.html#cb38-2" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb38-3"><a href="有监督机器学习.html#cb38-3" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb38-4"><a href="有监督机器学习.html#cb38-4" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb38-5"><a href="有监督机器学习.html#cb38-5" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="有监督机器学习.html#cb38-6" tabindex="-1"></a><span class="co"># 加载鸢尾花数据集</span></span>
+<span id="cb38-7"><a href="有监督机器学习.html#cb38-7" tabindex="-1"></a>iris <span class="op">=</span> datasets.load_iris()</span>
+<span id="cb38-8"><a href="有监督机器学习.html#cb38-8" tabindex="-1"></a>X <span class="op">=</span> iris.data</span>
+<span id="cb38-9"><a href="有监督机器学习.html#cb38-9" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb38-10"><a href="有监督机器学习.html#cb38-10" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="有监督机器学习.html#cb38-11" tabindex="-1"></a><span class="co"># 划分数据集为训练集和测试集</span></span>
+<span id="cb38-12"><a href="有监督机器学习.html#cb38-12" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb38-13"><a href="有监督机器学习.html#cb38-13" tabindex="-1"></a></span>
+<span id="cb38-14"><a href="有监督机器学习.html#cb38-14" tabindex="-1"></a><span class="co"># 创建SVM模型</span></span>
+<span id="cb38-15"><a href="有监督机器学习.html#cb38-15" tabindex="-1"></a>model <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">&#39;linear&#39;</span>, C<span class="op">=</span><span class="fl">1.0</span>)</span>
+<span id="cb38-16"><a href="有监督机器学习.html#cb38-16" tabindex="-1"></a></span>
+<span id="cb38-17"><a href="有监督机器学习.html#cb38-17" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb38-18"><a href="有监督机器学习.html#cb38-18" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb38-19"><a href="有监督机器学习.html#cb38-19" tabindex="-1"></a></span>
+<span id="cb38-20"><a href="有监督机器学习.html#cb38-20" tabindex="-1"></a><span class="co"># 进行预测</span></span></code></pre></div>
+<pre><code>## SVC(kernel=&#39;linear&#39;)</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="有监督机器学习.html#cb40-1" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb40-2"><a href="有监督机器学习.html#cb40-2" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="有监督机器学习.html#cb40-3" tabindex="-1"></a><span class="co"># 评估模型性能</span></span>
+<span id="cb40-4"><a href="有监督机器学习.html#cb40-4" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb40-5"><a href="有监督机器学习.html#cb40-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 准确率: 1.0</code></pre>
+</div>
+<div id="使用网格搜索调整参数" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> 使用网格搜索调整参数：<a href="有监督机器学习.html#使用网格搜索调整参数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>你可以使用Sklearn的GridSearchCV来执行网格搜索以找到最佳的超参数组合。在这个示例中，我们将调整SVM的内核类型和正则化参数C：</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="有监督机器学习.html#cb42-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb42-2"><a href="有监督机器学习.html#cb42-2" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="有监督机器学习.html#cb42-3" tabindex="-1"></a><span class="co"># 定义参数网格</span></span>
+<span id="cb42-4"><a href="有监督机器学习.html#cb42-4" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">&#39;C&#39;</span>: [<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">10</span>],</span>
+<span id="cb42-5"><a href="有监督机器学习.html#cb42-5" tabindex="-1"></a>              <span class="st">&#39;kernel&#39;</span>: [<span class="st">&#39;linear&#39;</span>, <span class="st">&#39;poly&#39;</span>, <span class="st">&#39;rbf&#39;</span>]}</span>
+<span id="cb42-6"><a href="有监督机器学习.html#cb42-6" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="有监督机器学习.html#cb42-7" tabindex="-1"></a><span class="co"># 创建SVM模型</span></span>
+<span id="cb42-8"><a href="有监督机器学习.html#cb42-8" tabindex="-1"></a>model <span class="op">=</span> SVC()</span>
+<span id="cb42-9"><a href="有监督机器学习.html#cb42-9" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="有监督机器学习.html#cb42-10" tabindex="-1"></a><span class="co"># 创建GridSearchCV对象</span></span>
+<span id="cb42-11"><a href="有监督机器学习.html#cb42-11" tabindex="-1"></a>grid_search <span class="op">=</span> GridSearchCV(estimator<span class="op">=</span>model, param_grid<span class="op">=</span>param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&#39;accuracy&#39;</span>)</span>
+<span id="cb42-12"><a href="有监督机器学习.html#cb42-12" tabindex="-1"></a></span>
+<span id="cb42-13"><a href="有监督机器学习.html#cb42-13" tabindex="-1"></a><span class="co"># 在训练数据上进行网格搜索</span></span>
+<span id="cb42-14"><a href="有监督机器学习.html#cb42-14" tabindex="-1"></a>grid_search.fit(X_train, y_train)</span>
+<span id="cb42-15"><a href="有监督机器学习.html#cb42-15" tabindex="-1"></a></span>
+<span id="cb42-16"><a href="有监督机器学习.html#cb42-16" tabindex="-1"></a><span class="co"># 打印最佳参数和最佳分数</span></span></code></pre></div>
+<pre><code>## GridSearchCV(cv=5, estimator=SVC(),
+##              param_grid={&#39;C&#39;: [0.1, 1, 10],
+##                          &#39;kernel&#39;: [&#39;linear&#39;, &#39;poly&#39;, &#39;rbf&#39;]},
+##              scoring=&#39;accuracy&#39;)</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="有监督机器学习.html#cb44-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳参数:&quot;</span>, grid_search.best_params_)</span></code></pre></div>
+<pre><code>## 最佳参数: {&#39;C&#39;: 1, &#39;kernel&#39;: &#39;linear&#39;}</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="有监督机器学习.html#cb46-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳分数:&quot;</span>, grid_search.best_score_)</span>
+<span id="cb46-2"><a href="有监督机器学习.html#cb46-2" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="有监督机器学习.html#cb46-3" tabindex="-1"></a><span class="co"># 使用最佳参数的模型进行预测</span></span></code></pre></div>
+<pre><code>## 最佳分数: 0.9583333333333334</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="有监督机器学习.html#cb48-1" tabindex="-1"></a>best_model <span class="op">=</span> grid_search.best_estimator_</span>
+<span id="cb48-2"><a href="有监督机器学习.html#cb48-2" tabindex="-1"></a>y_pred <span class="op">=</span> best_model.predict(X_test)</span>
+<span id="cb48-3"><a href="有监督机器学习.html#cb48-3" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="有监督机器学习.html#cb48-4" tabindex="-1"></a><span class="co"># 评估最佳模型性能</span></span>
+<span id="cb48-5"><a href="有监督机器学习.html#cb48-5" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb48-6"><a href="有监督机器学习.html#cb48-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳模型准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 最佳模型准确率: 1.0</code></pre>
+</div>
+</div>
+<div id="knn" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> KNN<a href="有监督机器学习.html#knn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>K近邻（K-Nearest Neighbors，KNN）是一种基本的监督学习算法，用于分类和回归问题。它的核心思想是基于特征空间中数据点的距离来进行预测。以下是KNN的原理总结、一个完整的Sklearn示例以及如何使用网格搜索调整参数的示例：</p>
+<div id="knn-原理总结" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> KNN 原理总结：<a href="有监督机器学习.html#knn-原理总结" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>KNN算法的基本原理是根据数据点之间的距离，将一个未标记的数据点分为与其最近的K个已标记数据点所属的类别。KNN的工作流程如下：</p>
+<ol style="list-style-type: decimal">
+<li>选择K值：选择一个整数K，表示要考虑的最近邻居数量。</li>
+<li>计算距离：计算未标记数据点与所有已标记数据点之间的距离。</li>
+<li>选择K个最近邻：选择K个距离最近的已标记数据点。</li>
+<li>多数投票：将这K个最近邻中的多数类别作为未标记数据点的预测类别。</li>
+</ol>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="有监督机器学习.html#cb50-1" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb50-2"><a href="有监督机器学习.html#cb50-2" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb50-3"><a href="有监督机器学习.html#cb50-3" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb50-4"><a href="有监督机器学习.html#cb50-4" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb50-5"><a href="有监督机器学习.html#cb50-5" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="有监督机器学习.html#cb50-6" tabindex="-1"></a><span class="co"># 加载鸢尾花数据集</span></span>
+<span id="cb50-7"><a href="有监督机器学习.html#cb50-7" tabindex="-1"></a>iris <span class="op">=</span> datasets.load_iris()</span>
+<span id="cb50-8"><a href="有监督机器学习.html#cb50-8" tabindex="-1"></a>X <span class="op">=</span> iris.data</span>
+<span id="cb50-9"><a href="有监督机器学习.html#cb50-9" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb50-10"><a href="有监督机器学习.html#cb50-10" tabindex="-1"></a></span>
+<span id="cb50-11"><a href="有监督机器学习.html#cb50-11" tabindex="-1"></a><span class="co"># 划分数据集为训练集和测试集</span></span>
+<span id="cb50-12"><a href="有监督机器学习.html#cb50-12" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb50-13"><a href="有监督机器学习.html#cb50-13" tabindex="-1"></a></span>
+<span id="cb50-14"><a href="有监督机器学习.html#cb50-14" tabindex="-1"></a><span class="co"># 创建KNN分类器</span></span>
+<span id="cb50-15"><a href="有监督机器学习.html#cb50-15" tabindex="-1"></a>model <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb50-16"><a href="有监督机器学习.html#cb50-16" tabindex="-1"></a></span>
+<span id="cb50-17"><a href="有监督机器学习.html#cb50-17" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb50-18"><a href="有监督机器学习.html#cb50-18" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb50-19"><a href="有监督机器学习.html#cb50-19" tabindex="-1"></a></span>
+<span id="cb50-20"><a href="有监督机器学习.html#cb50-20" tabindex="-1"></a><span class="co"># 进行预测</span></span></code></pre></div>
+<pre><code>## KNeighborsClassifier(n_neighbors=3)</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="有监督机器学习.html#cb52-1" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb52-2"><a href="有监督机器学习.html#cb52-2" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="有监督机器学习.html#cb52-3" tabindex="-1"></a><span class="co"># 评估模型性能</span></span>
+<span id="cb52-4"><a href="有监督机器学习.html#cb52-4" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb52-5"><a href="有监督机器学习.html#cb52-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 准确率: 1.0</code></pre>
+</div>
+<div id="使用网格搜索调整参数-1" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> 使用网格搜索调整参数：<a href="有监督机器学习.html#使用网格搜索调整参数-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>你可以使用Sklearn的GridSearchCV来执行网格搜索以找到最佳的K值：</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="有监督机器学习.html#cb54-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb54-2"><a href="有监督机器学习.html#cb54-2" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="有监督机器学习.html#cb54-3" tabindex="-1"></a><span class="co"># 定义参数网格</span></span>
+<span id="cb54-4"><a href="有监督机器学习.html#cb54-4" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">&#39;n_neighbors&#39;</span>: [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">9</span>]}</span>
+<span id="cb54-5"><a href="有监督机器学习.html#cb54-5" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="有监督机器学习.html#cb54-6" tabindex="-1"></a><span class="co"># 创建KNN分类器</span></span>
+<span id="cb54-7"><a href="有监督机器学习.html#cb54-7" tabindex="-1"></a>model <span class="op">=</span> KNeighborsClassifier()</span>
+<span id="cb54-8"><a href="有监督机器学习.html#cb54-8" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="有监督机器学习.html#cb54-9" tabindex="-1"></a><span class="co"># 创建GridSearchCV对象</span></span>
+<span id="cb54-10"><a href="有监督机器学习.html#cb54-10" tabindex="-1"></a>grid_search <span class="op">=</span> GridSearchCV(estimator<span class="op">=</span>model, param_grid<span class="op">=</span>param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&#39;accuracy&#39;</span>)</span>
+<span id="cb54-11"><a href="有监督机器学习.html#cb54-11" tabindex="-1"></a></span>
+<span id="cb54-12"><a href="有监督机器学习.html#cb54-12" tabindex="-1"></a><span class="co"># 在训练数据上进行网格搜索</span></span>
+<span id="cb54-13"><a href="有监督机器学习.html#cb54-13" tabindex="-1"></a>grid_search.fit(X_train, y_train)</span>
+<span id="cb54-14"><a href="有监督机器学习.html#cb54-14" tabindex="-1"></a></span>
+<span id="cb54-15"><a href="有监督机器学习.html#cb54-15" tabindex="-1"></a><span class="co"># 打印最佳参数和最佳分数</span></span></code></pre></div>
+<pre><code>## GridSearchCV(cv=5, estimator=KNeighborsClassifier(),
+##              param_grid={&#39;n_neighbors&#39;: [3, 5, 7, 9]}, scoring=&#39;accuracy&#39;)</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="有监督机器学习.html#cb56-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳K值:&quot;</span>, grid_search.best_params_[<span class="st">&#39;n_neighbors&#39;</span>])</span></code></pre></div>
+<pre><code>## 最佳K值: 3</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="有监督机器学习.html#cb58-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳分数:&quot;</span>, grid_search.best_score_)</span>
+<span id="cb58-2"><a href="有监督机器学习.html#cb58-2" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="有监督机器学习.html#cb58-3" tabindex="-1"></a><span class="co"># 使用最佳参数的模型进行预测</span></span></code></pre></div>
+<pre><code>## 最佳分数: 0.9583333333333334</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="有监督机器学习.html#cb60-1" tabindex="-1"></a>best_model <span class="op">=</span> grid_search.best_estimator_</span>
+<span id="cb60-2"><a href="有监督机器学习.html#cb60-2" tabindex="-1"></a>y_pred <span class="op">=</span> best_model.predict(X_test)</span>
+<span id="cb60-3"><a href="有监督机器学习.html#cb60-3" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="有监督机器学习.html#cb60-4" tabindex="-1"></a><span class="co"># 评估最佳模型性能</span></span>
+<span id="cb60-5"><a href="有监督机器学习.html#cb60-5" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb60-6"><a href="有监督机器学习.html#cb60-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳模型准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 最佳模型准确率: 1.0</code></pre>
+</div>
+</div>
+<div id="决策树" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> 决策树<a href="有监督机器学习.html#决策树" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>决策树（Decision Tree）是一种用于分类和回归问题的监督学习算法。它基于树状结构进行决策，通过在每个内部节点选择一个特征来分裂数据，最终将数据划分为不同的类别或值</p>
+<div id="决策树原理" class="section level3 hasAnchor" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> 决策树原理:<a href="有监督机器学习.html#决策树原理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>决策树的基本原理是通过递归地将数据划分为不同的子集，直到满足某个停止条件（如达到最大深度或叶子节点中的样本数小于某个阈值）。在每个节点上，决策树选择一个特征，以最大程度地分隔不同类别的数据点。这个过程不断重复，直到构建出一棵树。</p>
+</div>
+<div id="sklearn-决策树示例" class="section level3 hasAnchor" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Sklearn 决策树示例：<a href="有监督机器学习.html#sklearn-决策树示例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>下面是一个完整的Sklearn示例，使用决策树进行鸢尾花分类：</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="有监督机器学习.html#cb62-1" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb62-2"><a href="有监督机器学习.html#cb62-2" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb62-3"><a href="有监督机器学习.html#cb62-3" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb62-4"><a href="有监督机器学习.html#cb62-4" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb62-5"><a href="有监督机器学习.html#cb62-5" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="有监督机器学习.html#cb62-6" tabindex="-1"></a><span class="co"># 加载鸢尾花数据集</span></span>
+<span id="cb62-7"><a href="有监督机器学习.html#cb62-7" tabindex="-1"></a>iris <span class="op">=</span> datasets.load_iris()</span>
+<span id="cb62-8"><a href="有监督机器学习.html#cb62-8" tabindex="-1"></a>X <span class="op">=</span> iris.data</span>
+<span id="cb62-9"><a href="有监督机器学习.html#cb62-9" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb62-10"><a href="有监督机器学习.html#cb62-10" tabindex="-1"></a></span>
+<span id="cb62-11"><a href="有监督机器学习.html#cb62-11" tabindex="-1"></a><span class="co"># 划分数据集为训练集和测试集</span></span>
+<span id="cb62-12"><a href="有监督机器学习.html#cb62-12" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb62-13"><a href="有监督机器学习.html#cb62-13" tabindex="-1"></a></span>
+<span id="cb62-14"><a href="有监督机器学习.html#cb62-14" tabindex="-1"></a><span class="co"># 创建决策树分类器</span></span>
+<span id="cb62-15"><a href="有监督机器学习.html#cb62-15" tabindex="-1"></a>model <span class="op">=</span> DecisionTreeClassifier()</span>
+<span id="cb62-16"><a href="有监督机器学习.html#cb62-16" tabindex="-1"></a></span>
+<span id="cb62-17"><a href="有监督机器学习.html#cb62-17" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb62-18"><a href="有监督机器学习.html#cb62-18" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb62-19"><a href="有监督机器学习.html#cb62-19" tabindex="-1"></a></span>
+<span id="cb62-20"><a href="有监督机器学习.html#cb62-20" tabindex="-1"></a><span class="co"># 进行预测</span></span></code></pre></div>
+<pre><code>## DecisionTreeClassifier()</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="有监督机器学习.html#cb64-1" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb64-2"><a href="有监督机器学习.html#cb64-2" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="有监督机器学习.html#cb64-3" tabindex="-1"></a><span class="co"># 评估模型性能</span></span>
+<span id="cb64-4"><a href="有监督机器学习.html#cb64-4" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb64-5"><a href="有监督机器学习.html#cb64-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 准确率: 1.0</code></pre>
+</div>
+<div id="使用网格搜索调整参数-2" class="section level3 hasAnchor" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> 使用网格搜索调整参数：<a href="有监督机器学习.html#使用网格搜索调整参数-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>你可以使用Sklearn的GridSearchCV来执行网格搜索以找到最佳的参数组合，例如最大深度：</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="有监督机器学习.html#cb66-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb66-2"><a href="有监督机器学习.html#cb66-2" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="有监督机器学习.html#cb66-3" tabindex="-1"></a><span class="co"># 定义参数网格</span></span>
+<span id="cb66-4"><a href="有监督机器学习.html#cb66-4" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">&#39;max_depth&#39;</span>: [<span class="va">None</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>]}</span>
+<span id="cb66-5"><a href="有监督机器学习.html#cb66-5" tabindex="-1"></a></span>
+<span id="cb66-6"><a href="有监督机器学习.html#cb66-6" tabindex="-1"></a><span class="co"># 创建决策树分类器</span></span>
+<span id="cb66-7"><a href="有监督机器学习.html#cb66-7" tabindex="-1"></a>model <span class="op">=</span> DecisionTreeClassifier()</span>
+<span id="cb66-8"><a href="有监督机器学习.html#cb66-8" tabindex="-1"></a></span>
+<span id="cb66-9"><a href="有监督机器学习.html#cb66-9" tabindex="-1"></a><span class="co"># 创建GridSearchCV对象</span></span>
+<span id="cb66-10"><a href="有监督机器学习.html#cb66-10" tabindex="-1"></a>grid_search <span class="op">=</span> GridSearchCV(estimator<span class="op">=</span>model, param_grid<span class="op">=</span>param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&#39;accuracy&#39;</span>)</span>
+<span id="cb66-11"><a href="有监督机器学习.html#cb66-11" tabindex="-1"></a></span>
+<span id="cb66-12"><a href="有监督机器学习.html#cb66-12" tabindex="-1"></a><span class="co"># 在训练数据上进行网格搜索</span></span>
+<span id="cb66-13"><a href="有监督机器学习.html#cb66-13" tabindex="-1"></a>grid_search.fit(X_train, y_train)</span>
+<span id="cb66-14"><a href="有监督机器学习.html#cb66-14" tabindex="-1"></a></span>
+<span id="cb66-15"><a href="有监督机器学习.html#cb66-15" tabindex="-1"></a><span class="co"># 打印最佳参数和最佳分数</span></span></code></pre></div>
+<pre><code>## GridSearchCV(cv=5, estimator=DecisionTreeClassifier(),
+##              param_grid={&#39;max_depth&#39;: [None, 5, 10, 15, 20]},
+##              scoring=&#39;accuracy&#39;)</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="有监督机器学习.html#cb68-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳最大深度:&quot;</span>, grid_search.best_params_[<span class="st">&#39;max_depth&#39;</span>])</span></code></pre></div>
+<pre><code>## 最佳最大深度: None</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="有监督机器学习.html#cb70-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳分数:&quot;</span>, grid_search.best_score_)</span>
+<span id="cb70-2"><a href="有监督机器学习.html#cb70-2" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="有监督机器学习.html#cb70-3" tabindex="-1"></a><span class="co"># 使用最佳参数的模型进行预测</span></span></code></pre></div>
+<pre><code>## 最佳分数: 0.95</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="有监督机器学习.html#cb72-1" tabindex="-1"></a>best_model <span class="op">=</span> grid_search.best_estimator_</span>
+<span id="cb72-2"><a href="有监督机器学习.html#cb72-2" tabindex="-1"></a>y_pred <span class="op">=</span> best_model.predict(X_test)</span>
+<span id="cb72-3"><a href="有监督机器学习.html#cb72-3" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="有监督机器学习.html#cb72-4" tabindex="-1"></a><span class="co"># 评估最佳模型性能</span></span>
+<span id="cb72-5"><a href="有监督机器学习.html#cb72-5" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb72-6"><a href="有监督机器学习.html#cb72-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳模型准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 最佳模型准确率: 1.0</code></pre>
+</div>
+</div>
+<div id="随机森林" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> 随机森林<a href="有监督机器学习.html#随机森林" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>集成学习（Ensemble Learning）是一种机器学习技术，它结合多个基本模型以获得更好的性能。其中一个最流行的集成学习方法是随机森林（Random Forest），它是基于决策树的一种集成方法。</p>
+<div id="基本原理" class="section level3 hasAnchor" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> 基本原理<a href="有监督机器学习.html#基本原理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>集成学习的基本原理是将多个弱学习器组合成一个强学习器。这可以通过多种方式实现，其中一种方法是投票法（Voting）、平均法（Averaging）和Bagging等。随机森林是一种Bagging方法，它使用多个决策树组成一个森林，每个决策树在数据的不同子集上训练，然后通过投票来做出最终的预测。</p>
+</div>
+<div id="sklearn-随机森林示例" class="section level3 hasAnchor" number="6.6.2">
+<h3><span class="header-section-number">6.6.2</span> Sklearn 随机森林示例：<a href="有监督机器学习.html#sklearn-随机森林示例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>下面是一个完整的Sklearn示例，使用随机森林进行鸢尾花分类：</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="有监督机器学习.html#cb74-1" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb74-2"><a href="有监督机器学习.html#cb74-2" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb74-3"><a href="有监督机器学习.html#cb74-3" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb74-4"><a href="有监督机器学习.html#cb74-4" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb74-5"><a href="有监督机器学习.html#cb74-5" tabindex="-1"></a></span>
+<span id="cb74-6"><a href="有监督机器学习.html#cb74-6" tabindex="-1"></a><span class="co"># 加载鸢尾花数据集</span></span>
+<span id="cb74-7"><a href="有监督机器学习.html#cb74-7" tabindex="-1"></a>iris <span class="op">=</span> datasets.load_iris()</span>
+<span id="cb74-8"><a href="有监督机器学习.html#cb74-8" tabindex="-1"></a>X <span class="op">=</span> iris.data</span>
+<span id="cb74-9"><a href="有监督机器学习.html#cb74-9" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb74-10"><a href="有监督机器学习.html#cb74-10" tabindex="-1"></a></span>
+<span id="cb74-11"><a href="有监督机器学习.html#cb74-11" tabindex="-1"></a><span class="co"># 划分数据集为训练集和测试集</span></span>
+<span id="cb74-12"><a href="有监督机器学习.html#cb74-12" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb74-13"><a href="有监督机器学习.html#cb74-13" tabindex="-1"></a></span>
+<span id="cb74-14"><a href="有监督机器学习.html#cb74-14" tabindex="-1"></a><span class="co"># 创建随机森林分类器</span></span>
+<span id="cb74-15"><a href="有监督机器学习.html#cb74-15" tabindex="-1"></a>model <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">100</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb74-16"><a href="有监督机器学习.html#cb74-16" tabindex="-1"></a></span>
+<span id="cb74-17"><a href="有监督机器学习.html#cb74-17" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb74-18"><a href="有监督机器学习.html#cb74-18" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb74-19"><a href="有监督机器学习.html#cb74-19" tabindex="-1"></a></span>
+<span id="cb74-20"><a href="有监督机器学习.html#cb74-20" tabindex="-1"></a><span class="co"># 进行预测</span></span></code></pre></div>
+<pre><code>## RandomForestClassifier(random_state=42)</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="有监督机器学习.html#cb76-1" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb76-2"><a href="有监督机器学习.html#cb76-2" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="有监督机器学习.html#cb76-3" tabindex="-1"></a><span class="co"># 评估模型性能</span></span>
+<span id="cb76-4"><a href="有监督机器学习.html#cb76-4" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb76-5"><a href="有监督机器学习.html#cb76-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 准确率: 1.0</code></pre>
+</div>
+<div id="使用网格搜索调整参数-3" class="section level3 hasAnchor" number="6.6.3">
+<h3><span class="header-section-number">6.6.3</span> 使用网格搜索调整参数：<a href="有监督机器学习.html#使用网格搜索调整参数-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>你可以使用Sklearn的GridSearchCV来执行网格搜索以找到最佳的参数组合，例如最大深度和树的数量：</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb78-1"><a href="有监督机器学习.html#cb78-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb78-2"><a href="有监督机器学习.html#cb78-2" tabindex="-1"></a></span>
+<span id="cb78-3"><a href="有监督机器学习.html#cb78-3" tabindex="-1"></a><span class="co"># 定义参数网格</span></span>
+<span id="cb78-4"><a href="有监督机器学习.html#cb78-4" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
+<span id="cb78-5"><a href="有监督机器学习.html#cb78-5" tabindex="-1"></a>    <span class="st">&#39;n_estimators&#39;</span>: [<span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">200</span>],</span>
+<span id="cb78-6"><a href="有监督机器学习.html#cb78-6" tabindex="-1"></a>    <span class="st">&#39;max_depth&#39;</span>: [<span class="va">None</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>]</span>
+<span id="cb78-7"><a href="有监督机器学习.html#cb78-7" tabindex="-1"></a>}</span>
+<span id="cb78-8"><a href="有监督机器学习.html#cb78-8" tabindex="-1"></a></span>
+<span id="cb78-9"><a href="有监督机器学习.html#cb78-9" tabindex="-1"></a><span class="co"># 创建随机森林分类器</span></span>
+<span id="cb78-10"><a href="有监督机器学习.html#cb78-10" tabindex="-1"></a>model <span class="op">=</span> RandomForestClassifier(random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb78-11"><a href="有监督机器学习.html#cb78-11" tabindex="-1"></a></span>
+<span id="cb78-12"><a href="有监督机器学习.html#cb78-12" tabindex="-1"></a><span class="co"># 创建GridSearchCV对象</span></span>
+<span id="cb78-13"><a href="有监督机器学习.html#cb78-13" tabindex="-1"></a>grid_search <span class="op">=</span> GridSearchCV(estimator<span class="op">=</span>model, param_grid<span class="op">=</span>param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&#39;accuracy&#39;</span>)</span>
+<span id="cb78-14"><a href="有监督机器学习.html#cb78-14" tabindex="-1"></a></span>
+<span id="cb78-15"><a href="有监督机器学习.html#cb78-15" tabindex="-1"></a><span class="co"># 在训练数据上进行网格搜索</span></span>
+<span id="cb78-16"><a href="有监督机器学习.html#cb78-16" tabindex="-1"></a>grid_search.fit(X_train, y_train)</span>
+<span id="cb78-17"><a href="有监督机器学习.html#cb78-17" tabindex="-1"></a></span>
+<span id="cb78-18"><a href="有监督机器学习.html#cb78-18" tabindex="-1"></a><span class="co"># 打印最佳参数和最佳分数</span></span></code></pre></div>
+<pre><code>## GridSearchCV(cv=5, estimator=RandomForestClassifier(random_state=42),
+##              param_grid={&#39;max_depth&#39;: [None, 10, 20, 30],
+##                          &#39;n_estimators&#39;: [50, 100, 200]},
+##              scoring=&#39;accuracy&#39;)</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb80-1"><a href="有监督机器学习.html#cb80-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳树的数量:&quot;</span>, grid_search.best_params_[<span class="st">&#39;n_estimators&#39;</span>])</span></code></pre></div>
+<pre><code>## 最佳树的数量: 200</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb82-1"><a href="有监督机器学习.html#cb82-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳最大深度:&quot;</span>, grid_search.best_params_[<span class="st">&#39;max_depth&#39;</span>])</span></code></pre></div>
+<pre><code>## 最佳最大深度: None</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb84-1"><a href="有监督机器学习.html#cb84-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳分数:&quot;</span>, grid_search.best_score_)</span>
+<span id="cb84-2"><a href="有监督机器学习.html#cb84-2" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="有监督机器学习.html#cb84-3" tabindex="-1"></a><span class="co"># 使用最佳参数的模型进行预测</span></span></code></pre></div>
+<pre><code>## 最佳分数: 0.95</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="有监督机器学习.html#cb86-1" tabindex="-1"></a>best_model <span class="op">=</span> grid_search.best_estimator_</span>
+<span id="cb86-2"><a href="有监督机器学习.html#cb86-2" tabindex="-1"></a>y_pred <span class="op">=</span> best_model.predict(X_test)</span>
+<span id="cb86-3"><a href="有监督机器学习.html#cb86-3" tabindex="-1"></a></span>
+<span id="cb86-4"><a href="有监督机器学习.html#cb86-4" tabindex="-1"></a><span class="co"># 评估最佳模型性能</span></span>
+<span id="cb86-5"><a href="有监督机器学习.html#cb86-5" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb86-6"><a href="有监督机器学习.html#cb86-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳模型准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 最佳模型准确率: 1.0</code></pre>
+</div>
+</div>
+<div id="xgboost" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Xgboost<a href="有监督机器学习.html#xgboost" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>XGBoost（eXtreme Gradient Boosting）是一种梯度提升机（Gradient Boosting Machine）的变体，它在梯度提升算法的基础上引入了正则化和改进的分裂策略，以提高性能和鲁棒性。以下是XGBoost的原理总结、一个完整的Sklearn示例以及如何使用网格搜索调整参数的示例：</p>
+<div id="xgboost-原理总结" class="section level3 hasAnchor" number="6.7.1">
+<h3><span class="header-section-number">6.7.1</span> XGBoost 原理总结：<a href="有监督机器学习.html#xgboost-原理总结" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>XGBoost的主要特点包括：</p>
+<ol style="list-style-type: decimal">
+<li><p>梯度提升：XGBoost基于梯度提升算法，用于提升多个弱学习器的性能。每次迭代都会训练一个弱学习器，然后将其添加到集成模型中，以纠正之前迭代中的错误。</p></li>
+<li><p>正则化：XGBoost引入了L1和L2正则化，以防止过拟合。正则化项会在损失函数中加入，控制叶子节点的权重。</p></li>
+<li><p>改进的分裂策略：XGBoost采用了一种高效的分裂策略，通过遍历特征的分割点来确定最佳分裂，以降低计算复杂度。</p></li>
+<li><p>并行化处理：XGBoost支持并行处理，可以有效地处理大规模数据集。</p></li>
+</ol>
+</div>
+<div id="sklearn-xgboost-示例" class="section level3 hasAnchor" number="6.7.2">
+<h3><span class="header-section-number">6.7.2</span> Sklearn XGBoost 示例：<a href="有监督机器学习.html#sklearn-xgboost-示例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>下面是一个完整的Sklearn示例，使用XGBoost进行乳腺癌分类：</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb88-1"><a href="有监督机器学习.html#cb88-1" tabindex="-1"></a><span class="im">import</span> xgboost <span class="im">as</span> xgb</span>
+<span id="cb88-2"><a href="有监督机器学习.html#cb88-2" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_breast_cancer</span>
+<span id="cb88-3"><a href="有监督机器学习.html#cb88-3" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb88-4"><a href="有监督机器学习.html#cb88-4" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb88-5"><a href="有监督机器学习.html#cb88-5" tabindex="-1"></a></span>
+<span id="cb88-6"><a href="有监督机器学习.html#cb88-6" tabindex="-1"></a><span class="co"># 加载乳腺癌数据集</span></span>
+<span id="cb88-7"><a href="有监督机器学习.html#cb88-7" tabindex="-1"></a>data <span class="op">=</span> load_breast_cancer()</span>
+<span id="cb88-8"><a href="有监督机器学习.html#cb88-8" tabindex="-1"></a>X <span class="op">=</span> data.data</span>
+<span id="cb88-9"><a href="有监督机器学习.html#cb88-9" tabindex="-1"></a>y <span class="op">=</span> data.target</span>
+<span id="cb88-10"><a href="有监督机器学习.html#cb88-10" tabindex="-1"></a></span>
+<span id="cb88-11"><a href="有监督机器学习.html#cb88-11" tabindex="-1"></a><span class="co"># 划分数据集为训练集和测试集</span></span>
+<span id="cb88-12"><a href="有监督机器学习.html#cb88-12" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb88-13"><a href="有监督机器学习.html#cb88-13" tabindex="-1"></a></span>
+<span id="cb88-14"><a href="有监督机器学习.html#cb88-14" tabindex="-1"></a><span class="co"># 创建XGBoost分类器</span></span>
+<span id="cb88-15"><a href="有监督机器学习.html#cb88-15" tabindex="-1"></a>model <span class="op">=</span> xgb.XGBClassifier()</span>
+<span id="cb88-16"><a href="有监督机器学习.html#cb88-16" tabindex="-1"></a></span>
+<span id="cb88-17"><a href="有监督机器学习.html#cb88-17" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb88-18"><a href="有监督机器学习.html#cb88-18" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb88-19"><a href="有监督机器学习.html#cb88-19" tabindex="-1"></a></span>
+<span id="cb88-20"><a href="有监督机器学习.html#cb88-20" tabindex="-1"></a><span class="co"># 进行预测</span></span></code></pre></div>
+<pre><code>## XGBClassifier(base_score=0.5, booster=&#39;gbtree&#39;, callbacks=None,
+##               colsample_bylevel=1, colsample_bynode=1, colsample_bytree=1,
+##               early_stopping_rounds=None, enable_categorical=False,
+##               eval_metric=None, gamma=0, gpu_id=-1, grow_policy=&#39;depthwise&#39;,
+##               importance_type=None, interaction_constraints=&#39;&#39;,
+##               learning_rate=0.300000012, max_bin=256, max_cat_to_onehot=4,
+##               max_delta_step=0, max_depth=6, max_leaves=0, min_child_weight=1,
+##               missing=nan, monotone_constraints=&#39;()&#39;, n_estimators=100,
+##               n_jobs=0, num_parallel_tree=1, predictor=&#39;auto&#39;, random_state=0,
+##               reg_alpha=0, reg_lambda=1, ...)</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="有监督机器学习.html#cb90-1" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb90-2"><a href="有监督机器学习.html#cb90-2" tabindex="-1"></a></span>
+<span id="cb90-3"><a href="有监督机器学习.html#cb90-3" tabindex="-1"></a><span class="co"># 评估模型性能</span></span>
+<span id="cb90-4"><a href="有监督机器学习.html#cb90-4" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb90-5"><a href="有监督机器学习.html#cb90-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 准确率: 0.956140350877193</code></pre>
+</div>
+<div id="使用网格搜索调整参数-4" class="section level3 hasAnchor" number="6.7.3">
+<h3><span class="header-section-number">6.7.3</span> 使用网格搜索调整参数：<a href="有监督机器学习.html#使用网格搜索调整参数-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>你可以使用Sklearn的GridSearchCV来执行网格搜索以找到最佳的参数组合，例如最大深度和学习率：</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb92-1"><a href="有监督机器学习.html#cb92-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb92-2"><a href="有监督机器学习.html#cb92-2" tabindex="-1"></a></span>
+<span id="cb92-3"><a href="有监督机器学习.html#cb92-3" tabindex="-1"></a><span class="co"># 定义参数网格</span></span>
+<span id="cb92-4"><a href="有监督机器学习.html#cb92-4" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
+<span id="cb92-5"><a href="有监督机器学习.html#cb92-5" tabindex="-1"></a>    <span class="st">&#39;max_depth&#39;</span>: [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
+<span id="cb92-6"><a href="有监督机器学习.html#cb92-6" tabindex="-1"></a>    <span class="st">&#39;learning_rate&#39;</span>: [<span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>],</span>
+<span id="cb92-7"><a href="有监督机器学习.html#cb92-7" tabindex="-1"></a>    <span class="st">&#39;n_estimators&#39;</span>: [<span class="dv">50</span>, <span class="dv">100</span>, <span class="dv">200</span>]</span>
+<span id="cb92-8"><a href="有监督机器学习.html#cb92-8" tabindex="-1"></a>}</span>
+<span id="cb92-9"><a href="有监督机器学习.html#cb92-9" tabindex="-1"></a></span>
+<span id="cb92-10"><a href="有监督机器学习.html#cb92-10" tabindex="-1"></a><span class="co"># 创建XGBoost分类器</span></span>
+<span id="cb92-11"><a href="有监督机器学习.html#cb92-11" tabindex="-1"></a>model <span class="op">=</span> xgb.XGBClassifier()</span>
+<span id="cb92-12"><a href="有监督机器学习.html#cb92-12" tabindex="-1"></a></span>
+<span id="cb92-13"><a href="有监督机器学习.html#cb92-13" tabindex="-1"></a><span class="co"># 创建GridSearchCV对象</span></span>
+<span id="cb92-14"><a href="有监督机器学习.html#cb92-14" tabindex="-1"></a>grid_search <span class="op">=</span> GridSearchCV(estimator<span class="op">=</span>model, param_grid<span class="op">=</span>param_grid, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&#39;accuracy&#39;</span>)</span>
+<span id="cb92-15"><a href="有监督机器学习.html#cb92-15" tabindex="-1"></a></span>
+<span id="cb92-16"><a href="有监督机器学习.html#cb92-16" tabindex="-1"></a><span class="co"># 在训练数据上进行网格搜索</span></span>
+<span id="cb92-17"><a href="有监督机器学习.html#cb92-17" tabindex="-1"></a>grid_search.fit(X_train, y_train)</span>
+<span id="cb92-18"><a href="有监督机器学习.html#cb92-18" tabindex="-1"></a></span>
+<span id="cb92-19"><a href="有监督机器学习.html#cb92-19" tabindex="-1"></a><span class="co"># 打印最佳参数和最佳分数</span></span></code></pre></div>
+<pre><code>## GridSearchCV(cv=5,
+##              estimator=XGBClassifier(base_score=None, booster=None,
+##                                      callbacks=None, colsample_bylevel=None,
+##                                      colsample_bynode=None,
+##                                      colsample_bytree=None,
+##                                      early_stopping_rounds=None,
+##                                      enable_categorical=False, eval_metric=None,
+##                                      gamma=None, gpu_id=None, grow_policy=None,
+##                                      importance_type=None,
+##                                      interaction_constraints=None,
+##                                      learning_rate=None, max_bin=None,
+##                                      max_ca...t=None,
+##                                      max_delta_step=None, max_depth=None,
+##                                      max_leaves=None, min_child_weight=None,
+##                                      missing=nan, monotone_constraints=None,
+##                                      n_estimators=100, n_jobs=None,
+##                                      num_parallel_tree=None, predictor=None,
+##                                      random_state=None, reg_alpha=None,
+##                                      reg_lambda=None, ...),
+##              param_grid={&#39;learning_rate&#39;: [0.01, 0.1, 0.2],
+##                          &#39;max_depth&#39;: [3, 4, 5],
+##                          &#39;n_estimators&#39;: [50, 100, 200]},
+##              scoring=&#39;accuracy&#39;)</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="有监督机器学习.html#cb94-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳最大深度:&quot;</span>, grid_search.best_params_[<span class="st">&#39;max_depth&#39;</span>])</span></code></pre></div>
+<pre><code>## 最佳最大深度: 3</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="有监督机器学习.html#cb96-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳学习率:&quot;</span>, grid_search.best_params_[<span class="st">&#39;learning_rate&#39;</span>])</span></code></pre></div>
+<pre><code>## 最佳学习率: 0.1</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="有监督机器学习.html#cb98-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳树的数量:&quot;</span>, grid_search.best_params_[<span class="st">&#39;n_estimators&#39;</span>])</span></code></pre></div>
+<pre><code>## 最佳树的数量: 200</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="有监督机器学习.html#cb100-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳分数:&quot;</span>, grid_search.best_score_)</span>
+<span id="cb100-2"><a href="有监督机器学习.html#cb100-2" tabindex="-1"></a></span>
+<span id="cb100-3"><a href="有监督机器学习.html#cb100-3" tabindex="-1"></a><span class="co"># 使用最佳参数的模型进行预测</span></span></code></pre></div>
+<pre><code>## 最佳分数: 0.9714285714285715</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="有监督机器学习.html#cb102-1" tabindex="-1"></a>best_model <span class="op">=</span> grid_search.best_estimator_</span>
+<span id="cb102-2"><a href="有监督机器学习.html#cb102-2" tabindex="-1"></a>y_pred <span class="op">=</span> best_model.predict(X_test)</span>
+<span id="cb102-3"><a href="有监督机器学习.html#cb102-3" tabindex="-1"></a></span>
+<span id="cb102-4"><a href="有监督机器学习.html#cb102-4" tabindex="-1"></a><span class="co"># 评估最佳模型性能</span></span>
+<span id="cb102-5"><a href="有监督机器学习.html#cb102-5" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb102-6"><a href="有监督机器学习.html#cb102-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;最佳模型准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 最佳模型准确率: 0.9649122807017544</code></pre>
+</div>
+</div>
+<div id="特征选择" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> 特征选择<a href="有监督机器学习.html#特征选择" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>特征选择是机器学习中的一个重要步骤，它涉及确定哪些特征对于建立准确的模型是最重要的，以减少维度和提高模型的性能。Sklearn提供了多种特征选择方法，包括过滤式（Filter）、包裹式（Wrapper）和嵌入式（Embedded）方法。以下是特征选择的原理总结和一个Sklearn案例示例：</p>
+<div id="特征选择原理总结" class="section level3 hasAnchor" number="6.8.1">
+<h3><span class="header-section-number">6.8.1</span> 特征选择原理总结：<a href="有监督机器学习.html#特征选择原理总结" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>过滤式特征选择（Filter）：过滤式方法独立于任何具体的机器学习算法。它使用某种特征评估标准（如方差、相关性、互信息等）来对特征进行排序或选择。最常见的过滤式方法包括方差选择和互信息选择。</p></li>
+<li><p>包裹式特征选择（Wrapper）：包裹式方法根据一个具体的机器学习模型（如决策树、SVM等）的性能来评估特征的重要性。它使用递归特征消除（RFE）、正向选择（Forward Selection）或反向选择（Backward Elimination）等技术。</p></li>
+<li><p>嵌入式特征选择（Embedded）：嵌入式方法将特征选择嵌入到机器学习模型的训练过程中。最常见的嵌入式方法是L1正则化，它将特征的权重稀疏化，从而实现特征选择。</p></li>
+</ol>
+</div>
+<div id="sklearn-特征选择示例" class="section level3 hasAnchor" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> Sklearn 特征选择示例：<a href="有监督机器学习.html#sklearn-特征选择示例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>以下是一个Sklearn案例示例，使用乳腺癌数据集和特征选择方法来选择重要的特征：</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="有监督机器学习.html#cb104-1" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_breast_cancer</span>
+<span id="cb104-2"><a href="有监督机器学习.html#cb104-2" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> SelectKBest, f_classif</span>
+<span id="cb104-3"><a href="有监督机器学习.html#cb104-3" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb104-4"><a href="有监督机器学习.html#cb104-4" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb104-5"><a href="有监督机器学习.html#cb104-5" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb104-6"><a href="有监督机器学习.html#cb104-6" tabindex="-1"></a></span>
+<span id="cb104-7"><a href="有监督机器学习.html#cb104-7" tabindex="-1"></a><span class="co"># 加载乳腺癌数据集</span></span>
+<span id="cb104-8"><a href="有监督机器学习.html#cb104-8" tabindex="-1"></a>data <span class="op">=</span> load_breast_cancer()</span>
+<span id="cb104-9"><a href="有监督机器学习.html#cb104-9" tabindex="-1"></a>X <span class="op">=</span> data.data</span>
+<span id="cb104-10"><a href="有监督机器学习.html#cb104-10" tabindex="-1"></a>y <span class="op">=</span> data.target</span>
+<span id="cb104-11"><a href="有监督机器学习.html#cb104-11" tabindex="-1"></a></span>
+<span id="cb104-12"><a href="有监督机器学习.html#cb104-12" tabindex="-1"></a><span class="co"># 划分数据集为训练集和测试集</span></span>
+<span id="cb104-13"><a href="有监督机器学习.html#cb104-13" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb104-14"><a href="有监督机器学习.html#cb104-14" tabindex="-1"></a></span>
+<span id="cb104-15"><a href="有监督机器学习.html#cb104-15" tabindex="-1"></a><span class="co"># 使用SelectKBest和f_classif方法选择最重要的特征</span></span>
+<span id="cb104-16"><a href="有监督机器学习.html#cb104-16" tabindex="-1"></a>selector <span class="op">=</span> SelectKBest(score_func<span class="op">=</span>f_classif, k<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb104-17"><a href="有监督机器学习.html#cb104-17" tabindex="-1"></a>X_train_selected <span class="op">=</span> selector.fit_transform(X_train, y_train)</span>
+<span id="cb104-18"><a href="有监督机器学习.html#cb104-18" tabindex="-1"></a>X_test_selected <span class="op">=</span> selector.transform(X_test)</span>
+<span id="cb104-19"><a href="有监督机器学习.html#cb104-19" tabindex="-1"></a></span>
+<span id="cb104-20"><a href="有监督机器学习.html#cb104-20" tabindex="-1"></a><span class="co"># 创建支持向量机分类器</span></span>
+<span id="cb104-21"><a href="有监督机器学习.html#cb104-21" tabindex="-1"></a>model <span class="op">=</span> SVC()</span>
+<span id="cb104-22"><a href="有监督机器学习.html#cb104-22" tabindex="-1"></a></span>
+<span id="cb104-23"><a href="有监督机器学习.html#cb104-23" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb104-24"><a href="有监督机器学习.html#cb104-24" tabindex="-1"></a>model.fit(X_train_selected, y_train)</span>
+<span id="cb104-25"><a href="有监督机器学习.html#cb104-25" tabindex="-1"></a></span>
+<span id="cb104-26"><a href="有监督机器学习.html#cb104-26" tabindex="-1"></a><span class="co"># 进行预测</span></span></code></pre></div>
+<pre><code>## SVC()</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb106-1"><a href="有监督机器学习.html#cb106-1" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test_selected)</span>
+<span id="cb106-2"><a href="有监督机器学习.html#cb106-2" tabindex="-1"></a></span>
+<span id="cb106-3"><a href="有监督机器学习.html#cb106-3" tabindex="-1"></a><span class="co"># 评估模型性能</span></span>
+<span id="cb106-4"><a href="有监督机器学习.html#cb106-4" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb106-5"><a href="有监督机器学习.html#cb106-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;准确率:&quot;</span>, accuracy)</span></code></pre></div>
+<pre><code>## 准确率: 0.9473684210526315</code></pre>
+<p>在上述示例中，我们使用了SelectKBest和f_classif方法来选择最重要的10个特征，并将其用于支持向量机分类器的训练和预测。这是一个过滤式特征选择方法的示例。你还可以尝试包裹式和嵌入式方法，具体取决于你的特定问题和需求。特征选择有助于提高模型的性能，减少计算成本并降低维度。</p>
+</div>
+</div>
+<div id="模型评估与交叉验证" class="section level2 hasAnchor" number="6.9">
+<h2><span class="header-section-number">6.9</span> 模型评估与交叉验证<a href="有监督机器学习.html#模型评估与交叉验证" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在机器学习中，模型评估和交叉验证是至关重要的步骤，用于评估模型的性能、泛化能力和稳定性。Scikit-learn（Sklearn）提供了丰富的工具和方法来执行模型评估和交叉验证。</p>
+<div id="模型评估与交叉验证总结" class="section level3 hasAnchor" number="6.9.1">
+<h3><span class="header-section-number">6.9.1</span> 模型评估与交叉验证总结：<a href="有监督机器学习.html#模型评估与交叉验证总结" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><p>模型评估指标：在机器学习中，有多种模型评估指标，包括准确率、精确度、召回率、F1分数、ROC曲线和AUC等。不同的问题和任务可能需要使用不同的评估指标。</p></li>
+<li><p>训练集和测试集划分：通常，数据集会分为训练集和测试集。模型在训练集上进行训练，然后在测试集上进行评估，以评估模型的性能。</p></li>
+<li><p>交叉验证：交叉验证是一种更严格的评估方法，它将数据集分成多个部分，进行多次训练和测试。常见的交叉验证方法包括k折交叉验证和留一交叉验证。</p></li>
+<li><p>Sklearn工具：Sklearn提供了用于模型评估和交叉验证的工具，包括train_test_split函数、cross_val_score函数和GridSearchCV用于参数调优。</p></li>
+</ol>
+</div>
+<div id="sklearn-模型评估与交叉验证示例" class="section level3 hasAnchor" number="6.9.2">
+<h3><span class="header-section-number">6.9.2</span> Sklearn 模型评估与交叉验证示例：<a href="有监督机器学习.html#sklearn-模型评估与交叉验证示例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>以下是一个Sklearn案例示例，使用乳腺癌数据集进行模型评估和交叉验证：</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb108-1"><a href="有监督机器学习.html#cb108-1" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_breast_cancer</span>
+<span id="cb108-2"><a href="有监督机器学习.html#cb108-2" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score</span>
+<span id="cb108-3"><a href="有监督机器学习.html#cb108-3" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb108-4"><a href="有监督机器学习.html#cb108-4" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb108-5"><a href="有监督机器学习.html#cb108-5" tabindex="-1"></a></span>
+<span id="cb108-6"><a href="有监督机器学习.html#cb108-6" tabindex="-1"></a><span class="co"># 加载乳腺癌数据集</span></span>
+<span id="cb108-7"><a href="有监督机器学习.html#cb108-7" tabindex="-1"></a>data <span class="op">=</span> load_breast_cancer()</span>
+<span id="cb108-8"><a href="有监督机器学习.html#cb108-8" tabindex="-1"></a>X <span class="op">=</span> data.data</span>
+<span id="cb108-9"><a href="有监督机器学习.html#cb108-9" tabindex="-1"></a>y <span class="op">=</span> data.target</span>
+<span id="cb108-10"><a href="有监督机器学习.html#cb108-10" tabindex="-1"></a></span>
+<span id="cb108-11"><a href="有监督机器学习.html#cb108-11" tabindex="-1"></a><span class="co"># 划分数据集为训练集和测试集</span></span>
+<span id="cb108-12"><a href="有监督机器学习.html#cb108-12" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb108-13"><a href="有监督机器学习.html#cb108-13" tabindex="-1"></a></span>
+<span id="cb108-14"><a href="有监督机器学习.html#cb108-14" tabindex="-1"></a><span class="co"># 创建支持向量机分类器</span></span>
+<span id="cb108-15"><a href="有监督机器学习.html#cb108-15" tabindex="-1"></a>model <span class="op">=</span> SVC()</span>
+<span id="cb108-16"><a href="有监督机器学习.html#cb108-16" tabindex="-1"></a></span>
+<span id="cb108-17"><a href="有监督机器学习.html#cb108-17" tabindex="-1"></a><span class="co"># 在训练集上进行交叉验证</span></span>
+<span id="cb108-18"><a href="有监督机器学习.html#cb108-18" tabindex="-1"></a>cv_scores <span class="op">=</span> cross_val_score(model, X_train, y_train, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">&#39;accuracy&#39;</span>)</span>
+<span id="cb108-19"><a href="有监督机器学习.html#cb108-19" tabindex="-1"></a></span>
+<span id="cb108-20"><a href="有监督机器学习.html#cb108-20" tabindex="-1"></a><span class="co"># 计算交叉验证准确率的均值和标准差</span></span>
+<span id="cb108-21"><a href="有监督机器学习.html#cb108-21" tabindex="-1"></a>cv_mean <span class="op">=</span> cv_scores.mean()</span>
+<span id="cb108-22"><a href="有监督机器学习.html#cb108-22" tabindex="-1"></a>cv_std <span class="op">=</span> cv_scores.std()</span>
+<span id="cb108-23"><a href="有监督机器学习.html#cb108-23" tabindex="-1"></a></span>
+<span id="cb108-24"><a href="有监督机器学习.html#cb108-24" tabindex="-1"></a><span class="co"># 训练模型</span></span>
+<span id="cb108-25"><a href="有监督机器学习.html#cb108-25" tabindex="-1"></a>model.fit(X_train, y_train)</span>
+<span id="cb108-26"><a href="有监督机器学习.html#cb108-26" tabindex="-1"></a></span>
+<span id="cb108-27"><a href="有监督机器学习.html#cb108-27" tabindex="-1"></a><span class="co"># 在测试集上进行预测</span></span></code></pre></div>
+<pre><code>## SVC()</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb110-1"><a href="有监督机器学习.html#cb110-1" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb110-2"><a href="有监督机器学习.html#cb110-2" tabindex="-1"></a></span>
+<span id="cb110-3"><a href="有监督机器学习.html#cb110-3" tabindex="-1"></a><span class="co"># 计算测试集准确率</span></span>
+<span id="cb110-4"><a href="有监督机器学习.html#cb110-4" tabindex="-1"></a>test_accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb110-5"><a href="有监督机器学习.html#cb110-5" tabindex="-1"></a></span>
+<span id="cb110-6"><a href="有监督机器学习.html#cb110-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;交叉验证准确率均值:&quot;</span>, cv_mean)</span></code></pre></div>
+<pre><code>## 交叉验证准确率均值: 0.9032967032967033</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb112-1"><a href="有监督机器学习.html#cb112-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;交叉验证准确率标准差:&quot;</span>, cv_std)</span></code></pre></div>
+<pre><code>## 交叉验证准确率标准差: 0.037038020980994985</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb114-1"><a href="有监督机器学习.html#cb114-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;测试集准确率:&quot;</span>, test_accuracy)</span></code></pre></div>
+<pre><code>## 测试集准确率: 0.9473684210526315</code></pre>
+<p>在上述示例中，我们使用cross_val_score函数执行了5折交叉验证，计算了交叉验证准确率的均值和标准差。然后，我们使用相同的模型在测试集上进行了评估，计算了测试集的准确率。这个示例演示了如何使用Sklearn来进行模型评估和交叉验证。不同的评估指标和交叉验证策略可以根据具体问题进行选择。</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="python-数据可视化.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sharing-your-book.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-blocks.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
